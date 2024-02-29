@@ -14,6 +14,7 @@ namespace Omega.Forms.Panels
 {
     public partial class CategoryForm : UserControl
     {
+
         public CategoryForm()
         {
             InitializeComponent();
@@ -53,6 +54,26 @@ namespace Omega.Forms.Panels
         {
             CategoryDAO categoryDAO = new CategoryDAO();
             categoryDAO.GetAll(this.dataGridView1);
+        }
+
+        private void infoKateg_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

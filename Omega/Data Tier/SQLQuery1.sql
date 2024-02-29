@@ -27,4 +27,4 @@ insert into Product(code, [name], price, category_id) values('11', 'Nem - Domác
 
 select * from Product
 select Category.id from Category where Category.name = 'Predkrmy'
-select Product.id, Product.code, Product.name, Product.price, Category.name as 'category' from Product inner join Category on Product.category_id = Category.id
+select Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id

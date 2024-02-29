@@ -53,6 +53,7 @@
             this.label1.Size = new System.Drawing.Size(90, 24);
             this.label1.TabIndex = 0;
             this.label1.Text = "Kategorie";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // ulozitKateg
             // 
@@ -87,6 +88,7 @@
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "DPH";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // inputDPHsebou
             // 
@@ -122,6 +124,7 @@
             this.infoKateg.TabIndex = 4;
             this.infoKateg.TabStop = false;
             this.infoKateg.Text = "Informace";
+            this.infoKateg.Enter += new System.EventHandler(this.infoKateg_Enter);
             // 
             // inputNazev
             // 
@@ -146,6 +149,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(752, 653);
             this.dataGridView1.TabIndex = 5;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // CategoryForm
             // 

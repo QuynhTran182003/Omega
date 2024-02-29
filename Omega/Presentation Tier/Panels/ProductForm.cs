@@ -23,6 +23,7 @@ namespace Omega.Presentation_Tier.Panels
 
         private void ProductForm_Load(object sender, EventArgs e)
         {
+            /*ziskame vsechny produkty do datagrid view a nacte se seznam kategorie z databaze*/
             ProductDAO productDAO = new ProductDAO();
             productDAO.GetAll(this.dataGridView1);
             this.LoadComboCategory(cbKategorie);
@@ -50,7 +51,7 @@ namespace Omega.Presentation_Tier.Panels
                 this.inputNazev.Text = "";
                 this.inputCena.Text = "";
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
                 MessageBox.Show("Cena musí být číslo");
             }

@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Omega.Business_Tier
 {
@@ -53,9 +54,22 @@ namespace Omega.Business_Tier
                 ProductDAO c = new ProductDAO();
                 c.Insert(this);
             }
-            catch
+            catch (Exception ex)
             {
+                MessageBox.Show($"Error se objevil v 59. line Product.cs: {ex.Message}");
+            }
+        }
 
+        public Product GetByCode(int code)
+        {
+            try
+            {
+                ProductDAO productDAO = new ProductDAO();
+                return productDAO.GetProductByCode(code);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"Error se objevil v 72. line Product.cs: {ex.Message}");
             }
         }
 

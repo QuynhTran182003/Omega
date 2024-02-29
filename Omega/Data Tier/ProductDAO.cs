@@ -21,8 +21,28 @@ namespace Omega.Data_Tier
         public void GetById(int id)
         {
             throw new NotImplementedException();
+
+            
         }
 
+        public Product GetProductByCode(int code)
+        {
+            SqlCommand cmd = new SqlCommand("select Product.id, Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id\r\nwhere Product.code = @code;", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@code", code);
+            Product product = new Product();
+            using(SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    product.Id = (int) reader["id"];
+                    product.Name = (string) reader["name"];
+                    product.Code = (string) reader["code"];
+                    product.Price = (int)reader["price"];
+                }
+            }
+            DatabaseSingleton.CloseConnection();
+            return product;
+        }
         public void Insert(Product ele)
         {
             SqlCommand cmd = new SqlCommand("insert into Product(code, [name], price, category_id) values(@Code, @Name, @Price, (select Category.id from Category where Category.name = @CategoryName));", DatabaseSingleton.GetInstance());
