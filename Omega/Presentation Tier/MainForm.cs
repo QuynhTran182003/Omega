@@ -23,14 +23,20 @@ namespace Omega
             this.loginForm = loginForm;
             panelMain.Visible = true;
             categoryForm1.Visible = false;
-         //   productForm1.Visible = false;
+            productForm1.Visible = false;
         }
         private void kategorieToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panelMain.Visible = false;
             categoryForm1.Visible = true;
-        //    productForm1.Visible = false;
+            productForm1.Visible = false;
         }
+        /*private void produktyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.productForm1.Visible = true;
+            this.categoryForm1.Visible = false;
+            this.panelMain.Visible = false;
+        }*/
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             loginForm.Close();
@@ -147,22 +153,22 @@ namespace Omega
             Button clickedButton = (Button)sender;
             MessageBox.Show($"Category '{clickedButton.Text}' clicked!");
             ProductDAO productDAO = new ProductDAO();
-            List<Product> list = productDAO.GetListProduct();
+            List<Product> list = productDAO.GetListProduct(clickedButton.Text);
             foreach (Product product in list)
             {
-                /*Button b = new Button();
+                Button b = new Button();
                 b.Text = product.Name;
                 b.Click += CategoryButton_Click;
                 b.Size = new System.Drawing.Size(140, 50);
                 b.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                flowLayoutCategory.Controls.Add(b);*/
-                Console.WriteLine(product.Name);
+                flowLayoutProduct.Controls.Add(b);
+                //Console.WriteLine(product.Name);
             }
         }
 
-        private void produktyToolStripMenuItem_Click(object sender, EventArgs e)
+        private void produktyToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            //this.productForm1.Visible = true;
+            this.productForm1.Visible = true;
             this.categoryForm1.Visible = false;
             this.panelMain.Visible = false;
         }

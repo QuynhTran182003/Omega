@@ -71,6 +71,7 @@
             this.panelCategory = new System.Windows.Forms.Panel();
             this.flowLayoutCategory = new System.Windows.Forms.FlowLayoutPanel();
             this.panelProducts = new System.Windows.Forms.Panel();
+            this.flowLayoutProduct = new System.Windows.Forms.FlowLayoutPanel();
             this.panelExecution = new System.Windows.Forms.Panel();
             this.changeTable = new System.Windows.Forms.Button();
             this.backspace = new System.Windows.Forms.Button();
@@ -90,6 +91,7 @@
             this.ulozitObj = new System.Windows.Forms.Button();
             this.enter = new System.Windows.Forms.Button();
             this.idItemInput = new System.Windows.Forms.TextBox();
+            this.productForm1 = new Omega.Presentation_Tier.Panels.ProductForm();
             this.button1 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.categoryForm1 = new Omega.Forms.Panels.CategoryForm();
@@ -98,6 +100,8 @@
             this.panelMain.SuspendLayout();
             this.panelItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panelCategory.SuspendLayout();
+            this.panelProducts.SuspendLayout();
             this.panelExecution.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -177,9 +181,10 @@
             // produktyToolStripMenuItem
             // 
             this.produktyToolStripMenuItem.Name = "produktyToolStripMenuItem";
-            this.produktyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.produktyToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.produktyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
+            this.produktyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.produktyToolStripMenuItem.Text = "Produkty";
+            this.produktyToolStripMenuItem.Click += new System.EventHandler(this.produktyToolStripMenuItem_Click_1);
             // 
             // spravaToolStripMenuItem
             // 
@@ -402,7 +407,6 @@
             this.panelMain.Controls.Add(this.panelStul);
             this.panelMain.Controls.Add(this.panelItems);
             this.panelMain.Controls.Add(this.panelCategory);
-            this.panelMain.Controls.Add(this.flowLayoutCategory);
             this.panelMain.Controls.Add(this.panelProducts);
             this.panelMain.Controls.Add(this.panelExecution);
             this.panelMain.Location = new System.Drawing.Point(0, 24);
@@ -506,16 +510,16 @@
             // panelCategory
             // 
             this.panelCategory.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelCategory.Controls.Add(this.flowLayoutCategory);
             this.panelCategory.Location = new System.Drawing.Point(517, 0);
             this.panelCategory.MinimumSize = new System.Drawing.Size(750, 240);
             this.panelCategory.Name = "panelCategory";
-            this.panelCategory.Controls.Add(this.flowLayoutCategory);
             this.panelCategory.Size = new System.Drawing.Size(838, 273);
             this.panelCategory.TabIndex = 0;
             // 
             // flowLayoutCategory
             // 
-            this.flowLayoutCategory.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutCategory.Location = new System.Drawing.Point(0, 6);
             this.flowLayoutCategory.Name = "flowLayoutCategory";
             this.flowLayoutCategory.Size = new System.Drawing.Size(833, 259);
             this.flowLayoutCategory.TabIndex = 1;
@@ -523,11 +527,19 @@
             // panelProducts
             // 
             this.panelProducts.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelProducts.Controls.Add(this.flowLayoutProduct);
             this.panelProducts.Location = new System.Drawing.Point(517, 279);
             this.panelProducts.MinimumSize = new System.Drawing.Size(750, 240);
             this.panelProducts.Name = "panelProducts";
             this.panelProducts.Size = new System.Drawing.Size(838, 472);
             this.panelProducts.TabIndex = 1;
+            // 
+            // flowLayoutProduct
+            // 
+            this.flowLayoutProduct.Location = new System.Drawing.Point(0, 4);
+            this.flowLayoutProduct.Name = "flowLayoutProduct";
+            this.flowLayoutProduct.Size = new System.Drawing.Size(833, 467);
+            this.flowLayoutProduct.TabIndex = 2;
             // 
             // panelExecution
             // 
@@ -766,6 +778,16 @@
             this.idItemInput.TabIndex = 0;
             this.idItemInput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // productForm1
+            // 
+            this.productForm1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.productForm1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.productForm1.Location = new System.Drawing.Point(0, 24);
+            this.productForm1.Name = "productForm1";
+            this.productForm1.Size = new System.Drawing.Size(1482, 749);
+            this.productForm1.TabIndex = 18;
+            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(0, 0);
@@ -792,6 +814,7 @@
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.categoryForm1);
+            this.Controls.Add(this.productForm1);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Restauce";
@@ -806,6 +829,8 @@
             this.panelItems.ResumeLayout(false);
             this.panelItems.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panelCategory.ResumeLayout(false);
+            this.panelProducts.ResumeLayout(false);
             this.panelExecution.ResumeLayout(false);
             this.panelExecution.PerformLayout();
             this.ResumeLayout(false);
@@ -878,6 +903,8 @@
         private System.Windows.Forms.ToolStripMenuItem produktyToolStripMenuItem;
         private Forms.Panels.CategoryForm categoryForm1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutCategory;
+        private Presentation_Tier.Panels.ProductForm productForm1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutProduct;
     }
 }
 

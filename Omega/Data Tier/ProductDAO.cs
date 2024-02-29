@@ -25,7 +25,21 @@ namespace Omega.Data_Tier
 
         public void Insert(Product ele)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand("insert into Product(code, [name], price, category_id) values(@Code, @Name, @Price, (select Category.id from Category where Category.name = @CategoryName));", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@Code", ele.Code);
+            cmd.Parameters.AddWithValue("@Name", ele.Name);
+            cmd.Parameters.AddWithValue("@Price", ele.Price);
+            cmd.Parameters.AddWithValue("@CategoryName", ele.Category);
+            try
+            {
+                cmd.ExecuteNonQuery();
+                //MessageBox.Show("client added");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            DatabaseSingleton.CloseConnection();
         }
 
         public void Update(int id, Product newEle)
@@ -53,9 +67,10 @@ namespace Omega.Data_Tier
             DatabaseSingleton.CloseConnection();
         }
 
-        public List<Product> GetListProduct()
+        public List<Product> GetListProduct(string category)
         {
-            SqlCommand cmd = new SqlCommand("select * from Product", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand(@"select Product.id, Product.code, Product.name, Product.price, Category.name as 'category' from Product inner join Category on Product.category_id = Category.id where Category.name = @category ", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@category", category);
             List<Product> list = new List<Product>();
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
@@ -64,10 +79,10 @@ namespace Omega.Data_Tier
                     Product p = new Product
                     {
                         Id = (int)reader["id"],
-                        Code = (int)reader["code"],
+                        Code = reader["code"].ToString(),
                         Name = reader["name"].ToString(),
                         Price = (int)reader["price"],
-                        CategoryId = (int)reader["category_id"],
+                        Category = reader["category"].ToString(),
                     };
 
                     list.Add(p);

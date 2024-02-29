@@ -23,4 +23,8 @@ category_id int foreign key references Category(id)
 --insert into Category([name], dph) values('Polévky', 12);
 --insert into Category([name], dph) values('Předkrmy', 12);
 --insert into Product(code, [name], price, category_id) values('01', 'Miso polévka', 119, 1);
---insert into Product(code, [name], price, category_id) values('11', 'Nem - Domácí závitky', 139, 2);
+insert into Product(code, [name], price, category_id) values('11', 'Nem - Domácí závitky', 139, (select Category.id from Category where Category.name = 'Predkrmy'));
+
+select * from Product
+select Category.id from Category where Category.name = 'Predkrmy'
+select Product.id, Product.code, Product.name, Product.price, Category.name as 'category' from Product inner join Category on Product.category_id = Category.id
