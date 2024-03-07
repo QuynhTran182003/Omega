@@ -2,6 +2,7 @@
 using Omega.Data_Tier;
 using Omega.Forms.Panels;
 using Omega.Objects;
+using Omega.Presentation_Tier;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,9 +18,10 @@ namespace Omega
     public partial class MainForm : Form
     {
         private LoginForm loginForm;
-        private int numberTable;
+        private int selectedTable = 0;
+        private int verticalPosition = 0;
 
-        public int NumberTable { get { return numberTable; } set { numberTable = value; } }
+        public int SelectedTable { get { return selectedTable; } set { selectedTable = value; } }
         public MainForm(LoginForm loginForm)
         {
             InitializeComponent();
@@ -80,8 +82,8 @@ namespace Omega
             panelItems.Visible = true;
 
             //Set the number of selected table, where we will add item to the order
-            NumberTable = int.Parse(clickedButton.Text.Split(' ')[1]);
-            MessageBox.Show($"Stul {NumberTable} je vybran");
+            SelectedTable = int.Parse(clickedButton.Text.Split(' ')[1]);
+            //MessageBox.Show($"Stul {NumberTable} je vybran");
         }
 
         private void Btn_numbers_Click(object sender, EventArgs e)
@@ -101,7 +103,7 @@ namespace Omega
         private void Enter_Click(object sender, EventArgs e)
         {
             // Nejprve zjistim jestli stul je vybran
-            if (NumberTable == 0)
+            if (SelectedTable == 0)
             {
                 MessageBox.Show("Prosím vyberte stůl");
                 return;
@@ -110,11 +112,9 @@ namespace Omega
             this.idItemInput.Text = "";
             MessageBox.Show(itemCode.ToString());
 
-            //Zde implementuju metodu na pridani polozky do objednavky pro urcity stul
-            Product selectedProduct = new Product().GetByCode(itemCode);
-            
-            //Pokud nenalezne zbozi
-            //MessageBox.Show("Zboží nenalezeno");
+            // Zde implementuju metodu na pridani polozky do objednavky pro urcity stul
+            Product p = new Product().GetByCode(itemCode);
+            AddOrUpdateItem(p, 1);
         }
 
         private void Exit_Click(object sender, EventArgs e)
@@ -157,37 +157,104 @@ namespace Omega
                 b.Size = new System.Drawing.Size(140, 50);
                 b.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 flowLayoutPanel.Controls.Add(b);
-                //Console.WriteLine(category.Nazev);
             }
         }
         private void CategoryButton_Click(object sender, EventArgs e)
         {
             Button clickedButton = (Button)sender;
-            MessageBox.Show($"Category '{clickedButton.Text}' clicked!");
             ProductDAO productDAO = new ProductDAO();
             List<Product> list = productDAO.GetListProduct(clickedButton.Text);
             flowLayoutProduct.Controls.Clear();
             foreach (Product product in list)
             {
                 Button b = new Button();
-                b.Text = product.Name;
+                b.Text = product.Code +" - "+ product.Name;
                 b.Click += ProductButton_Click;
                 b.Size = new System.Drawing.Size(140, 50);
                 b.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
                 flowLayoutProduct.Controls.Add(b);
-                //Console.WriteLine(product.Name);
             }
         }
         private void ProductButton_Click(object sender, EventArgs e)
         {
             // Nejprve zjistim jestli stul je vybran
-            if (NumberTable == 0)
+            if (SelectedTable == 0)
             {
                 MessageBox.Show("Prosím vyberte stůl");
-                return;
             }
+            //musim ziskat kod kliknuteho jidla
             Button clickedButton = (Button)sender;
-            MessageBox.Show($"Product '{clickedButton.Text}' clicked!");
+            int code = int.Parse(clickedButton.Text.Split('-')[0]);
+
+            Product p = new Product().GetByCode(code);
+            AddOrUpdateItem(p, 1);
+            /*bool existed = false;
+
+            //Vytvorim jiny UserControl (polozku objednavky)
+            ItemUC n_itemUC = new ItemUC(p.Name, p.Code, p.Price, p.DPH(), 1);
+            n_itemUC.Location = new System.Drawing.Point(3, verticalPosition);
+
+            // ziskam vsechny polozky co uz mam v panelu
+            List<ItemUC> list = panelItems.Controls.OfType<ItemUC>().ToList();
+            
+            //kontroluju jestli existuje takovy produkt, ktery chci vlozit do objednavky, 
+            foreach (ItemUC itemUc in list)
+            {
+                //Pokud uz existuje, zvysim jenom pocet tohoto produktu
+                if (itemUc.CodeLabel.Text.Equals(n_itemUC.CodeLabel.Text))
+                {
+                    existed = true;
+                    int quantity = int.Parse(itemUc.QuantityLabel.Text);
+                    itemUc.QuantityLabel.Text = (quantity+1).ToString();
+                }
+            }
+
+            //Pokud takovy produkt jeste neexistuje, tak ho pridam to panelu
+            if (!existed)
+            {
+                panelItems.Controls.Add(n_itemUC);
+                verticalPosition += n_itemUC.Height + 2;
+            }*/
+        }
+
+        private void btnDel_Click(object sender, EventArgs e)
+        {
+            panelItems.Controls.Clear();
+            verticalPosition = 0;
+        }
+
+        private void AddOrUpdateItem(Product product, int quantity)
+        {
+            //-----------------
+            bool existed = false;
+
+            // Vytvorim jiny UserControl (polozku objednavky)
+            ItemUC n_itemUC = new ItemUC(product.Name, product.Code, product.Price, product.DPH(), 1);
+            n_itemUC.Location = new System.Drawing.Point(3, verticalPosition);
+
+            // ziskam vsechny polozky co uz mam v panelu
+            List<ItemUC> list = panelItems.Controls.OfType<ItemUC>().ToList();
+
+            // kontroluju jestli existuje takovy produkt, ktery chci vlozit do objednavky, 
+            foreach (ItemUC itemUc in list)
+            {
+                //Pokud uz existuje, zvysim jenom pocet tohoto produktu
+                if (itemUc.CodeLabel.Text.Equals(n_itemUC.CodeLabel.Text))
+                {
+                    existed = true;
+                    int actual_quant = int.Parse(itemUc.QuantityLabel.Text);
+                    itemUc.QuantityLabel.Text = (actual_quant + quantity).ToString();
+                    break;
+                }
+            }
+
+            //Pokud takovy produkt jeste neexistuje, tak ho pridam to panelu
+            if (!existed)
+            {
+                panelItems.Controls.Add(n_itemUC);
+                verticalPosition += n_itemUC.Height + 2;
+            }
+            //-----------------
         }
     }
 }

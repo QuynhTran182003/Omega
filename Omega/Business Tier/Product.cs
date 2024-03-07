@@ -28,14 +28,6 @@ namespace Omega.Business_Tier
 
         public Product() { }
 
-        /*public Product(int code, string name, int price, int cate_id)
-        {
-            Code = code;
-            Name = name;
-            Price = price;
-            CategoryId = cate_id;
-        }*/
-
         public Product(string code, string name, int price, string cate)
         {
             Code = code;
@@ -56,21 +48,22 @@ namespace Omega.Business_Tier
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error se objevil v 59. line Product.cs: {ex.Message}");
+                MessageBox.Show($"Error se objevil v 51. line Product.cs: {ex.Message}");
             }
         }
 
         public Product GetByCode(int code)
         {
-            try
-            {
-                ProductDAO productDAO = new ProductDAO();
-                return productDAO.GetProductByCode(code);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show($"Error se objevil v 72. line Product.cs: {ex.Message}");
-            }
+            ProductDAO productDAO = new ProductDAO();
+            return productDAO.GetProductByCode(code);
+        }
+
+        public int DPH()
+        {
+            int dph;
+            ProductDAO productDAO = new ProductDAO();
+            dph = productDAO.GetDPH(this.Id);
+            return dph;
         }
 
     }

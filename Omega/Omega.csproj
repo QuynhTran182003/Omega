@@ -53,6 +53,12 @@
     <Compile Include="Data Tier\DatabaseSingleton.cs" />
     <Compile Include="Data Tier\IDAO.cs" />
     <Compile Include="Data Tier\ProductDAO.cs" />
+    <Compile Include="Presentation Tier\ItemUC.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentation Tier\ItemUC.Designer.cs">
+      <DependentUpon>ItemUC.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Tier\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Presentation Tier\ItemUC.resx">
+      <DependentUpon>ItemUC.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation Tier\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </EmbeddedResource>

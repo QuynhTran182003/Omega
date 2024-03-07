@@ -25,6 +25,21 @@ namespace Omega.Data_Tier
             
         }
 
+        public int GetDPH(int code)
+        {
+            SqlCommand cmd = new SqlCommand("select Category.dph as 'DPH' from Product inner join Category on Product.category_id = Category.id where Product.code = @code;", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@code", code);
+            int dph = 0;
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    dph = (int)reader["DPH"];
+                }
+            }
+            DatabaseSingleton.CloseConnection();
+            return dph;
+        }
         public Product GetProductByCode(int code)
         {
             SqlCommand cmd = new SqlCommand("select Product.id, Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id\r\nwhere Product.code = @code;", DatabaseSingleton.GetInstance());

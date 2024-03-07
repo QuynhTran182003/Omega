@@ -59,20 +59,20 @@
             this.stul1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
-            this.panelItems = new System.Windows.Forms.Panel();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.kod = new System.Windows.Forms.Label();
             this.jmeno = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.DPH = new System.Windows.Forms.Label();
             this.cena = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.Label();
+            this.panelItems = new System.Windows.Forms.Panel();
             this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.panelCategory = new System.Windows.Forms.Panel();
             this.flowLayoutCategory = new System.Windows.Forms.FlowLayoutPanel();
             this.panelProducts = new System.Windows.Forms.Panel();
             this.flowLayoutProduct = new System.Windows.Forms.FlowLayoutPanel();
             this.panelExecution = new System.Windows.Forms.Panel();
+            this.btnDel = new System.Windows.Forms.Button();
             this.changeTable = new System.Windows.Forms.Button();
             this.backspace = new System.Windows.Forms.Button();
             this.button0 = new System.Windows.Forms.Button();
@@ -95,11 +95,12 @@
             this.button1 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.categoryForm1 = new Omega.Forms.Panels.CategoryForm();
+            this.celkem = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panelStul.SuspendLayout();
             this.panelMain.SuspendLayout();
             this.panelItems.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelCategory.SuspendLayout();
             this.panelProducts.SuspendLayout();
             this.panelExecution.SuspendLayout();
@@ -182,7 +183,7 @@
             // 
             this.produktyToolStripMenuItem.Name = "produktyToolStripMenuItem";
             this.produktyToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
-            this.produktyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.produktyToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
             this.produktyToolStripMenuItem.Text = "Produkty";
             this.produktyToolStripMenuItem.Click += new System.EventHandler(this.produktyToolStripMenuItem_Click_1);
             // 
@@ -404,6 +405,14 @@
             this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMain.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.panelMain.Controls.Add(this.label3);
+            this.panelMain.Controls.Add(this.celkem);
+            this.panelMain.Controls.Add(this.kod);
+            this.panelMain.Controls.Add(this.jmeno);
+            this.panelMain.Controls.Add(this.label4);
+            this.panelMain.Controls.Add(this.DPH);
+            this.panelMain.Controls.Add(this.cena);
+            this.panelMain.Controls.Add(this.ID);
             this.panelMain.Controls.Add(this.panelStul);
             this.panelMain.Controls.Add(this.panelItems);
             this.panelMain.Controls.Add(this.panelCategory);
@@ -414,97 +423,81 @@
             this.panelMain.Size = new System.Drawing.Size(1484, 751);
             this.panelMain.TabIndex = 5;
             // 
-            // panelItems
-            // 
-            this.panelItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelItems.Controls.Add(this.dataGridView1);
-            this.panelItems.Controls.Add(this.kod);
-            this.panelItems.Controls.Add(this.jmeno);
-            this.panelItems.Controls.Add(this.label4);
-            this.panelItems.Controls.Add(this.DPH);
-            this.panelItems.Controls.Add(this.cena);
-            this.panelItems.Controls.Add(this.ID);
-            this.panelItems.Controls.Add(this.vScrollBar1);
-            this.panelItems.Location = new System.Drawing.Point(0, 279);
-            this.panelItems.Name = "panelItems";
-            this.panelItems.Size = new System.Drawing.Size(495, 472);
-            this.panelItems.TabIndex = 17;
-            this.panelItems.Visible = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 22);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(472, 449);
-            this.dataGridView1.TabIndex = 0;
-            // 
             // kod
             // 
             this.kod.AutoSize = true;
             this.kod.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.kod.Location = new System.Drawing.Point(269, 1);
+            this.kod.Location = new System.Drawing.Point(274, 342);
             this.kod.Name = "kod";
             this.kod.Size = new System.Drawing.Size(37, 20);
-            this.kod.TabIndex = 6;
+            this.kod.TabIndex = 23;
             this.kod.Text = "Kód";
             // 
             // jmeno
             // 
             this.jmeno.AutoSize = true;
             this.jmeno.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.jmeno.Location = new System.Drawing.Point(128, 1);
+            this.jmeno.Location = new System.Drawing.Point(133, 342);
             this.jmeno.Name = "jmeno";
             this.jmeno.Size = new System.Drawing.Size(57, 20);
-            this.jmeno.TabIndex = 5;
+            this.jmeno.TabIndex = 22;
             this.jmeno.Text = "Jméno";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(423, 1);
+            this.label4.Location = new System.Drawing.Point(428, 342);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(52, 20);
-            this.label4.TabIndex = 4;
+            this.label4.TabIndex = 21;
             this.label4.Text = "Množ.";
             // 
             // DPH
             // 
             this.DPH.AutoSize = true;
             this.DPH.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DPH.Location = new System.Drawing.Point(374, 1);
+            this.DPH.Location = new System.Drawing.Point(379, 342);
             this.DPH.Name = "DPH";
             this.DPH.Size = new System.Drawing.Size(43, 20);
-            this.DPH.TabIndex = 3;
+            this.DPH.TabIndex = 20;
             this.DPH.Text = "DPH";
             // 
             // cena
             // 
             this.cena.AutoSize = true;
             this.cena.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cena.Location = new System.Drawing.Point(321, 1);
+            this.cena.Location = new System.Drawing.Point(326, 342);
             this.cena.Name = "cena";
             this.cena.Size = new System.Drawing.Size(47, 20);
-            this.cena.TabIndex = 2;
+            this.cena.TabIndex = 19;
             this.cena.Text = "Cena";
             // 
             // ID
             // 
             this.ID.AutoSize = true;
             this.ID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ID.Location = new System.Drawing.Point(3, 1);
+            this.ID.Location = new System.Drawing.Point(8, 342);
             this.ID.Name = "ID";
             this.ID.Size = new System.Drawing.Size(26, 20);
-            this.ID.TabIndex = 1;
+            this.ID.TabIndex = 18;
             this.ID.Text = "ID";
+            // 
+            // panelItems
+            // 
+            this.panelItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelItems.Controls.Add(this.vScrollBar1);
+            this.panelItems.Location = new System.Drawing.Point(0, 365);
+            this.panelItems.Name = "panelItems";
+            this.panelItems.Size = new System.Drawing.Size(495, 386);
+            this.panelItems.TabIndex = 17;
+            this.panelItems.Visible = false;
             // 
             // vScrollBar1
             // 
-            this.vScrollBar1.Location = new System.Drawing.Point(477, 22);
+            this.vScrollBar1.Location = new System.Drawing.Point(477, 0);
             this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(17, 438);
+            this.vScrollBar1.Size = new System.Drawing.Size(17, 385);
             this.vScrollBar1.TabIndex = 0;
             // 
             // panelCategory
@@ -544,6 +537,7 @@
             // panelExecution
             // 
             this.panelExecution.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelExecution.Controls.Add(this.btnDel);
             this.panelExecution.Controls.Add(this.changeTable);
             this.panelExecution.Controls.Add(this.backspace);
             this.panelExecution.Controls.Add(this.button0);
@@ -566,6 +560,20 @@
             this.panelExecution.Name = "panelExecution";
             this.panelExecution.Size = new System.Drawing.Size(495, 273);
             this.panelExecution.TabIndex = 1;
+            // 
+            // btnDel
+            // 
+            this.btnDel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.btnDel.Enabled = false;
+            this.btnDel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDel.Location = new System.Drawing.Point(365, 7);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Size = new System.Drawing.Size(114, 40);
+            this.btnDel.TabIndex = 18;
+            this.btnDel.Tag = "execution";
+            this.btnDel.Text = "Smazat Obj.";
+            this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // changeTable
             // 
@@ -806,6 +814,28 @@
             this.categoryForm1.Size = new System.Drawing.Size(1484, 751);
             this.categoryForm1.TabIndex = 18;
             // 
+            // celkem
+            // 
+            this.celkem.AutoSize = true;
+            this.celkem.Font = new System.Drawing.Font("hooge 05_55", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.celkem.ForeColor = System.Drawing.Color.Blue;
+            this.celkem.Location = new System.Drawing.Point(3, 276);
+            this.celkem.Name = "celkem";
+            this.celkem.Size = new System.Drawing.Size(156, 37);
+            this.celkem.TabIndex = 24;
+            this.celkem.Text = "Celkem: ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("hooge 05_55", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.Blue;
+            this.label3.Location = new System.Drawing.Point(147, 276);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(89, 37);
+            this.label3.TabIndex = 26;
+            this.label3.Text = ".- Kč";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -826,9 +856,8 @@
             this.panelStul.ResumeLayout(false);
             this.panelStul.PerformLayout();
             this.panelMain.ResumeLayout(false);
+            this.panelMain.PerformLayout();
             this.panelItems.ResumeLayout(false);
-            this.panelItems.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panelCategory.ResumeLayout(false);
             this.panelProducts.ResumeLayout(false);
             this.panelExecution.ResumeLayout(false);
@@ -890,13 +919,6 @@
         private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.Button changeTable;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Label kod;
-        private System.Windows.Forms.Label jmeno;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label DPH;
-        private System.Windows.Forms.Label cena;
-        private System.Windows.Forms.Label ID;
         private System.Windows.Forms.ToolStripMenuItem seznamZaměstnancůToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rozvrhZaměstnancůToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kategorieToolStripMenuItem;
@@ -905,6 +927,15 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutCategory;
         private Presentation_Tier.Panels.ProductForm productForm1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutProduct;
+        private System.Windows.Forms.Button btnDel;
+        private System.Windows.Forms.Label kod;
+        private System.Windows.Forms.Label jmeno;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label DPH;
+        private System.Windows.Forms.Label cena;
+        private System.Windows.Forms.Label ID;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label celkem;
     }
 }
 
