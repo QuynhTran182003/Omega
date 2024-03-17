@@ -59,6 +59,8 @@
             this.stul1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
+            this.totalPrice = new System.Windows.Forms.Label();
+            this.celkem = new System.Windows.Forms.Label();
             this.kod = new System.Windows.Forms.Label();
             this.jmeno = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -95,8 +97,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.categoryForm1 = new Omega.Forms.Panels.CategoryForm();
-            this.celkem = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panelStul.SuspendLayout();
             this.panelMain.SuspendLayout();
@@ -405,7 +405,7 @@
             this.panelMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMain.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.panelMain.Controls.Add(this.label3);
+            this.panelMain.Controls.Add(this.totalPrice);
             this.panelMain.Controls.Add(this.celkem);
             this.panelMain.Controls.Add(this.kod);
             this.panelMain.Controls.Add(this.jmeno);
@@ -422,6 +422,28 @@
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(1484, 751);
             this.panelMain.TabIndex = 5;
+            // 
+            // totalPrice
+            // 
+            this.totalPrice.AutoSize = true;
+            this.totalPrice.Font = new System.Drawing.Font("hooge 05_55", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalPrice.ForeColor = System.Drawing.Color.Blue;
+            this.totalPrice.Location = new System.Drawing.Point(147, 276);
+            this.totalPrice.Name = "totalPrice";
+            this.totalPrice.Size = new System.Drawing.Size(109, 37);
+            this.totalPrice.TabIndex = 26;
+            this.totalPrice.Text = "0.- Kč";
+            // 
+            // celkem
+            // 
+            this.celkem.AutoSize = true;
+            this.celkem.Font = new System.Drawing.Font("hooge 05_55", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.celkem.ForeColor = System.Drawing.Color.Blue;
+            this.celkem.Location = new System.Drawing.Point(3, 276);
+            this.celkem.Name = "celkem";
+            this.celkem.Size = new System.Drawing.Size(156, 37);
+            this.celkem.TabIndex = 24;
+            this.celkem.Text = "Celkem: ";
             // 
             // kod
             // 
@@ -814,28 +836,6 @@
             this.categoryForm1.Size = new System.Drawing.Size(1484, 751);
             this.categoryForm1.TabIndex = 18;
             // 
-            // celkem
-            // 
-            this.celkem.AutoSize = true;
-            this.celkem.Font = new System.Drawing.Font("hooge 05_55", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.celkem.ForeColor = System.Drawing.Color.Blue;
-            this.celkem.Location = new System.Drawing.Point(3, 276);
-            this.celkem.Name = "celkem";
-            this.celkem.Size = new System.Drawing.Size(156, 37);
-            this.celkem.TabIndex = 24;
-            this.celkem.Text = "Celkem: ";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("hooge 05_55", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(147, 276);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(89, 37);
-            this.label3.TabIndex = 26;
-            this.label3.Text = ".- Kč";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -934,7 +934,7 @@
         private System.Windows.Forms.Label DPH;
         private System.Windows.Forms.Label cena;
         private System.Windows.Forms.Label ID;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label totalPrice;
         private System.Windows.Forms.Label celkem;
     }
 }

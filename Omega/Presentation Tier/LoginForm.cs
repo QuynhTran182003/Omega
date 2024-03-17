@@ -15,12 +15,13 @@ namespace Omega
         public LoginForm()
         {
             InitializeComponent();
-            
         }
 
         private void prihlasitSe_Click(object sender, EventArgs e)
         {
             /*Implement method for authentication*/
+            string username = this.username.Text;
+            string password = this.password.Text;
 
             this.Hide();
             MainForm mainForm = new MainForm(this);

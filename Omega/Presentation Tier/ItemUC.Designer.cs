@@ -100,6 +100,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Controls.Add(this.kod);
             this.Controls.Add(this.dph);
             this.Controls.Add(this.mnozstvi);
@@ -107,7 +108,8 @@
             this.Controls.Add(this.jmeno);
             this.Controls.Add(this.id);
             this.Name = "ItemUC";
-            this.Size = new System.Drawing.Size(472, 38);
+            this.Size = new System.Drawing.Size(470, 36);
+            this.Click += new System.EventHandler(this.ItemUC_Click);
             this.ResumeLayout(false);
             this.PerformLayout();
 

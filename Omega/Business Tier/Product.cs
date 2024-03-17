@@ -52,10 +52,16 @@ namespace Omega.Business_Tier
             }
         }
 
-        public Product GetByCode(int code)
+        public Product GetByCode(string code)
         {
             ProductDAO productDAO = new ProductDAO();
-            return productDAO.GetProductByCode(code);
+            Product product = productDAO.GetProductByCode(code);
+            // if this product exists in database
+            if(product.Name == null || product.Code == null)
+            {
+                return null;
+            }
+            return product;
         }
 
         public int DPH()

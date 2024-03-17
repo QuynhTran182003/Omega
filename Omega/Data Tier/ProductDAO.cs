@@ -40,9 +40,9 @@ namespace Omega.Data_Tier
             DatabaseSingleton.CloseConnection();
             return dph;
         }
-        public Product GetProductByCode(int code)
+        public Product GetProductByCode(string code)
         {
-            SqlCommand cmd = new SqlCommand("select Product.id, Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id\r\nwhere Product.code = @code;", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("select Product.id, Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id where Product.code = @code;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@code", code);
             Product product = new Product();
             using(SqlDataReader reader = cmd.ExecuteReader())

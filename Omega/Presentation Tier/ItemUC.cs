@@ -33,5 +33,12 @@ namespace Omega.Presentation_Tier
             this.DPHLabel.Text = dph.ToString();
             this.QuantityLabel.Text = mnozstvi.ToString();
         }
+
+        private void ItemUC_Click(object sender, EventArgs e)
+        {
+/*Upravit cenu v pripade potreby, upravit mnozstvi na rychle*/
+            ItemUC clicked = (ItemUC)sender;
+            MessageBox.Show("Edit price edit Quantity for " + clicked.NameLabel.Text);
+        }
     }
 }
