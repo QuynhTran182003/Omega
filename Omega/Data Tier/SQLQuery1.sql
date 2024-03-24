@@ -71,5 +71,10 @@ where Product.code = 11;
 
 select Product.id, Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id where Product.code = '10a';
 
-select * from Orders
+select * from Orders where Orders.table_id = 9
+select Orders.id, tabl.number_table, Orders.dtime_order from Orders inner join Tabl on Tabl.id = Orders.table_id
 select * from Item
+select Item.id, Product.code, Orders.id as OrderId, Item.quantity from Item 
+                                                inner join Orders on Orders.id = Item.order_id 
+                                                inner join Product on Product.id = Item.product_id 
+                                                where Orders.id = 6
