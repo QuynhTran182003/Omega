@@ -20,7 +20,6 @@ namespace Omega
         private LoginForm loginForm;
         private int selectedTable = 0;
         private int verticalPosition = 0;
-        
         public int SelectedTable { get { return selectedTable; } set { selectedTable = value; } }
         public MainForm(LoginForm loginForm)
         {
@@ -33,6 +32,7 @@ namespace Omega
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitializeCategoryButton(this.flowLayoutCategory);
+            InitializeTableButton(this.flowLayoutTable);
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -62,8 +62,8 @@ namespace Omega
         }
         private void Button_Stul_Click(object sender, EventArgs e)
         {
-            // Reset all buttons in panelStul to white
-            foreach (Button button in panelStul.Controls.OfType<Button>().Where(b => !b.Tag.Equals("Rezervovan")))
+            // Reset colors of all not-reserved tables in flowLayoutTable to white, reserved tables keep color unchanged
+            foreach (Button button in flowLayoutTable.Controls.OfType<Button>().Where(b => !b.Tag.Equals("Rezervovan")))
             {
                 button.BackColor = Color.White;
             }
@@ -72,10 +72,12 @@ namespace Omega
             Button clickedButton = (Button)sender;
             clickedButton.BackColor = Color.Red;
             Exit.BackColor = Color.MediumTurquoise;
-            
+
             // Enable buttons execution
-            foreach(Button button in panelExecution.Controls.OfType<Button>().Where(b => b.Tag != null && b.Tag.ToString() == "execution")){
+            foreach (Button button in panelExecution.Controls.OfType<Button>().Where(b => b.Tag != null && b.Tag.ToString() == "execution"))
+            {
                 button.Enabled = true;
+                button.Visible = true;
             }
 
             // Set visible panelItems
@@ -84,7 +86,35 @@ namespace Omega
             // Set the number of selected table, where we will add item to the order
             SelectedTable = int.Parse(clickedButton.Text.Split(' ')[1]);
             // MessageBox.Show($"Stul {NumberTable} je vybran");
+
+            if (clickedButton.Tag.Equals("Rezervovan"))
+            {
+                ShowOrders(SelectedTable);
+            }
+
+            //MessageBox.Show("asdfdsaf");
         }
+
+        private void ShowOrders(int selectedTable)
+        {
+            // get all orders from selected table
+            List<Order> orders = new Table().GetOrders(selectedTable);
+
+            // get all items from achieved orders
+            List<Item> items = new List<Item>();
+            foreach(Order order in orders)
+            {
+                items.AddRange(order.GetItems(order.Id));
+            }
+
+            // create a single itemUC for each item achieved
+            foreach (Item item in items)
+            {
+                Product p = new Product().GetByCode(item.Product_code);
+                AddOrUpdateItem(p, item.Quantity);
+            }
+        }
+
         private void Btn_numbers_Click(object sender, EventArgs e)
         {
             Button clickedButton = (Button)sender;
@@ -126,22 +156,44 @@ namespace Omega
                 return;
             }
             AddOrUpdateItem(p, 1);
+            UpdateTotalPrice();
+
         }
         private void btnDel_Click(object sender, EventArgs e)
         {
             panelItems.Controls.Clear();
             verticalPosition = 0;
-            Button selectedTable = panelStul.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
+            totalPrice.Text = 0.ToString();
+            Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
             selectedTable.BackColor = Color.White;
             selectedTable.Tag = "Volno";
+            panelItems.Controls.Clear();
 
         }
         private void UlozitObj_Click(object sender, EventArgs e)
         {
+            List<Item> items = new List<Item>();
+            List<ItemUC> listUC = panelItems.Controls.OfType<ItemUC>().ToList();
+
             /*Takes number stul as argument, add order to that table*/
-            Button selectedTable = panelStul.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
+            Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
             selectedTable.BackColor = Color.IndianRed;
             selectedTable.Tag = "Rezervovan";
+            // Create order with all items in panelItems
+            Order newOrder = new Order(SelectedTable, DateTime.Now);
+            newOrder.AddToDB();
+            int newOrder_id = newOrder.Id;
+
+            // add item iclude order_id to db
+            foreach (ItemUC itemUc in listUC)
+            {
+                Item item = new Item((itemUc.CodeLabel.Text), newOrder_id, int.Parse(itemUc.QuantityLabel.Text));
+                item.AddToDB();
+            }
+
+            panelItems.Controls.Clear();
+            totalPrice.Text = "0.0,- Kc";
+
         }
         private void NahledUctenky_Click(object sender, EventArgs e)
         {
@@ -149,8 +201,8 @@ namespace Omega
         }
         private void Exit_Click(object sender, EventArgs e)
         {
-            /*Reset colors of all not reserved tables in panelStul to white*/
-            foreach (Button button in panelStul.Controls.OfType<Button>().Where(b => !b.Tag.Equals("Rezervovan")))
+            /*Reset colors of all not reserved tables in flowLayoutTable to white*/
+            foreach (Button button in flowLayoutTable.Controls.OfType<Button>().Where(b => !b.Tag.Equals("Rezervovan")))
             {
                 button.BackColor = Color.White;
             }
@@ -159,10 +211,12 @@ namespace Omega
             foreach (Button button in panelExecution.Controls.OfType<Button>().Where(b => b.Tag != null && b.Tag.ToString() == "execution"))
             {
                 button.Enabled = false;
+                button.Visible = false;
             }
             Button clickedButton = (Button)sender;
             clickedButton.BackColor = Color.MediumTurquoise;
             selectedTable = 0;
+            totalPrice.Text = "0.0,- Kc";
         }
         private void InitializeCategoryButton(FlowLayoutPanel flowLayoutPanel)
         {
@@ -209,12 +263,23 @@ namespace Omega
 
             Product p = new Product().GetByCode(code);
             AddOrUpdateItem(p, 1);
+            UpdateTotalPrice();
+        }
+        private void UpdateTotalPrice()
+        {
+            int total = 0;
+            List<ItemUC> list = panelItems.Controls.OfType<ItemUC>().ToList();
+
+            foreach (ItemUC itemUc in list)
+            {
+                total += (int.Parse(itemUc.QuantityLabel.Text) * int.Parse(itemUc.PriceLabel.Text));
+            }
+            this.totalPrice.Text = $"{total} ,- Kc";
         }
         private void AddOrUpdateItem(Product product, int quantity)
         {
             //-----------------
             bool existed = false;
-
             // Vytvorim jiny UserControl (polozku objednavky) UC -- usercontrol
             ItemUC n_itemUC = new ItemUC(product.Name, product.Code, product.Price, product.DPH(), 1);
             n_itemUC.Location = new System.Drawing.Point(3, verticalPosition);
@@ -233,6 +298,7 @@ namespace Omega
                     itemUc.QuantityLabel.Text = (actual_quant + quantity).ToString();
                     break;
                 }
+
             }
 
             //Pokud takovy produkt jeste neexistuje, tak ho pridam to panelu
@@ -240,8 +306,27 @@ namespace Omega
             {
                 panelItems.Controls.Add(n_itemUC);
                 verticalPosition += n_itemUC.Height + 2;
+
             }
+
             //-----------------
+        }
+
+        private void InitializeTableButton(FlowLayoutPanel flowLayoutPanel)
+        {
+            TableDAO tableDAO = new TableDAO();
+            List<Table> list = tableDAO.GetListTable();
+            flowLayoutPanel.Controls.Clear();
+            foreach (Table ta in list)
+            {
+                Button b = new Button();
+                b.Text = "Stůl " + ta.NumberTable;
+                b.Click += Button_Stul_Click;
+                b.Size = new System.Drawing.Size(105, 50);
+                b.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                b.Tag = "Volno";
+                flowLayoutPanel.Controls.Add(b);
+            }
         }
     }
 }

@@ -1,0 +1,38 @@
+﻿using Omega.Data_Tier;
+using Omega.Objects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Omega.Business_Tier
+{
+    public class Table : IBaseClass<Table>
+    {
+        private int id;
+        private string number_table;
+        //private string status;
+        public int Id { get => id; set => id = value; }
+        public string NumberTable { get => number_table; set => number_table = value; }
+
+        public Table(int id, string numberTabl)
+        {
+            Id = id;
+            NumberTable = numberTabl;
+        }
+
+        public Table()
+        {
+        }
+
+        public List<Order> GetOrders(int table)
+        {
+            List<Order> orders = new List<Order>();
+            OrderDAO orderDAO = new OrderDAO();
+            orders = orderDAO.GetListOrders(table);
+            return orders;
+        }
+
+    }
+}

@@ -47,12 +47,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business Tier\Item.cs" />
     <Compile Include="Business Tier\Product.cs" />
+    <Compile Include="Business Tier\Order.cs" />
+    <Compile Include="Business Tier\Table.cs" />
     <Compile Include="Data Tier\CategoryDAO.cs" />
     <Compile Include="Data Tier\CreateDatabase.cs" />
     <Compile Include="Data Tier\DatabaseSingleton.cs" />
     <Compile Include="Data Tier\IDAO.cs" />
+    <Compile Include="Data Tier\ItemDAO.cs" />
+    <Compile Include="Data Tier\OrderDAO.cs" />
     <Compile Include="Data Tier\ProductDAO.cs" />
+    <Compile Include="Data Tier\TableDAO.cs" />
     <Compile Include="Presentation Tier\ItemUC.cs">
       <SubType>UserControl</SubType>
     </Compile>

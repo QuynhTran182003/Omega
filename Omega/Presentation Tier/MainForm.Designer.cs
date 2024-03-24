@@ -45,18 +45,8 @@
             this.nastaveniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip3 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panelStul = new System.Windows.Forms.Panel();
+            this.flowLayoutTable = new System.Windows.Forms.FlowLayoutPanel();
             this.Exit = new System.Windows.Forms.Button();
-            this.stul11 = new System.Windows.Forms.Button();
-            this.stul10 = new System.Windows.Forms.Button();
-            this.stul9 = new System.Windows.Forms.Button();
-            this.stul8 = new System.Windows.Forms.Button();
-            this.stul7 = new System.Windows.Forms.Button();
-            this.stul6 = new System.Windows.Forms.Button();
-            this.stul5 = new System.Windows.Forms.Button();
-            this.stul4 = new System.Windows.Forms.Button();
-            this.stul3 = new System.Windows.Forms.Button();
-            this.stul2 = new System.Windows.Forms.Button();
-            this.stul1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.panelMain = new System.Windows.Forms.Panel();
             this.totalPrice = new System.Windows.Forms.Label();
@@ -68,7 +58,6 @@
             this.cena = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.Label();
             this.panelItems = new System.Windows.Forms.Panel();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.panelCategory = new System.Windows.Forms.Panel();
             this.flowLayoutCategory = new System.Windows.Forms.FlowLayoutPanel();
             this.panelProducts = new System.Windows.Forms.Panel();
@@ -100,7 +89,6 @@
             this.menuStrip1.SuspendLayout();
             this.panelStul.SuspendLayout();
             this.panelMain.SuspendLayout();
-            this.panelItems.SuspendLayout();
             this.panelCategory.SuspendLayout();
             this.panelProducts.SuspendLayout();
             this.panelExecution.SuspendLayout();
@@ -225,23 +213,23 @@
             // panelStul
             // 
             this.panelStul.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelStul.Controls.Add(this.flowLayoutTable);
             this.panelStul.Controls.Add(this.Exit);
-            this.panelStul.Controls.Add(this.stul11);
-            this.panelStul.Controls.Add(this.stul10);
-            this.panelStul.Controls.Add(this.stul9);
-            this.panelStul.Controls.Add(this.stul8);
-            this.panelStul.Controls.Add(this.stul7);
-            this.panelStul.Controls.Add(this.stul6);
-            this.panelStul.Controls.Add(this.stul5);
-            this.panelStul.Controls.Add(this.stul4);
-            this.panelStul.Controls.Add(this.stul3);
-            this.panelStul.Controls.Add(this.stul2);
-            this.panelStul.Controls.Add(this.stul1);
             this.panelStul.Controls.Add(this.label1);
-            this.panelStul.Location = new System.Drawing.Point(1361, 0);
+            this.panelStul.Location = new System.Drawing.Point(1347, 0);
             this.panelStul.Name = "panelStul";
-            this.panelStul.Size = new System.Drawing.Size(120, 751);
+            this.panelStul.Size = new System.Drawing.Size(134, 751);
             this.panelStul.TabIndex = 4;
+            // 
+            // flowLayoutTable
+            // 
+            this.flowLayoutTable.AutoScroll = true;
+            this.flowLayoutTable.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutTable.Location = new System.Drawing.Point(0, 36);
+            this.flowLayoutTable.Name = "flowLayoutTable";
+            this.flowLayoutTable.Size = new System.Drawing.Size(131, 649);
+            this.flowLayoutTable.TabIndex = 18;
+            this.flowLayoutTable.WrapContents = false;
             // 
             // Exit
             // 
@@ -249,151 +237,18 @@
             this.Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Exit.Location = new System.Drawing.Point(0, 691);
             this.Exit.Name = "Exit";
-            this.Exit.Size = new System.Drawing.Size(120, 50);
+            this.Exit.Size = new System.Drawing.Size(131, 50);
             this.Exit.TabIndex = 17;
             this.Exit.Tag = "";
             this.Exit.Text = "Exit";
             this.Exit.UseVisualStyleBackColor = false;
             this.Exit.Click += new System.EventHandler(this.Exit_Click);
             // 
-            // stul11
-            // 
-            this.stul11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul11.Location = new System.Drawing.Point(0, 607);
-            this.stul11.Name = "stul11";
-            this.stul11.Size = new System.Drawing.Size(120, 50);
-            this.stul11.TabIndex = 16;
-            this.stul11.Tag = "Stul";
-            this.stul11.Text = "Stůl 11";
-            this.stul11.UseVisualStyleBackColor = true;
-            this.stul11.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
-            // stul10
-            // 
-            this.stul10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul10.Location = new System.Drawing.Point(0, 550);
-            this.stul10.Name = "stul10";
-            this.stul10.Size = new System.Drawing.Size(120, 50);
-            this.stul10.TabIndex = 15;
-            this.stul10.Tag = "Stul";
-            this.stul10.Text = "Stůl 10";
-            this.stul10.UseVisualStyleBackColor = true;
-            this.stul10.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
-            // stul9
-            // 
-            this.stul9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul9.Location = new System.Drawing.Point(0, 493);
-            this.stul9.Name = "stul9";
-            this.stul9.Size = new System.Drawing.Size(120, 50);
-            this.stul9.TabIndex = 14;
-            this.stul9.Tag = "Stul";
-            this.stul9.Text = "Stůl 9";
-            this.stul9.UseVisualStyleBackColor = true;
-            this.stul9.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
-            // stul8
-            // 
-            this.stul8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul8.Location = new System.Drawing.Point(0, 436);
-            this.stul8.Name = "stul8";
-            this.stul8.Size = new System.Drawing.Size(120, 50);
-            this.stul8.TabIndex = 13;
-            this.stul8.Tag = "Stul";
-            this.stul8.Text = "Stůl 8";
-            this.stul8.UseVisualStyleBackColor = true;
-            this.stul8.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
-            // stul7
-            // 
-            this.stul7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul7.Location = new System.Drawing.Point(0, 379);
-            this.stul7.Name = "stul7";
-            this.stul7.Size = new System.Drawing.Size(120, 50);
-            this.stul7.TabIndex = 12;
-            this.stul7.Tag = "Stul";
-            this.stul7.Text = "Stůl 7";
-            this.stul7.UseVisualStyleBackColor = true;
-            this.stul7.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
-            // stul6
-            // 
-            this.stul6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul6.Location = new System.Drawing.Point(0, 322);
-            this.stul6.Name = "stul6";
-            this.stul6.Size = new System.Drawing.Size(120, 50);
-            this.stul6.TabIndex = 11;
-            this.stul6.Tag = "Stul";
-            this.stul6.Text = "Stůl 6";
-            this.stul6.UseVisualStyleBackColor = true;
-            this.stul6.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
-            // stul5
-            // 
-            this.stul5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul5.Location = new System.Drawing.Point(0, 266);
-            this.stul5.Name = "stul5";
-            this.stul5.Size = new System.Drawing.Size(120, 50);
-            this.stul5.TabIndex = 10;
-            this.stul5.Tag = "Stul";
-            this.stul5.Text = "Stůl 5";
-            this.stul5.UseVisualStyleBackColor = true;
-            this.stul5.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
-            // stul4
-            // 
-            this.stul4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul4.Location = new System.Drawing.Point(0, 210);
-            this.stul4.Name = "stul4";
-            this.stul4.Size = new System.Drawing.Size(120, 50);
-            this.stul4.TabIndex = 9;
-            this.stul4.Tag = "Stul";
-            this.stul4.Text = "Stůl 4";
-            this.stul4.UseVisualStyleBackColor = true;
-            this.stul4.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
-            // stul3
-            // 
-            this.stul3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul3.Location = new System.Drawing.Point(0, 153);
-            this.stul3.Name = "stul3";
-            this.stul3.Size = new System.Drawing.Size(120, 50);
-            this.stul3.TabIndex = 8;
-            this.stul3.Tag = "Stul";
-            this.stul3.Text = "Stůl 3";
-            this.stul3.UseVisualStyleBackColor = true;
-            this.stul3.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
-            // stul2
-            // 
-            this.stul2.BackColor = System.Drawing.Color.White;
-            this.stul2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul2.Location = new System.Drawing.Point(0, 96);
-            this.stul2.Name = "stul2";
-            this.stul2.Size = new System.Drawing.Size(120, 50);
-            this.stul2.TabIndex = 7;
-            this.stul2.Tag = "Stul";
-            this.stul2.Text = "Stůl 2";
-            this.stul2.UseVisualStyleBackColor = false;
-            this.stul2.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
-            // stul1
-            // 
-            this.stul1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.stul1.Location = new System.Drawing.Point(0, 39);
-            this.stul1.Name = "stul1";
-            this.stul1.Size = new System.Drawing.Size(120, 50);
-            this.stul1.TabIndex = 6;
-            this.stul1.Tag = "Stul";
-            this.stul1.Text = "Stůl 1";
-            this.stul1.UseVisualStyleBackColor = true;
-            this.stul1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Button_Stul_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(34, 2);
+            this.label1.Location = new System.Drawing.Point(52, 2);
             this.label1.Name = "label1";
             this.label1.Padding = new System.Windows.Forms.Padding(0, 4, 0, 10);
             this.label1.Size = new System.Drawing.Size(37, 34);
@@ -507,20 +362,13 @@
             // 
             // panelItems
             // 
+            this.panelItems.AutoScroll = true;
             this.panelItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelItems.Controls.Add(this.vScrollBar1);
             this.panelItems.Location = new System.Drawing.Point(0, 365);
             this.panelItems.Name = "panelItems";
             this.panelItems.Size = new System.Drawing.Size(495, 386);
             this.panelItems.TabIndex = 17;
             this.panelItems.Visible = false;
-            // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Location = new System.Drawing.Point(477, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(17, 385);
-            this.vScrollBar1.TabIndex = 0;
             // 
             // panelCategory
             // 
@@ -529,14 +377,14 @@
             this.panelCategory.Location = new System.Drawing.Point(517, 0);
             this.panelCategory.MinimumSize = new System.Drawing.Size(750, 240);
             this.panelCategory.Name = "panelCategory";
-            this.panelCategory.Size = new System.Drawing.Size(838, 273);
+            this.panelCategory.Size = new System.Drawing.Size(824, 273);
             this.panelCategory.TabIndex = 0;
             // 
             // flowLayoutCategory
             // 
             this.flowLayoutCategory.Location = new System.Drawing.Point(0, 6);
             this.flowLayoutCategory.Name = "flowLayoutCategory";
-            this.flowLayoutCategory.Size = new System.Drawing.Size(833, 259);
+            this.flowLayoutCategory.Size = new System.Drawing.Size(820, 259);
             this.flowLayoutCategory.TabIndex = 1;
             // 
             // panelProducts
@@ -546,14 +394,14 @@
             this.panelProducts.Location = new System.Drawing.Point(517, 279);
             this.panelProducts.MinimumSize = new System.Drawing.Size(750, 240);
             this.panelProducts.Name = "panelProducts";
-            this.panelProducts.Size = new System.Drawing.Size(838, 472);
+            this.panelProducts.Size = new System.Drawing.Size(824, 472);
             this.panelProducts.TabIndex = 1;
             // 
             // flowLayoutProduct
             // 
             this.flowLayoutProduct.Location = new System.Drawing.Point(0, 4);
             this.flowLayoutProduct.Name = "flowLayoutProduct";
-            this.flowLayoutProduct.Size = new System.Drawing.Size(833, 467);
+            this.flowLayoutProduct.Size = new System.Drawing.Size(820, 467);
             this.flowLayoutProduct.TabIndex = 2;
             // 
             // panelExecution
@@ -595,6 +443,7 @@
             this.btnDel.Tag = "execution";
             this.btnDel.Text = "Smazat Obj.";
             this.btnDel.UseVisualStyleBackColor = false;
+            this.btnDel.Visible = false;
             this.btnDel.Click += new System.EventHandler(this.btnDel_Click);
             // 
             // changeTable
@@ -609,6 +458,7 @@
             this.changeTable.Tag = "execution";
             this.changeTable.Text = "Stěhovat se";
             this.changeTable.UseVisualStyleBackColor = false;
+            this.changeTable.Visible = false;
             // 
             // backspace
             // 
@@ -743,6 +593,7 @@
             this.poznamka.Tag = "execution";
             this.poznamka.Text = "Pozn.";
             this.poznamka.UseVisualStyleBackColor = true;
+            this.poznamka.Visible = false;
             // 
             // nahledUctenky
             // 
@@ -756,6 +607,7 @@
             this.nahledUctenky.Tag = "execution";
             this.nahledUctenky.Text = "Náhled Účtenky";
             this.nahledUctenky.UseVisualStyleBackColor = false;
+            this.nahledUctenky.Visible = false;
             this.nahledUctenky.Click += new System.EventHandler(this.NahledUctenky_Click);
             // 
             // zaplatit
@@ -770,6 +622,7 @@
             this.zaplatit.Tag = "execution";
             this.zaplatit.Text = "Zaplatit";
             this.zaplatit.UseVisualStyleBackColor = false;
+            this.zaplatit.Visible = false;
             // 
             // ulozitObj
             // 
@@ -783,6 +636,7 @@
             this.ulozitObj.Tag = "execution";
             this.ulozitObj.Text = "Uložit Objednávku";
             this.ulozitObj.UseVisualStyleBackColor = false;
+            this.ulozitObj.Visible = false;
             this.ulozitObj.Click += new System.EventHandler(this.UlozitObj_Click);
             // 
             // enter
@@ -797,6 +651,7 @@
             this.enter.Tag = "execution";
             this.enter.Text = "Enter";
             this.enter.UseVisualStyleBackColor = false;
+            this.enter.Visible = false;
             this.enter.Click += new System.EventHandler(this.Enter_Click);
             // 
             // idItemInput
@@ -857,7 +712,6 @@
             this.panelStul.PerformLayout();
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
-            this.panelItems.ResumeLayout(false);
             this.panelCategory.ResumeLayout(false);
             this.panelProducts.ResumeLayout(false);
             this.panelExecution.ResumeLayout(false);
@@ -880,19 +734,8 @@
         private System.Windows.Forms.ToolStripMenuItem pokladnaToolStripMenuItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip3;
         private System.Windows.Forms.Panel panelStul;
-        private System.Windows.Forms.Button stul1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button stul5;
-        private System.Windows.Forms.Button stul4;
-        private System.Windows.Forms.Button stul3;
-        private System.Windows.Forms.Button stul2;
-        private System.Windows.Forms.Button stul7;
-        private System.Windows.Forms.Button stul6;
-        private System.Windows.Forms.Button stul8;
         private System.Windows.Forms.Panel panelMain;
-        private System.Windows.Forms.Button stul11;
-        private System.Windows.Forms.Button stul10;
-        private System.Windows.Forms.Button stul9;
         private System.Windows.Forms.Panel panelCategory;
         private System.Windows.Forms.Panel panelExecution;
         private System.Windows.Forms.Button button9;
@@ -916,7 +759,6 @@
         private System.Windows.Forms.Button Exit;
         private System.Windows.Forms.Panel panelItems;
         private System.Windows.Forms.Panel panelProducts;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
         private System.Windows.Forms.Button changeTable;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ToolStripMenuItem seznamZaměstnancůToolStripMenuItem;
@@ -936,6 +778,7 @@
         private System.Windows.Forms.Label ID;
         private System.Windows.Forms.Label totalPrice;
         private System.Windows.Forms.Label celkem;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutTable;
     }
 }
 
