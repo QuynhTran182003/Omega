@@ -25,7 +25,7 @@ namespace Omega.Data_Tier
             
         }
 
-        public int GetDPH(int code)
+        public int GetDPH(string code)
         {
             SqlCommand cmd = new SqlCommand("select Category.dph as 'DPH' from Product inner join Category on Product.category_id = Category.id where Product.code = @code;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@code", code);

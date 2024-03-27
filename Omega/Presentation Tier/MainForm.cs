@@ -19,7 +19,7 @@ namespace Omega
     {
         private LoginForm loginForm;
         private int selectedTable = 0;
-        private int verticalPosition = 0;
+        //private int verticalPosition = 0;
         public int SelectedTable { get { return selectedTable; } set { selectedTable = value; } }
         public MainForm(LoginForm loginForm)
         {
@@ -62,6 +62,12 @@ namespace Omega
         }
         private void Button_Stul_Click(object sender, EventArgs e)
         {
+            Button clickedButton = (Button)sender;
+            if(SelectedTable != 0)
+            {
+                MessageBox.Show("Musite odchazet od vybraneho stolu");
+                return;
+            }
             // Reset colors of all not-reserved tables in flowLayoutTable to white, reserved tables keep color unchanged
             foreach (Button button in flowLayoutTable.Controls.OfType<Button>().Where(b => !b.Tag.Equals("Rezervovan")))
             {
@@ -69,7 +75,6 @@ namespace Omega
             }
 
             // Change the clicked button's backcolor to red
-            Button clickedButton = (Button)sender;
             clickedButton.BackColor = Color.Red;
             Exit.BackColor = Color.MediumTurquoise;
 
@@ -80,7 +85,7 @@ namespace Omega
                 button.Visible = true;
             }
 
-            // Set visible panelItems
+            // Set visible flowLayoutItemss
             panelItems.Visible = true;
 
             // Set the number of selected table, where we will add item to the order
@@ -89,30 +94,37 @@ namespace Omega
 
             if (clickedButton.Tag.Equals("Rezervovan"))
             {
-                ShowOrders(SelectedTable);
+                //MessageBox.Show("ShowOrder execus ");
+                ShowOrders(SelectedTable, this.flowLayoutItems);
             }
-
-            //MessageBox.Show("asdfdsaf");
+            else
+            {
+                //
+                //verticalPosition = 0;
+                totalPrice.Text = "0.0 Kc";
+                flowLayoutItems.Controls.Clear();
+            }
         }
 
-        private void ShowOrders(int selectedTable)
+        private void ShowOrders(int selectedTable, FlowLayoutPanel flowLayoutPanel)
         {
-            // get all orders from selected table
-            List<Order> orders = new Table().GetOrders(selectedTable);
+            int total = 0;
 
-            // get all items from achieved orders
-            List<Item> items = new List<Item>();
-            foreach(Order order in orders)
-            {
-                items.AddRange(order.GetItems(order.Id));
-            }
+            // get order details from selected table 
+            List<Item> items = new Table().GetOrderDetail(selectedTable);
 
             // create a single itemUC for each item achieved
             foreach (Item item in items)
             {
+                //MessageBox.Show(item.Product_code);
                 Product p = new Product().GetByCode(item.Product_code);
-                AddOrUpdateItem(p, item.Quantity);
+                total += item.Quantity * p.Price;
+
+                ItemUC uc = new ItemUC(p.Name, p.Code, p.Price, p.DPH(), item.Quantity);
+                flowLayoutPanel.Controls.Add(uc);
             }
+            totalPrice.Text = total + ",- Kc";
+
         }
 
         private void Btn_numbers_Click(object sender, EventArgs e)
@@ -161,25 +173,67 @@ namespace Omega
         }
         private void btnDel_Click(object sender, EventArgs e)
         {
-            panelItems.Controls.Clear();
-            verticalPosition = 0;
-            totalPrice.Text = 0.ToString();
             Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
-            selectedTable.BackColor = Color.White;
-            selectedTable.Tag = "Volno";
-            panelItems.Controls.Clear();
+
+            if (selectedTable.Tag.Equals("Rezervovan")){
+               // verticalPosition = 0;
+                totalPrice.Text = "0.0,- Kc";
+                flowLayoutItems.Controls.Clear();
+                selectedTable.BackColor = Color.White;
+                selectedTable.Tag = "Volno";
+
+                // delete all items of order id, delete the order
+                int numberTable = SelectedTable;
+                // get the table id and with this table id we can 
+                int table_id = new Table().GetIdByNumber(numberTable);
+
+                //delete order of the table
+                OrderDAO orderDAO = new OrderDAO();
+                orderDAO.Delete(table_id);
+            }
+            else
+            {
+                MessageBox.Show("Tag neni rezzervovan");
+            }
+            
+
+            
 
         }
         private void UlozitObj_Click(object sender, EventArgs e)
         {
-            List<Item> items = new List<Item>();
-            List<ItemUC> listUC = panelItems.Controls.OfType<ItemUC>().ToList();
+            
+            Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
+            // pokud table je volny, tak se vytvori novy order
+            if (selectedTable.Tag.Equals("Volno"))
+            {
+                Order newOrder = new Order(SelectedTable, DateTime.Now);
+                newOrder.AddToDB();
+                selectedTable.Tag = ("Rezervovan");
+                List<ItemUC> listUC = flowLayoutItems.Controls.OfType<ItemUC>().ToList();
+                foreach (ItemUC itemUc in listUC)
+                {
+                    Item item = new Item((itemUc.CodeLabel.Text), newOrder.Id, int.Parse(itemUc.QuantityLabel.Text));
+                    item.AddToDB();
+                }
+                this.Exit_Click(sender, e);
+                SelectedTable = 0;
+            }
+            //pokud je rezervovan (sedi tam nekdo uz, tak update )
+            else if (selectedTable.Tag.Equals("Rezervovan"))
+            {
+            }
+            /*List<Item> items = new List<Item>();
+            List<ItemUC> listUC = flowLayoutItemss.Controls.OfType<ItemUC>().ToList();
 
-            /*Takes number stul as argument, add order to that table*/
+            *//*Takes number stul as argument, add order to that table*//*
             Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
             selectedTable.BackColor = Color.IndianRed;
+
+
             selectedTable.Tag = "Rezervovan";
-            // Create order with all items in panelItems
+
+            // Create order with all items in flowLayoutItemss
             Order newOrder = new Order(SelectedTable, DateTime.Now);
             newOrder.AddToDB();
             int newOrder_id = newOrder.Id;
@@ -190,9 +244,7 @@ namespace Omega
                 Item item = new Item((itemUc.CodeLabel.Text), newOrder_id, int.Parse(itemUc.QuantityLabel.Text));
                 item.AddToDB();
             }
-
-            panelItems.Controls.Clear();
-            totalPrice.Text = "0.0,- Kc";
+            this.Exit_Click(sender, e);*/
 
         }
         private void NahledUctenky_Click(object sender, EventArgs e)
@@ -214,9 +266,13 @@ namespace Omega
                 button.Visible = false;
             }
             Button clickedButton = (Button)sender;
-            clickedButton.BackColor = Color.MediumTurquoise;
-            selectedTable = 0;
+            if(clickedButton.Text.Equals("Exit"))
+                clickedButton.BackColor = Color.MediumTurquoise;
+            SelectedTable = 0;
             totalPrice.Text = "0.0,- Kc";
+            flowLayoutItems.Controls.Clear();
+            //verticalPosition = 0;
+
         }
         private void InitializeCategoryButton(FlowLayoutPanel flowLayoutPanel)
         {
@@ -241,11 +297,13 @@ namespace Omega
             flowLayoutProduct.Controls.Clear();
             foreach (Product product in list)
             {
+                string text = product.Code + " - " + product.Name + Environment.NewLine + Environment.NewLine + product.Price;
                 Button b = new Button();
-                b.Text = product.Code +" - "+ product.Name;
+                b.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                b.Text = text;
+                b.TextAlign = System.Drawing.ContentAlignment.TopLeft;
                 b.Click += ProductButton_Click;
-                b.Size = new System.Drawing.Size(140, 50);
-                b.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+                b.Size = new System.Drawing.Size(170, 80);
                 flowLayoutProduct.Controls.Add(b);
             }
         }
@@ -268,7 +326,7 @@ namespace Omega
         private void UpdateTotalPrice()
         {
             int total = 0;
-            List<ItemUC> list = panelItems.Controls.OfType<ItemUC>().ToList();
+            List<ItemUC> list = flowLayoutItems.Controls.OfType<ItemUC>().ToList();
 
             foreach (ItemUC itemUc in list)
             {
@@ -282,10 +340,10 @@ namespace Omega
             bool existed = false;
             // Vytvorim jiny UserControl (polozku objednavky) UC -- usercontrol
             ItemUC n_itemUC = new ItemUC(product.Name, product.Code, product.Price, product.DPH(), 1);
-            n_itemUC.Location = new System.Drawing.Point(3, verticalPosition);
+            //n_itemUC.Location = new System.Drawing.Point(3, verticalPosition);
 
             // ziskam vsechny polozky co uz mam v panelu
-            List<ItemUC> list = panelItems.Controls.OfType<ItemUC>().ToList();
+            List<ItemUC> list = flowLayoutItems.Controls.OfType<ItemUC>().ToList();
 
             // kontroluju jestli existuje takovy produkt, ktery chci vlozit do objednavky, 
             foreach (ItemUC itemUc in list)
@@ -304,14 +362,13 @@ namespace Omega
             //Pokud takovy produkt jeste neexistuje, tak ho pridam to panelu
             if (!existed)
             {
-                panelItems.Controls.Add(n_itemUC);
-                verticalPosition += n_itemUC.Height + 2;
+                flowLayoutItems.Controls.Add(n_itemUC);
+                //verticalPosition += n_itemUC.Height + 2;
 
             }
 
             //-----------------
         }
-
         private void InitializeTableButton(FlowLayoutPanel flowLayoutPanel)
         {
             TableDAO tableDAO = new TableDAO();

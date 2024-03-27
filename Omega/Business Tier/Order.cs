@@ -59,5 +59,11 @@ namespace Omega.Business_Tier
             ItemDAO itemDAO = new ItemDAO();
             return itemDAO.GetListItems(orderId);
         }
+
+        public void DeleteOrder(int numberTable)
+        {
+            OrderDAO orderDAO = new OrderDAO();
+            orderDAO.Delete(numberTable);
+        }
     }
 }

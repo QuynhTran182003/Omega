@@ -66,9 +66,9 @@ namespace Omega.Business_Tier
 
         public int DPH()
         {
-            int dph;
+            int dph = 0;
             ProductDAO productDAO = new ProductDAO();
-            dph = productDAO.GetDPH(this.Id);
+            dph = productDAO.GetDPH(this.Code);
             return dph;
         }
 

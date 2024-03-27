@@ -26,12 +26,18 @@ namespace Omega.Business_Tier
         {
         }
 
-        public List<Order> GetOrders(int table)
+        public List<Item> GetOrderDetail(int table)
         {
-            List<Order> orders = new List<Order>();
+            List<Item> items = new List<Item>();
             OrderDAO orderDAO = new OrderDAO();
-            orders = orderDAO.GetListOrders(table);
-            return orders;
+            items = orderDAO.GetListItems(table);
+            return items;
+        }
+
+        public int GetIdByNumber(int numberTable)
+        {
+            TableDAO tableDAO = new TableDAO();
+            return tableDAO.GetId(numberTable);
         }
 
     }

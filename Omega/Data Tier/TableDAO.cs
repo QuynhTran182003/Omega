@@ -50,5 +50,21 @@ namespace Omega.Data_Tier
 
             return list;
         }
+
+        public int GetId(int numberTable)
+        {
+            SqlCommand cmd = new SqlCommand("select Tabl.id as ID from Tabl where number_table = @numberTable;", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@numberTable", numberTable);
+            int id = 0;
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    id = (int)reader["ID"];
+                }
+            }
+            DatabaseSingleton.CloseConnection();
+            return id;
+        }
     }
 }

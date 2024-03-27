@@ -58,6 +58,7 @@
             this.cena = new System.Windows.Forms.Label();
             this.ID = new System.Windows.Forms.Label();
             this.panelItems = new System.Windows.Forms.Panel();
+            this.flowLayoutItems = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCategory = new System.Windows.Forms.Panel();
             this.flowLayoutCategory = new System.Windows.Forms.FlowLayoutPanel();
             this.panelProducts = new System.Windows.Forms.Panel();
@@ -89,6 +90,7 @@
             this.menuStrip1.SuspendLayout();
             this.panelStul.SuspendLayout();
             this.panelMain.SuspendLayout();
+            this.panelItems.SuspendLayout();
             this.panelCategory.SuspendLayout();
             this.panelProducts.SuspendLayout();
             this.panelExecution.SuspendLayout();
@@ -364,11 +366,21 @@
             // 
             this.panelItems.AutoScroll = true;
             this.panelItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelItems.Controls.Add(this.flowLayoutItems);
             this.panelItems.Location = new System.Drawing.Point(0, 365);
             this.panelItems.Name = "panelItems";
             this.panelItems.Size = new System.Drawing.Size(495, 386);
             this.panelItems.TabIndex = 17;
-            this.panelItems.Visible = false;
+            this.panelItems.Visible = true;
+            // 
+            // flowLayoutItems
+            // 
+            this.flowLayoutItems.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutItems.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutItems.Name = "flowLayoutItems";
+            this.flowLayoutItems.Size = new System.Drawing.Size(479, 375);
+            this.flowLayoutItems.TabIndex = 0;
+            this.flowLayoutItems.WrapContents = false;
             // 
             // panelCategory
             // 
@@ -712,6 +724,7 @@
             this.panelStul.PerformLayout();
             this.panelMain.ResumeLayout(false);
             this.panelMain.PerformLayout();
+            this.panelItems.ResumeLayout(false);
             this.panelCategory.ResumeLayout(false);
             this.panelProducts.ResumeLayout(false);
             this.panelExecution.ResumeLayout(false);
@@ -779,6 +792,7 @@
         private System.Windows.Forms.Label totalPrice;
         private System.Windows.Forms.Label celkem;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutTable;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutItems;
     }
 }
 

@@ -12,9 +12,15 @@ namespace Omega.Data_Tier
 {
     public class OrderDAO : IDAO<Order>
     {
-        public void Delete(int id)
+        public void Delete(int numberTable)
         {
-            throw new NotImplementedException();
+            // delete all Items in x order_id
+            // delete order in x numbertable
+            SqlCommand cmd = new SqlCommand("delete from Item where order_id IN (select id from Orders where Orders.table_id = (select id from Tabl where number_table = @numberTable))" +
+                                             ";delete from Orders where table_id = @numberTable", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@numberTable", numberTable);
+            cmd.ExecuteNonQuery();
+            DatabaseSingleton.CloseConnection();
         }
 
         public void GetById(int id)
@@ -63,31 +69,29 @@ namespace Omega.Data_Tier
             throw new NotImplementedException();
         }
 
-        public List<Order> GetListOrders(int table)
+        public List<Item> GetListItems(int table)
         {
-            SqlCommand cmd = new SqlCommand(@"select Orders.id, Tabl.number_table, Orders.dtime_order from Orders inner join Tabl on Tabl.id = Orders.table_id where table_id = (select id from Tabl where number_table = @table) ", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand(@"select Item.id, Product.code, Item.order_id, Item.quantity from Item
+inner join Product on Item.product_id = Product.id where order_id IN (select id from Orders where Orders.table_id = (select id from Tabl where number_table = @table))", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@table", table);
-            List<Order> list = new List<Order>();
+            List<Item> list = new List<Item>();
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
                     int id = int.Parse(reader["id"].ToString());
-                    int tab = int.Parse(reader["number_table"].ToString());
-                    DateTime dateTimeOrder = (DateTime)reader["dtime_order"];
-                    Order order = new Order
-                    (
-                        id,
-                        tab,
-                        dateTimeOrder
-                    );
+                    string prod_code = reader["code"].ToString();
+                    int order_id = int.Parse(reader["order_id"].ToString());
+                    int quantity = int.Parse(reader["quantity"].ToString());
+                    Item i = new Item(id, prod_code, order_id, quantity);
 
-                    list.Add(order);
+                    list.Add(i);
                 }
             }
             DatabaseSingleton.CloseConnection();
 
             return list;
         }
+
     }
 }
