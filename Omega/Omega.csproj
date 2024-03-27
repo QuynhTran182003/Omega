@@ -77,6 +77,9 @@
     <Compile Include="Presentation Tier\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation Tier\MainForm.Initializer.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Presentation Tier\Panels\CategoryForm.cs">
       <SubType>UserControl</SubType>
     </Compile>

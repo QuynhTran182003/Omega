@@ -19,7 +19,6 @@ namespace Omega
     {
         private LoginForm loginForm;
         private int selectedTable = 0;
-        //private int verticalPosition = 0;
         public int SelectedTable { get { return selectedTable; } set { selectedTable = value; } }
         public MainForm(LoginForm loginForm)
         {
@@ -46,7 +45,6 @@ namespace Omega
         }
         private void zamestnanciToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
         }
         private void produktyToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -84,13 +82,10 @@ namespace Omega
                 button.Enabled = true;
                 button.Visible = true;
             }
-
             // Set visible flowLayoutItemss
             panelItems.Visible = true;
-
             // Set the number of selected table, where we will add item to the order
             SelectedTable = int.Parse(clickedButton.Text.Split(' ')[1]);
-            // MessageBox.Show($"Stul {NumberTable} je vybran");
 
             if (clickedButton.Tag.Equals("Rezervovan"))
             {
@@ -99,24 +94,19 @@ namespace Omega
             }
             else
             {
-                //
-                //verticalPosition = 0;
                 totalPrice.Text = "0.0 Kc";
                 flowLayoutItems.Controls.Clear();
             }
         }
-
         private void ShowOrders(int selectedTable, FlowLayoutPanel flowLayoutPanel)
         {
             int total = 0;
-
             // get order details from selected table 
             List<Item> items = new Table().GetOrderDetail(selectedTable);
 
             // create a single itemUC for each item achieved
             foreach (Item item in items)
             {
-                //MessageBox.Show(item.Product_code);
                 Product p = new Product().GetByCode(item.Product_code);
                 total += item.Quantity * p.Price;
 
@@ -124,9 +114,7 @@ namespace Omega
                 flowLayoutPanel.Controls.Add(uc);
             }
             totalPrice.Text = total + ",- Kc";
-
         }
-
         private void Btn_numbers_Click(object sender, EventArgs e)
         {
             Button clickedButton = (Button)sender;
@@ -143,23 +131,19 @@ namespace Omega
         private void Enter_Click(object sender, EventArgs e)
         {
             string itemCode = this.idItemInput.Text;
-
             // Nejprve zjistim jestli stul je vybran
             if (SelectedTable == 0)
             {
                 MessageBox.Show("Prosím vyberte stůl");
                 return;
             }
-
             // empty handling            
             if (itemCode.Equals("")) {
                 MessageBox.Show("Prazdna hodnota");
                 return;
             }
-
             // clear input 
             this.idItemInput.Text = "";
-
             // Zde implementuju metodu na pridani polozky do objednavky pro urcity stul
             Product p = new Product().GetByCode(itemCode);
             if (p == null)
@@ -169,25 +153,21 @@ namespace Omega
             }
             AddOrUpdateItem(p, 1);
             UpdateTotalPrice();
-
         }
         private void btnDel_Click(object sender, EventArgs e)
         {
             Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
-
             if (selectedTable.Tag.Equals("Rezervovan")){
-               // verticalPosition = 0;
+             // verticalPosition = 0;
                 totalPrice.Text = "0.0,- Kc";
                 flowLayoutItems.Controls.Clear();
                 selectedTable.BackColor = Color.White;
                 selectedTable.Tag = "Volno";
-
-                // delete all items of order id, delete the order
+             // delete all items of order id, delete the order
                 int numberTable = SelectedTable;
                 // get the table id and with this table id we can 
                 int table_id = new Table().GetIdByNumber(numberTable);
-
-                //delete order of the table
+             //delete order of the table
                 OrderDAO orderDAO = new OrderDAO();
                 orderDAO.Delete(table_id);
             }
@@ -195,10 +175,6 @@ namespace Omega
             {
                 MessageBox.Show("Tag neni rezzervovan");
             }
-            
-
-            
-
         }
         private void UlozitObj_Click(object sender, EventArgs e)
         {
@@ -274,21 +250,6 @@ namespace Omega
             //verticalPosition = 0;
 
         }
-        private void InitializeCategoryButton(FlowLayoutPanel flowLayoutPanel)
-        {
-            CategoryDAO categoryDAO = new CategoryDAO();
-            List<Category> list = categoryDAO.GetListCategory();
-            flowLayoutPanel.Controls.Clear();
-            foreach (Category category in list)
-            {
-                Button b = new Button();
-                b.Text = category.Nazev;
-                b.Click += CategoryButton_Click;
-                b.Size = new System.Drawing.Size(140, 50);
-                b.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                flowLayoutPanel.Controls.Add(b);
-            }
-        }
         private void CategoryButton_Click(object sender, EventArgs e)
         {
             Button clickedButton = (Button)sender;
@@ -318,72 +279,9 @@ namespace Omega
             //musim ziskat kod kliknuteho jidla
             Button clickedButton = (Button)sender;
             string code = (clickedButton.Text.Split('-')[0]);
-
             Product p = new Product().GetByCode(code);
             AddOrUpdateItem(p, 1);
             UpdateTotalPrice();
-        }
-        private void UpdateTotalPrice()
-        {
-            int total = 0;
-            List<ItemUC> list = flowLayoutItems.Controls.OfType<ItemUC>().ToList();
-
-            foreach (ItemUC itemUc in list)
-            {
-                total += (int.Parse(itemUc.QuantityLabel.Text) * int.Parse(itemUc.PriceLabel.Text));
-            }
-            this.totalPrice.Text = $"{total} ,- Kc";
-        }
-        private void AddOrUpdateItem(Product product, int quantity)
-        {
-            //-----------------
-            bool existed = false;
-            // Vytvorim jiny UserControl (polozku objednavky) UC -- usercontrol
-            ItemUC n_itemUC = new ItemUC(product.Name, product.Code, product.Price, product.DPH(), 1);
-            //n_itemUC.Location = new System.Drawing.Point(3, verticalPosition);
-
-            // ziskam vsechny polozky co uz mam v panelu
-            List<ItemUC> list = flowLayoutItems.Controls.OfType<ItemUC>().ToList();
-
-            // kontroluju jestli existuje takovy produkt, ktery chci vlozit do objednavky, 
-            foreach (ItemUC itemUc in list)
-            {
-                //Pokud uz existuje, zvysim jenom pocet tohoto produktu
-                if (itemUc.CodeLabel.Text.Equals(n_itemUC.CodeLabel.Text))
-                {
-                    existed = true;
-                    int actual_quant = int.Parse(itemUc.QuantityLabel.Text);
-                    itemUc.QuantityLabel.Text = (actual_quant + quantity).ToString();
-                    break;
-                }
-
-            }
-
-            //Pokud takovy produkt jeste neexistuje, tak ho pridam to panelu
-            if (!existed)
-            {
-                flowLayoutItems.Controls.Add(n_itemUC);
-                //verticalPosition += n_itemUC.Height + 2;
-
-            }
-
-            //-----------------
-        }
-        private void InitializeTableButton(FlowLayoutPanel flowLayoutPanel)
-        {
-            TableDAO tableDAO = new TableDAO();
-            List<Table> list = tableDAO.GetListTable();
-            flowLayoutPanel.Controls.Clear();
-            foreach (Table ta in list)
-            {
-                Button b = new Button();
-                b.Text = "Stůl " + ta.NumberTable;
-                b.Click += Button_Stul_Click;
-                b.Size = new System.Drawing.Size(105, 50);
-                b.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                b.Tag = "Volno";
-                flowLayoutPanel.Controls.Add(b);
-            }
         }
     }
 }
