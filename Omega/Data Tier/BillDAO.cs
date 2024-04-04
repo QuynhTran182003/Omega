@@ -1,6 +1,7 @@
 ﻿using Omega.Business_Tier;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -80,6 +81,72 @@ namespace Omega.Data_Tier
         public void Update(int id, Bill newEle)
         {
             throw new NotImplementedException();
+        }
+
+        public void GetAll(DataGridView dataView)
+        {
+            SqlCommand cmd = new SqlCommand("select date_issue, id, total_price from Bill;", DatabaseSingleton.GetInstance());
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataView.DataSource = dt;
+
+            DatabaseSingleton.CloseConnection();
+        }
+
+        public int GetTotalAllBills()
+        {
+            int total = 0;
+            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill;", DatabaseSingleton.GetInstance());
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    total = (int)reader["sum"];
+                }
+            }
+            DatabaseSingleton.CloseConnection();
+
+            return total;
+        }
+        public int GetCashAllBills()
+        {
+            int total = 0;
+            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill where Bill.paymentMethod = 'Hotově';", DatabaseSingleton.GetInstance());
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    total = (int)reader["sum"];
+                }
+            }
+            DatabaseSingleton.CloseConnection();
+
+            return total;
+        }
+        public int GetCardsAllBills()
+        {
+            int total = 0;
+            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill where Bill.paymentMethod = 'Kartou';", DatabaseSingleton.GetInstance());
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    total = (int)reader["sum"];
+                }
+            }
+            DatabaseSingleton.CloseConnection();
+
+            return total;
         }
     }
 }

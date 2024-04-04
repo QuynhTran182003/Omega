@@ -27,6 +27,8 @@ namespace Omega
             panelMain.Visible = true;
             categoryForm1.Visible = false;
             productForm1.Visible = false;
+            reportPanel1.Visible = false;
+            listBillPanel1.Visible = false;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -51,12 +53,35 @@ namespace Omega
             this.productForm1.Visible = true;
             this.categoryForm1.Visible = false;
             this.panelMain.Visible = false;
+            this.reportPanel1.Visible = false;
+            this.listBillPanel1.Visible = false;
         }
         private void kategorieToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panelMain.Visible = false;
             categoryForm1.Visible = true;
             productForm1.Visible = false;
+            reportPanel1.Visible = false;
+            listBillPanel1.Visible = false;
+
+        }
+
+        private void seznamFakturToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelMain.Visible = false;
+            categoryForm1.Visible = false;
+            productForm1.Visible = false;
+            reportPanel1.Visible = false;
+            listBillPanel1.Visible = true;
+        }
+
+        private void denniReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            panelMain.Visible = false;
+            categoryForm1.Visible = false;
+            productForm1.Visible = false;
+            reportPanel1.Visible = true;
+            listBillPanel1.Visible = false;
         }
         private void Button_Stul_Click(object sender, EventArgs e)
         {

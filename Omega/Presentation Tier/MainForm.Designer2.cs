@@ -222,6 +222,8 @@ namespace Omega
             this.seznamFakturToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.seznamFakturToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.seznamFakturToolStripMenuItem.Text = "Seznam faktur";
+            this.seznamFakturToolStripMenuItem.Click += new System.EventHandler(this.seznamFakturToolStripMenuItem_Click);
+
             // 
             // denniReportToolStripMenuItem
             // 
@@ -229,6 +231,8 @@ namespace Omega
             this.denniReportToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.R)));
             this.denniReportToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
             this.denniReportToolStripMenuItem.Text = "Denni Report";
+            this.denniReportToolStripMenuItem.Click += new System.EventHandler(this.denniReportToolStripMenuItem_Click);
+
             // 
             // nastaveniToolStripMenuItem
             // 

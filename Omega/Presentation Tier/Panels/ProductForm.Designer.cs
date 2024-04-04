@@ -28,27 +28,54 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.infoKateg = new System.Windows.Forms.GroupBox();
+            this.cbKategorie = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.inputCena = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.inputNazev = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.inputKod = new System.Windows.Forms.TextBox();
             this.název = new System.Windows.Forms.Label();
             this.ulozitProdukt = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.inputNazev = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.inputCena = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.cbKategorie = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.infoKateg.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.Location = new System.Drawing.Point(47, 70);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersVisible = false;
+            dataGridViewCellStyle3.Padding = new System.Windows.Forms.Padding(10);
+            this.dataGridView1.RowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridView1.RowTemplate.Height = 50;
             this.dataGridView1.Size = new System.Drawing.Size(752, 653);
             this.dataGridView1.TabIndex = 10;
             // 
@@ -69,6 +96,55 @@
             this.infoKateg.TabIndex = 9;
             this.infoKateg.TabStop = false;
             this.infoKateg.Text = "Informace";
+            // 
+            // cbKategorie
+            // 
+            this.cbKategorie.FormattingEnabled = true;
+            this.cbKategorie.Location = new System.Drawing.Point(25, 305);
+            this.cbKategorie.Name = "cbKategorie";
+            this.cbKategorie.Size = new System.Drawing.Size(318, 28);
+            this.cbKategorie.TabIndex = 8;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(21, 273);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 20);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Kategorie";
+            // 
+            // inputCena
+            // 
+            this.inputCena.Location = new System.Drawing.Point(25, 228);
+            this.inputCena.Name = "inputCena";
+            this.inputCena.Size = new System.Drawing.Size(318, 26);
+            this.inputCena.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(21, 194);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 20);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Cena";
+            // 
+            // inputNazev
+            // 
+            this.inputNazev.Location = new System.Drawing.Point(25, 146);
+            this.inputNazev.Name = "inputNazev";
+            this.inputNazev.Size = new System.Drawing.Size(318, 26);
+            this.inputNazev.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(21, 112);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(53, 20);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Název";
             // 
             // inputKod
             // 
@@ -106,55 +182,6 @@
             this.label1.Size = new System.Drawing.Size(83, 24);
             this.label1.TabIndex = 6;
             this.label1.Text = "Produkty";
-            // 
-            // inputNazev
-            // 
-            this.inputNazev.Location = new System.Drawing.Point(25, 146);
-            this.inputNazev.Name = "inputNazev";
-            this.inputNazev.Size = new System.Drawing.Size(318, 26);
-            this.inputNazev.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(21, 112);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Název";
-            // 
-            // inputCena
-            // 
-            this.inputCena.Location = new System.Drawing.Point(25, 228);
-            this.inputCena.Name = "inputCena";
-            this.inputCena.Size = new System.Drawing.Size(318, 26);
-            this.inputCena.TabIndex = 5;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(21, 194);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 20);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Cena";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(21, 273);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(77, 20);
-            this.label4.TabIndex = 6;
-            this.label4.Text = "Kategorie";
-            // 
-            // cbKategorie
-            // 
-            this.cbKategorie.FormattingEnabled = true;
-            this.cbKategorie.Location = new System.Drawing.Point(25, 305);
-            this.cbKategorie.Name = "cbKategorie";
-            this.cbKategorie.Size = new System.Drawing.Size(318, 28);
-            this.cbKategorie.TabIndex = 8;
             // 
             // ProductForm
             // 

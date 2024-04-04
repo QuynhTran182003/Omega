@@ -86,7 +86,7 @@ insert into Category([name], dph) values('Předkrmy', 12);
 insert into Category([name], dph) values('Vegan Maki', 12);
 insert into Category([name], dph) values('Maki', 12);
 insert into Category([name], dph) values('Nápoje bez příchutí', 12);
-insert into Category([name], dph) values('Nápoje s příchutí', 12);
+insert into Category([name], dph) values('Nápoje s příchutí', 21);
 insert into Product(code, [name], price, category_id) values('01', 'Miso polévka', 119, 1);
 insert into Product(code, [name], price, category_id) values('11', 'Nem - Domácí závitky', 139, (select Category.id from Category where Category.name = 'Předkrmy'));
 insert into Product(code, [name], price, category_id) values('07', 'Edamame', 139, (select Category.id from Category where Category.name = 'Saláty'));
@@ -97,11 +97,11 @@ insert into Product(code, [name], price, category_id) values('NS1', 'Coca-Cola 0
 --insert into Orders(table_id, dtime_order) values ('1', GETDATE());
 commit;
 
-select * from Product
+
 select * from Tabl order by CAST(number_table as int)
 select Category.id from Category where Category.name = 'Predkrmy'
 select Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id
-where Product.code = 11;
+where Product.code = '11';
 
 select Product.id, Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id where Product.code = '10a';
 
@@ -115,16 +115,19 @@ select Item.id, Product.code, Orders.id as OrderId, Item.quantity from Item
 
 --delete from Orders
 --delete from Item
+select * from Product;
 select * from Item;
 select * from Orders;
-select * from Bill;
+select date_issue, id, total_price from Bill;
+select sum(total_price) from Bill ;
+select sum(total_price) from Bill where Bill.paymentMethod = 'Kartou';
+select sum(total_price) from Bill where Bill.paymentMethod = 'Hotově';
 select * from ItemBill;
 select * from Product join Category on Product.category_id = Category.id
---update Product set code = '5b' where code = '5'
-select Category.dph as 'DPH' from Product inner join Category on Product.category_id = Category.id where Product.code = 3;
 
-select * from Orders where table_id = 11;
-
+--old script OrderDAO GetListItems
 select Item.id, Product.code, Item.order_id, Item.quantity from Item
-inner join Product on Item.product_id = Product.id where order_id IN (select id from Orders where Orders.table_id = (select id from Tabl where number_table = 11))
+inner join Product on Item.product_id = Product.id 
+where order_id IN (select id from Orders where Orders.table_id = (select id from Tabl where number_table = 11))
+insert into Item (product_id, order_id, quantity) values(4, 11, 2)
 

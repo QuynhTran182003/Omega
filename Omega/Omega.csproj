@@ -99,11 +99,23 @@
     </Compile>
     <Compile Include="Business Tier\Category.cs" />
     <Compile Include="Business Tier\IBaseClass.cs" />
+    <Compile Include="Presentation Tier\Panels\ListBillPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentation Tier\Panels\ListBillPanel.Designer.cs">
+      <DependentUpon>ListBillPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Tier\Panels\ProductForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Presentation Tier\Panels\ProductForm.Designer.cs">
       <DependentUpon>ProductForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Tier\Panels\ReportPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Presentation Tier\Panels\ReportPanel.Designer.cs">
+      <DependentUpon>ReportPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation Tier\PaymentForm.cs">
       <SubType>Form</SubType>
@@ -125,8 +137,14 @@
     <EmbeddedResource Include="Presentation Tier\Panels\CategoryForm.resx">
       <DependentUpon>CategoryForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Tier\Panels\ListBillPanel.resx">
+      <DependentUpon>ListBillPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Presentation Tier\Panels\ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Tier\Panels\ReportPanel.resx">
+      <DependentUpon>ReportPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Tier\PaymentForm.resx">
       <DependentUpon>PaymentForm.cs</DependentUpon>
