@@ -34,6 +34,14 @@ namespace Omega.Business_Tier
             return items;
         }
 
+        public int GetOrderIdFrTable(int table)
+        {
+            int order_id;
+            OrderDAO orderDAO = new OrderDAO();
+            order_id= orderDAO.GetOrderId(table);
+            return order_id;
+        }
+
         public int GetIdByNumber(int numberTable)
         {
             TableDAO tableDAO = new TableDAO();

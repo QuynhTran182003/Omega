@@ -28,11 +28,13 @@ namespace Omega.Data_Tier
             throw new NotImplementedException();
         }
 
-        public int GetOrderId(Order ele)
+        public int GetOrderId(int table)
         {
-            SqlCommand cmd = new SqlCommand("select Orders.id as 'ID' from Orders where table_id = (select id from Tabl where number_table = @table) and dtime_order = @dtime_order", DatabaseSingleton.GetInstance());
-            cmd.Parameters.AddWithValue("@table", ele.Table);
-            cmd.Parameters.AddWithValue("@dtime_order", ele.DateOrder);
+            SqlCommand cmd = new SqlCommand("select Orders.id as 'ID' from Orders where table_id = (select id from Tabl where number_table = @table) " +
+                //"and dtime_order = @dtime_order" +
+                "", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@table", table);
+            /*cmd.Parameters.AddWithValue("@dtime_order", ele.DateOrder);*/
             int id = 0;
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
@@ -45,6 +47,8 @@ namespace Omega.Data_Tier
 
             return id;
         }
+
+
 
         public void Insert(Order ele)
         {
@@ -71,19 +75,28 @@ namespace Omega.Data_Tier
 
         public List<Item> GetListItems(int table)
         {
-            SqlCommand cmd = new SqlCommand(@"select Item.id, Product.code, Item.order_id, Item.quantity from Item
-inner join Product on Item.product_id = Product.id where order_id IN (select id from Orders where Orders.table_id = (select id from Tabl where number_table = @table))", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand(@"select  Product.code, Item.order_id, sum(Item.quantity) as quantity
+from Item
+inner join Product on Item.product_id = Product.id 
+where order_id IN (
+	select id 
+	from Orders 
+	where Orders.table_id = 
+		(select id	
+		from Tabl 
+		where number_table = @table))
+group by Product.code, Item.order_id", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@table", table);
             List<Item> list = new List<Item>();
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 while (reader.Read())
                 {
-                    int id = int.Parse(reader["id"].ToString());
+                    //int id = int.Parse(reader["id"].ToString());
                     string prod_code = reader["code"].ToString();
                     int order_id = int.Parse(reader["order_id"].ToString());
                     int quantity = int.Parse(reader["quantity"].ToString());
-                    Item i = new Item(id, prod_code, order_id, quantity);
+                    Item i = new Item(prod_code, order_id, quantity);
 
                     list.Add(i);
                 }

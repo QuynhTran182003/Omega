@@ -23,7 +23,7 @@ namespace Omega.Presentation_Tier
             this.table = table;
             this.priceLabel.Text = totalPrice;
             this.tableLabel.Text = "Stůl " + table.ToString();
-            this.mainForm1 = mainForm;
+            mainForm1 = mainForm;
         }
 
         private void ssebouBtn_Click(object sender, EventArgs e)
@@ -65,6 +65,9 @@ namespace Omega.Presentation_Tier
                 b.AddBillItem(item);
             }
             new Order().DeleteOrder(this.table);
+            this.Dispose();
+            this.mainForm1.btnDel_Click(sender, e);
+            this.mainForm1.Exit_Click(sender, e);
         }
     }
 }

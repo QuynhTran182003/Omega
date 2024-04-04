@@ -44,6 +44,7 @@
             this.btnKartou.Name = "btnKartou";
             this.btnKartou.Size = new System.Drawing.Size(142, 46);
             this.btnKartou.TabIndex = 0;
+            this.btnKartou.Tag = "Unselected";
             this.btnKartou.Text = "Kartou";
             this.btnKartou.UseVisualStyleBackColor = false;
             this.btnKartou.Click += new System.EventHandler(this.btnKartou_Click);
@@ -56,6 +57,7 @@
             this.ssebouBtn.Name = "ssebouBtn";
             this.ssebouBtn.Size = new System.Drawing.Size(142, 45);
             this.ssebouBtn.TabIndex = 1;
+            this.ssebouBtn.Tag = "Unselected";
             this.ssebouBtn.Text = "S Sebou";
             this.ssebouBtn.UseVisualStyleBackColor = false;
             this.ssebouBtn.Click += new System.EventHandler(this.ssebouBtn_Click);

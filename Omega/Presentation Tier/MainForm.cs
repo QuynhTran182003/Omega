@@ -155,7 +155,7 @@ namespace Omega
             AddOrUpdateItem(p, 1);
             UpdateTotalPrice();
         }
-        private void btnDel_Click(object sender, EventArgs e)
+        public void btnDel_Click(object sender, EventArgs e)
         {
             Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
             if (selectedTable.Tag.Equals("Rezervovan")){
@@ -202,7 +202,18 @@ namespace Omega
             {
                 //flowLayoutItems.Controls.Clear();
                 // get orrder id from the selectedtable
+                int order_id = new Table().GetOrderIdFrTable(SelectedTable);
+                MessageBox.Show("Updaate");
+                List<ItemUC> listUC = flowLayoutItems.Controls.OfType<ItemUC>().ToList();
+                foreach (ItemUC itemUc in listUC)
+                {
+                    Item item = new Item((itemUc.CodeLabel.Text), order_id, int.Parse(itemUc.QuantityLabel.Text));
+                    item.AddToDB();
+                }
+                this.Exit_Click(sender, e);
+                SelectedTable = 0;
             }
+
             /*List<Item> items = new List<Item>();
             List<ItemUC> listUC = flowLayoutItemss.Controls.OfType<ItemUC>().ToList();
 
@@ -231,7 +242,7 @@ namespace Omega
         {
             /*Vystiskne nahled uctenky pro zakaznika (př. PDF)*/
         }
-        private void Exit_Click(object sender, EventArgs e)
+        public void Exit_Click(object sender, EventArgs e)
         {
             /*Reset colors of all not reserved tables in flowLayoutTable to white*/
             foreach (Button button in flowLayoutTable.Controls.OfType<Button>().Where(b => !b.Tag.Equals("Rezervovan")))
@@ -251,8 +262,6 @@ namespace Omega
             SelectedTable = 0;
             totalPrice.Text = "0.0,- Kc";
             flowLayoutItems.Controls.Clear();
-            //verticalPosition = 0;
-
         }
         private void CategoryButton_Click(object sender, EventArgs e)
         {
@@ -274,11 +283,17 @@ namespace Omega
         }
         private void ProductButton_Click(object sender, EventArgs e)
         {
+
             // Nejprve zjistim jestli stul je vybran
             if (SelectedTable == 0)
             {
                 MessageBox.Show("Prosím vyberte stůl");
                 return;
+            }
+
+            if (!ulozitObj.Visible)
+            {
+                flowLayoutItems.Controls.Clear();
             }
             //musim ziskat kod kliknuteho jidla
             Button clickedButton = (Button)sender;

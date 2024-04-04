@@ -19,7 +19,7 @@ namespace Omega.Business_Tier
             get
             {
                 OrderDAO c = new OrderDAO();
-                return c.GetOrderId(this);
+                return c.GetOrderId(this.Table);
             }
             set => id = value; 
         }
