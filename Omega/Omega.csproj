@@ -47,10 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Business Tier\Bill.cs" />
     <Compile Include="Business Tier\Item.cs" />
     <Compile Include="Business Tier\Product.cs" />
     <Compile Include="Business Tier\Order.cs" />
     <Compile Include="Business Tier\Table.cs" />
+    <Compile Include="Data Tier\BillDAO.cs" />
     <Compile Include="Data Tier\CategoryDAO.cs" />
     <Compile Include="Data Tier\CreateDatabase.cs" />
     <Compile Include="Data Tier\DatabaseSingleton.cs" />
@@ -77,6 +79,15 @@
     <Compile Include="Presentation Tier\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation Tier\MainForm.Designer2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Tier\MainForm.Designer3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Tier\MainForm.Designer3.Designer.cs">
+      <DependentUpon>MainForm.Designer3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Presentation Tier\MainForm.Initializer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -94,6 +105,12 @@
     <Compile Include="Presentation Tier\Panels\ProductForm.Designer.cs">
       <DependentUpon>ProductForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Presentation Tier\PaymentForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Tier\PaymentForm.Designer.cs">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Presentation Tier\ItemUC.resx">
@@ -110,6 +127,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Tier\Panels\ProductForm.resx">
       <DependentUpon>ProductForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Tier\PaymentForm.resx">
+      <DependentUpon>PaymentForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

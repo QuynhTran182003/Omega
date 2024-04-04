@@ -66,7 +66,7 @@ namespace Omega
             // ziskam vsechny polozky co uz mam v panelu
             List<ItemUC> list = flowLayoutItems.Controls.OfType<ItemUC>().ToList();
 
-            // kontroluju jestli existuje takovy produkt, ktery chci vlozit do objednavky, 
+            // kontroluju jestli v listu existuje takovy produkt, ktery chci vlozit do objednavky, 
             foreach (ItemUC itemUc in list)
             {
                 //Pokud uz existuje, zvysim jenom pocet tohoto produktu

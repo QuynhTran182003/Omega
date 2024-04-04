@@ -33,6 +33,7 @@ namespace Omega.Business_Tier
             Table = table;
             DateOrder = dateOrder;
         }
+        public Order(){}
 
         public Order(int id, int table, DateTime dateOrder)
         {

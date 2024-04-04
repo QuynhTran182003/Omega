@@ -91,10 +91,11 @@ namespace Omega
             {
                 //MessageBox.Show("ShowOrder execus ");
                 ShowOrders(SelectedTable, this.flowLayoutItems);
+                this.ulozitObj.Visible = false;
             }
             else
             {
-                totalPrice.Text = "0.0 Kc";
+                totalPrice.Text = "0.0,- Kc";
                 flowLayoutItems.Controls.Clear();
             }
         }
@@ -113,7 +114,7 @@ namespace Omega
                 ItemUC uc = new ItemUC(p.Name, p.Code, p.Price, p.DPH(), item.Quantity);
                 flowLayoutPanel.Controls.Add(uc);
             }
-            totalPrice.Text = total + ",- Kc";
+            totalPrice.Text = total.ToString();
         }
         private void Btn_numbers_Click(object sender, EventArgs e)
         {
@@ -173,6 +174,7 @@ namespace Omega
             }
             else
             {
+                flowLayoutItems.Controls.Clear();
                 MessageBox.Show("Tag neni rezzervovan");
             }
         }
@@ -198,6 +200,8 @@ namespace Omega
             //pokud je rezervovan (sedi tam nekdo uz, tak update )
             else if (selectedTable.Tag.Equals("Rezervovan"))
             {
+                //flowLayoutItems.Controls.Clear();
+                // get orrder id from the selectedtable
             }
             /*List<Item> items = new List<Item>();
             List<ItemUC> listUC = flowLayoutItemss.Controls.OfType<ItemUC>().ToList();
@@ -282,6 +286,19 @@ namespace Omega
             Product p = new Product().GetByCode(code);
             AddOrUpdateItem(p, 1);
             UpdateTotalPrice();
+            this.ulozitObj.Visible = true;
+        }
+        private void Zaplatit_Click(object sender, EventArgs e)
+        {
+            if(SelectedTable == 0)
+            {
+                return;
+            }
+            if(flowLayoutItems.Controls.Count > 0)
+            {
+                PaymentForm pm = new PaymentForm(this.totalPrice.Text, SelectedTable, this);
+                pm.Show();
+            }
         }
     }
 }

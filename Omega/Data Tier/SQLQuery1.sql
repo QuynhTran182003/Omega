@@ -4,6 +4,7 @@ drop database if exists Restaurace;
 CREATE DATABASE Restaurace;
 -- end1
 
+begin transaction;
 USE Restaurace;
 
 CREATE TABLE Category(
@@ -22,7 +23,8 @@ category_id int foreign key references Category(id)
 
 CREATE TABLE Tabl(
 id int primary key identity(1,1),
-number_table varchar(10) unique not null
+number_table varchar(10) unique not null,
+[status] varchar(15) not null default 'volno' check([status] in ('volno', 'rezervovan'))
 )
 
 CREATE TABLE Orders(
@@ -37,13 +39,30 @@ product_id int foreign key references product(id),
 order_id int foreign key references orders(id),
 quantity int default 1 check(quantity>0)
 )
+
+CREATE TABLE Bill(
+id int primary key identity(1,1),
+total_price int not null,
+table_id int not null foreign key references Tabl(id),
+paymentMethod varchar(10) not null check(paymentMethod in ('Kartou', 'Hotově')),
+takeaway bit not null,
+date_issue datetime not null default GETDATE()
+)
+
+CREATE TABLE ItemBill(
+id int primary key identity(1,1),
+product_id int foreign key references Product(id),
+bill_id int foreign key references Bill(id),
+quantity int default 1 check(quantity>0)
+)
+
+commit;
+
 --drop table Tabl
 --drop table Item;
 --drop table Orders;
 
---insert into Category([name], dph) values('Polévky', 12);
---insert into Category([name], dph) values('Předkrmy', 12);
---insert into Product(code, [name], price, category_id) values('01', 'Miso polévka', 119, 1);
+begin transaction;
 INSERT INTO Tabl (number_table)
 VALUES 
     ('1'),
@@ -60,8 +79,23 @@ VALUES
     ('12'),
     ('13'),
     ('14');
-insert into Product(code, [name], price, category_id) values('11', 'Nem - Domácí závitky', 139, (select Category.id from Category where Category.name = 'Predkrmy'));
-insert into Orders(table_id, dtime_order) values ('1', GETDATE());
+
+insert into Category([name], dph) values('Polévky', 12);
+insert into Category([name], dph) values('Saláty', 12);
+insert into Category([name], dph) values('Předkrmy', 12);
+insert into Category([name], dph) values('Vegan Maki', 12);
+insert into Category([name], dph) values('Maki', 12);
+insert into Category([name], dph) values('Nápoje bez příchutí', 12);
+insert into Category([name], dph) values('Nápoje s příchutí', 12);
+insert into Product(code, [name], price, category_id) values('01', 'Miso polévka', 119, 1);
+insert into Product(code, [name], price, category_id) values('11', 'Nem - Domácí závitky', 139, (select Category.id from Category where Category.name = 'Předkrmy'));
+insert into Product(code, [name], price, category_id) values('07', 'Edamame', 139, (select Category.id from Category where Category.name = 'Saláty'));
+insert into Product(code, [name], price, category_id) values('201', 'Okurkové Maki', 139, (select Category.id from Category where Category.name = 'Vegan Maki'));
+insert into Product(code, [name], price, category_id) values('213', 'Lososové Maki', 139, (select Category.id from Category where Category.name = 'Maki'));
+insert into Product(code, [name], price, category_id) values('NB1', 'Neperlivá Voda 0.3l', 139, (select Category.id from Category where Category.name = 'Nápoje bez příchutí'));
+insert into Product(code, [name], price, category_id) values('NS1', 'Coca-Cola 0.4l', 139, (select Category.id from Category where Category.name = 'Nápoje s příchutí'));
+--insert into Orders(table_id, dtime_order) values ('1', GETDATE());
+commit;
 
 select * from Product
 select * from Tabl order by CAST(number_table as int)
@@ -78,3 +112,19 @@ select Item.id, Product.code, Orders.id as OrderId, Item.quantity from Item
                                                 inner join Orders on Orders.id = Item.order_id 
                                                 inner join Product on Product.id = Item.product_id 
                                                 where Orders.id = 6
+
+--delete from Orders
+--delete from Item
+select * from Item;
+select * from Orders;
+select * from Bill;
+select * from ItemBill;
+select * from Product join Category on Product.category_id = Category.id
+--update Product set code = '5b' where code = '5'
+select Category.dph as 'DPH' from Product inner join Category on Product.category_id = Category.id where Product.code = 3;
+
+select * from Orders where table_id = 11;
+
+select Item.id, Product.code, Item.order_id, Item.quantity from Item
+inner join Product on Item.product_id = Product.id where order_id IN (select id from Orders where Orders.table_id = (select id from Tabl where number_table = 11))
+
