@@ -78,9 +78,9 @@
             this.hotove.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hotove.Location = new System.Drawing.Point(171, 176);
             this.hotove.Name = "hotove";
-            this.hotove.Size = new System.Drawing.Size(51, 20);
+            this.hotove.Size = new System.Drawing.Size(18, 20);
             this.hotove.TabIndex = 3;
-            this.hotove.Text = "label4";
+            this.hotove.Text = "0";
             // 
             // kartou
             // 
@@ -88,9 +88,9 @@
             this.kartou.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.kartou.Location = new System.Drawing.Point(171, 253);
             this.kartou.Name = "kartou";
-            this.kartou.Size = new System.Drawing.Size(51, 20);
+            this.kartou.Size = new System.Drawing.Size(18, 20);
             this.kartou.TabIndex = 4;
-            this.kartou.Text = "label5";
+            this.kartou.Text = "0";
             // 
             // label7
             // 
@@ -128,9 +128,9 @@
             this.prijem.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.prijem.Location = new System.Drawing.Point(171, 112);
             this.prijem.Name = "prijem";
-            this.prijem.Size = new System.Drawing.Size(51, 20);
+            this.prijem.Size = new System.Drawing.Size(18, 20);
             this.prijem.TabIndex = 8;
-            this.prijem.Text = "label5";
+            this.prijem.Text = "0";
             // 
             // label5
             // 

@@ -106,12 +106,18 @@ namespace Omega.Data_Tier
         public int GetTotalAllBills()
         {
             int total = 0;
-            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill;", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill WHERE CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@date", DateTime.Today.ToString("yyyy-MM-dd"));
+
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 if (reader.Read())
                 {
-                    total = (int)reader["sum"];
+                    if (!reader["sum"].ToString().Equals("null"))
+
+                    {
+                        total = (int)reader["sum"];
+                    }
                 }
             }
             DatabaseSingleton.CloseConnection();
@@ -121,12 +127,18 @@ namespace Omega.Data_Tier
         public int GetCashAllBills()
         {
             int total = 0;
-            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill where Bill.paymentMethod = 'Hotově';", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill where Bill.paymentMethod = 'Hotově' and CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@date", DateTime.Today.ToString("yyyy-MM-dd"));
+
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 if (reader.Read())
                 {
-                    total = (int)reader["sum"];
+                    if (!reader["sum"].ToString().Equals("null"))
+
+                    {
+                        total = (int)reader["sum"];
+                    }
                 }
             }
             DatabaseSingleton.CloseConnection();
@@ -136,12 +148,17 @@ namespace Omega.Data_Tier
         public int GetCardsAllBills()
         {
             int total = 0;
-            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill where Bill.paymentMethod = 'Kartou';", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill where Bill.paymentMethod = 'Kartou' and CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@date", DateTime.Today.ToString("yyyy-MM-dd"));
+
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 if (reader.Read())
                 {
-                    total = (int)reader["sum"];
+                    if (!reader["sum"].ToString().Equals("null"))
+                    {
+                        total = (int)reader["sum"];
+                    }
                 }
             }
             DatabaseSingleton.CloseConnection();
