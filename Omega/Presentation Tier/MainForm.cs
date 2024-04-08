@@ -3,6 +3,7 @@ using Omega.Data_Tier;
 using Omega.Forms.Panels;
 using Omega.Objects;
 using Omega.Presentation_Tier;
+using Omega.Presentation_Tier.Panels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

@@ -136,17 +136,29 @@ select sum(total_price) as sum from Bill where CONVERT(date, date_issue) = '2024
 select * from Orders;
 
 go
-ALTER TRIGGER insertOrder 
+CREATE TRIGGER insertOrder 
 ON Orders
 AFTER INSERT 
 AS
 BEGIN
-    DECLARE @tabl_id int;
-    (SELECT @tabl_id = table_id FROM inserted);
+    DECLARE @tabl_id as int;
+    set @tabl_id = (SELECT table_id FROM inserted);
     UPDATE Tabl 
     SET Tabl.status = 'rezervovan'
-    WHERE id = 42@tabl_id;
+    WHERE id = @tabl_id;
 END;
 go
 
-insert into Orders(table_id, dtime_order) values(12, GETDATE())
+go
+CREATE TRIGGER deleteOrder 
+ON Orders
+AFTER DELETE 
+AS
+BEGIN
+    DECLARE @tabl_id as int;
+    set @tabl_id = (SELECT table_id FROM deleted);
+    UPDATE Tabl 
+    SET Tabl.status = 'volno'
+    WHERE id = @tabl_id;
+END;
+go

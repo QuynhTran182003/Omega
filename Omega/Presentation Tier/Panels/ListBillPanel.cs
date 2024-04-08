@@ -1,12 +1,5 @@
 ﻿using Omega.Data_Tier;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Omega.Presentation_Tier.Panels
@@ -26,7 +19,18 @@ namespace Omega.Presentation_Tier.Panels
 
         private void btnFilter_Click(object sender, EventArgs e)
         {
+            MessageBox.Show(this.dateFrom.ToString(), this.dateTo.ToString());
+            string from = this.dateFrom.Value.ToString("yyyy-MM-dd");
+            string to = this.dateTo.Value.ToString("yyyy-MM-dd");
+            BillDAO billDAO = new BillDAO();
+            billDAO.GetBills(from, to, dataGridView1);
+        }
 
+        private void dataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id"].FormattedValue.ToString());
+            BillDAO billDAO = new BillDAO();
+            billDAO.GetBillItems(id, this.dataGridView2);
         }
     }
 }

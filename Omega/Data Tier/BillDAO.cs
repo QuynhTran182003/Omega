@@ -85,7 +85,54 @@ namespace Omega.Data_Tier
 
         public void GetAll(DataGridView dataView)
         {
-            SqlCommand cmd = new SqlCommand("select date_issue, id, total_price from Bill;", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("select date_issue, id, total_price from Bill where CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@date", DateTime.Today.ToString("yyyy-MM-dd"));
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataView.DataSource = dt;
+
+            DatabaseSingleton.CloseConnection();
+        }
+
+        public void GetBills(string from, string to, DataGridView dataView)
+        {
+            SqlCommand cmd = new SqlCommand("select date_issue, id, total_price from Bill where CONVERT(date, date_issue) between @datefrom and @dateto", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@datefrom", from);
+            cmd.Parameters.AddWithValue("@dateto", to);
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataView.DataSource = dt;
+
+            DatabaseSingleton.CloseConnection();
+        }
+
+        public void GetBillItems(int bill_id, DataGridView dataView)
+        {
+            SqlCommand cmd = new SqlCommand("select ItemBill.id, Product.name, Product.price, quantity, (quantity * Product.price) as 'subtotal (Kc)' from ItemBill inner join Product on Product.id = ItemBill.product_id where bill_id = @bill_id;", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@bill_id", bill_id);
+
             try
             {
                 cmd.ExecuteNonQuery();
@@ -106,17 +153,16 @@ namespace Omega.Data_Tier
         public int GetTotalAllBills()
         {
             int total = 0;
-            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill WHERE CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("select sum(total_price) as 'SUM' from Bill WHERE CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@date", DateTime.Today.ToString("yyyy-MM-dd"));
 
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 if (reader.Read())
                 {
-                    if (!reader["sum"].ToString().Equals("null"))
-
+                    if (!reader.IsDBNull(reader.GetOrdinal("SUM")))
                     {
-                        total = (int)reader["sum"];
+                        total = Convert.ToInt32(reader["SUM"]);
                     }
                 }
             }
@@ -127,17 +173,16 @@ namespace Omega.Data_Tier
         public int GetCashAllBills()
         {
             int total = 0;
-            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill where Bill.paymentMethod = 'Hotově' and CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("select sum(total_price) as 'SUM' from Bill where Bill.paymentMethod = 'Hotově' and CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@date", DateTime.Today.ToString("yyyy-MM-dd"));
 
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 if (reader.Read())
                 {
-                    if (!reader["sum"].ToString().Equals("null"))
-
+                    if (!reader.IsDBNull(reader.GetOrdinal("SUM")))
                     {
-                        total = (int)reader["sum"];
+                        total = Convert.ToInt32(reader["SUM"]);
                     }
                 }
             }
@@ -148,16 +193,16 @@ namespace Omega.Data_Tier
         public int GetCardsAllBills()
         {
             int total = 0;
-            SqlCommand cmd = new SqlCommand("select sum(total_price) as sum from Bill where Bill.paymentMethod = 'Kartou' and CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("select sum(total_price) as 'SUM' from Bill where Bill.paymentMethod = 'Kartou' and CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@date", DateTime.Today.ToString("yyyy-MM-dd"));
 
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
                 if (reader.Read())
                 {
-                    if (!reader["sum"].ToString().Equals("null"))
+                    if (!reader.IsDBNull(reader.GetOrdinal("SUM")))
                     {
-                        total = (int)reader["sum"];
+                        total = Convert.ToInt32(reader["SUM"]);
                     }
                 }
             }

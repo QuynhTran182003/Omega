@@ -21,7 +21,7 @@ namespace Omega.Presentation_Tier.Panels
             InitializeComponent();
         }
 
-        private void ProductForm_Load(object sender, EventArgs e)
+        public void ProductForm_Load(object sender, EventArgs e)
         {
             /*ziskame vsechny produkty do datagrid view a nacte se seznam kategorie z databaze*/
             ProductDAO productDAO = new ProductDAO();
