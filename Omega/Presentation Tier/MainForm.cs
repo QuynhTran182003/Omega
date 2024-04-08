@@ -92,7 +92,7 @@ namespace Omega
                 return;
             }
             // Reset colors of all not-reserved tables in flowLayoutTable to white, reserved tables keep color unchanged
-            foreach (Button button in flowLayoutTable.Controls.OfType<Button>().Where(b => !b.Tag.Equals("Rezervovan")))
+            foreach (Button button in flowLayoutTable.Controls.OfType<Button>().Where(b => !b.Tag.Equals("rezervovan")))
             {
                 button.BackColor = Color.White;
             }
@@ -112,7 +112,7 @@ namespace Omega
             // Set the number of selected table, where we will add item to the order
             SelectedTable = int.Parse(clickedButton.Text.Split(' ')[1]);
 
-            if (clickedButton.Tag.Equals("Rezervovan"))
+            if (clickedButton.Tag.Equals("rezervovan"))
             {
                 //MessageBox.Show("ShowOrder execus ");
                 ShowOrders(SelectedTable, this.flowLayoutItems);
@@ -183,12 +183,12 @@ namespace Omega
         public void btnDel_Click(object sender, EventArgs e)
         {
             Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
-            if (selectedTable.Tag.Equals("Rezervovan")){
+            if (selectedTable.Tag.Equals("rezervovan")){
              // verticalPosition = 0;
                 totalPrice.Text = "0.0,- Kc";
                 flowLayoutItems.Controls.Clear();
                 selectedTable.BackColor = Color.White;
-                selectedTable.Tag = "Volno";
+                selectedTable.Tag = "volno";
              // delete all items of order id, delete the order
                 int numberTable = SelectedTable;
                 // get the table id and with this table id we can 
@@ -208,11 +208,11 @@ namespace Omega
             
             Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
             // pokud table je volny, tak se vytvori novy order
-            if (selectedTable.Tag.Equals("Volno"))
+            if (selectedTable.Tag.Equals("volno"))
             {
                 Order newOrder = new Order(SelectedTable, DateTime.Now);
                 newOrder.AddToDB();
-                selectedTable.Tag = ("Rezervovan");
+                selectedTable.Tag = ("rezervovan");
                 List<ItemUC> listUC = flowLayoutItems.Controls.OfType<ItemUC>().ToList();
                 foreach (ItemUC itemUc in listUC)
                 {
@@ -223,7 +223,7 @@ namespace Omega
                 SelectedTable = 0;
             }
             //pokud je rezervovan (sedi tam nekdo uz, tak update )
-            else if (selectedTable.Tag.Equals("Rezervovan"))
+            else if (selectedTable.Tag.Equals("rezervovan"))
             {
                 //flowLayoutItems.Controls.Clear();
                 // get orrder id from the selectedtable
@@ -270,7 +270,7 @@ namespace Omega
         public void Exit_Click(object sender, EventArgs e)
         {
             /*Reset colors of all not reserved tables in flowLayoutTable to white*/
-            foreach (Button button in flowLayoutTable.Controls.OfType<Button>().Where(b => !b.Tag.Equals("Rezervovan")))
+            foreach (Button button in flowLayoutTable.Controls.OfType<Button>().Where(b => !b.Tag.Equals("rezervovan")))
             {
                 button.BackColor = Color.White;
             }

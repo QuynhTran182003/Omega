@@ -118,7 +118,7 @@ select Item.id, Product.code, Orders.id as OrderId, Item.quantity from Item
 select * from Product;
 select * from Item;
 select * from Orders;
-select date_issue, id, total_price from Bill;
+select date_issue, id, total_price from Bill where date_issue like '2024-04-04';
 select sum(total_price) from Bill ;
 select sum(total_price) from Bill where Bill.paymentMethod = 'Kartou';
 select sum(total_price) from Bill where Bill.paymentMethod = 'Hotově';
@@ -131,3 +131,22 @@ inner join Product on Item.product_id = Product.id
 where order_id IN (select id from Orders where Orders.table_id = (select id from Tabl where number_table = 11))
 insert into Item (product_id, order_id, quantity) values(4, 11, 2)
 
+select sum(total_price) as sum from Bill where CONVERT(date, date_issue) = '2024-04-05' and Bill.paymentMethod = 'Hotově' 
+
+select * from Orders;
+
+go
+ALTER TRIGGER insertOrder 
+ON Orders
+AFTER INSERT 
+AS
+BEGIN
+    DECLARE @tabl_id int;
+    (SELECT @tabl_id = table_id FROM inserted);
+    UPDATE Tabl 
+    SET Tabl.status = 'rezervovan'
+    WHERE id = 42@tabl_id;
+END;
+go
+
+insert into Orders(table_id, dtime_order) values(12, GETDATE())

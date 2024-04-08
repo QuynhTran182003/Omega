@@ -12,10 +12,18 @@ namespace Omega.Business_Tier
     {
         private int id;
         private string number_table;
-        //private string status;
+        private string status;
         public int Id { get => id; set => id = value; }
         public string NumberTable { get => number_table; set => number_table = value; }
 
+        public string Status { get => status; set => status = value; }
+
+        public Table(int id, string numberTabl, string status)
+        {
+            Id = id;
+            NumberTable = numberTabl;
+            Status = status;
+        }
         public Table(int id, string numberTabl)
         {
             Id = id;

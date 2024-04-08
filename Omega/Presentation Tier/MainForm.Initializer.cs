@@ -4,6 +4,7 @@ using Omega.Objects;
 using Omega.Presentation_Tier;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,9 @@ namespace Omega
                 b.Click += this.Button_Stul_Click;
                 b.Size = new System.Drawing.Size(105, 50);
                 b.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-                b.Tag = "Volno";
+                b.Tag = (ta.Status == "volno"? "volno" : "rezervovan");
+                b.BackColor = (ta.Status == "volno" ? Color.White : Color.Red); ;
+
                 flowLayoutPanel.Controls.Add(b);
             }
         }

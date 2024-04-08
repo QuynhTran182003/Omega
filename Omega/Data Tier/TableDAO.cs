@@ -41,7 +41,8 @@ namespace Omega.Data_Tier
                 {
                     Table table = new Table(
                         (int)reader["id"], 
-                        reader["number_table"].ToString()
+                        reader["number_table"].ToString(),
+                        reader["status"].ToString()
                     );
                     list.Add(table);
                 }

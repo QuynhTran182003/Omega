@@ -40,5 +40,7 @@ namespace Omega.Presentation_Tier
             ItemUC clicked = (ItemUC)sender;
             MessageBox.Show("Edit price edit Quantity for " + clicked.NameLabel.Text);
         }
+
+        
     }
 }
