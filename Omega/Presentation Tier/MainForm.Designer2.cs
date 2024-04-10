@@ -161,13 +161,16 @@ namespace Omega
             // 
             // zamestnanciToolStripMenuItem
             // 
-            this.zamestnanciToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.seznamZaměstnancůToolStripMenuItem,
-            this.rozvrhZaměstnancůToolStripMenuItem});
-            this.zamestnanciToolStripMenuItem.Name = "zamestnanciToolStripMenuItem";
-            this.zamestnanciToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
-            this.zamestnanciToolStripMenuItem.Text = "Zaměstnanci";
-            this.zamestnanciToolStripMenuItem.Click += new System.EventHandler(this.zamestnanciToolStripMenuItem_Click);
+            if(this.user.Role.ToString().Equals("admin"))
+            {
+                this.zamestnanciToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+                this.seznamZaměstnancůToolStripMenuItem,
+                this.rozvrhZaměstnancůToolStripMenuItem});
+                this.zamestnanciToolStripMenuItem.Name = "zamestnanciToolStripMenuItem";
+                this.zamestnanciToolStripMenuItem.Size = new System.Drawing.Size(87, 20);
+                this.zamestnanciToolStripMenuItem.Text = "Zaměstnanci";
+                this.zamestnanciToolStripMenuItem.Click += new System.EventHandler(this.zamestnanciToolStripMenuItem_Click);
+            }
             // 
             // seznamZaměstnancůToolStripMenuItem
             // 

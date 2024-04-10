@@ -52,6 +52,7 @@
     <Compile Include="Business Tier\Product.cs" />
     <Compile Include="Business Tier\Order.cs" />
     <Compile Include="Business Tier\Table.cs" />
+    <Compile Include="Business Tier\User.cs" />
     <Compile Include="Data Tier\BillDAO.cs" />
     <Compile Include="Data Tier\CategoryDAO.cs" />
     <Compile Include="Data Tier\CreateDatabase.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Data Tier\OrderDAO.cs" />
     <Compile Include="Data Tier\ProductDAO.cs" />
     <Compile Include="Data Tier\TableDAO.cs" />
+    <Compile Include="Data Tier\UserDAO.cs" />
     <Compile Include="Presentation Tier\BillForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +181,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="vendor\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

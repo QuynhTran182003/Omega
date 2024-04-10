@@ -20,8 +20,10 @@ namespace Omega
     {
         private LoginForm loginForm;
         private int selectedTable = 0;
+        private User user;
+
         public int SelectedTable { get { return selectedTable; } set { selectedTable = value; } }
-        public MainForm(LoginForm loginForm)
+        public MainForm(LoginForm loginForm, User u)
         {
             InitializeComponent();
             this.loginForm = loginForm;
@@ -30,11 +32,16 @@ namespace Omega
             productForm1.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = false;
+            this.user = u;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitializeCategoryButton(this.flowLayoutCategory);
             InitializeTableButton(this.flowLayoutTable);
+            InitializeToolStripMenuItem();
+            InitializeButtonsNumber();
+            InitializeExecutionButtons();
+            InitializePanels();
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -48,6 +55,7 @@ namespace Omega
         }
         private void zamestnanciToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
         }
         private void produktyToolStripMenuItem_Click_1(object sender, EventArgs e)
         {

@@ -526,10 +526,10 @@
             this.reportPanel1.Size = new System.Drawing.Size(1482, 749);
             this.reportPanel1.TabIndex = 7;*/
 
-            InitializeToolStripMenuItem();
+            /*InitializeToolStripMenuItem();
             InitializeButtonsNumber();
             InitializeExecutionButtons();
-            InitializePanels();
+            InitializePanels();*/
             // 
             // MainForm
             // 

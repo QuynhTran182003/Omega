@@ -59,7 +59,7 @@ quantity int default 1 check(quantity>0)
 CREATE TABLE Users(
 id int primary key identity(1,1),
 username varchar(32) not null check(len(username) > 3),
-pwd varchar(20) not null check(len(pwd) > 4),
+pwd varchar(256) not null check(len(pwd) > 4),
 [name] varchar(32) not null,
 surname varchar(32) not null,
 [role] varchar(10) not null check([role] in ('admin',  'pokladnik', 'kuchar'))
@@ -70,6 +70,7 @@ commit;
 --drop table Tabl
 --drop table Item;
 --drop table Orders;
+--drop table Users;
 
 begin transaction;
 INSERT INTO Tabl (number_table)
@@ -88,7 +89,8 @@ VALUES
     ('12'),
     ('13'),
     ('14');
-
+insert into Users(username, pwd, [name], surname, [role]) values ('admin1', 'admin1', 'ad', 'min', 'admin')
+insert into Users(username, pwd, [name], surname, [role]) values ('abcd', 'abcde', 'ad', 'min', 'kuchar')
 insert into Category([name], dph) values('Polévky', 12);
 insert into Category([name], dph) values('Saláty', 12);
 insert into Category([name], dph) values('Předkrmy', 12);
@@ -106,7 +108,7 @@ insert into Product(code, [name], price, category_id) values('NS1', 'Coca-Cola 0
 --insert into Orders(table_id, dtime_order) values ('1', GETDATE());
 commit;
 
-
+select * from Users where username = 'admin1' and pwd = 'admin1';
 select * from Tabl order by CAST(number_table as int)
 select Category.id from Category where Category.name = 'Predkrmy'
 select Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id

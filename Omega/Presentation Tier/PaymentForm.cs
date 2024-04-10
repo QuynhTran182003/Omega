@@ -53,8 +53,10 @@ namespace Omega.Presentation_Tier
             }
             int price = int.Parse(this.totalPrice);
             int table_id = new Table().GetIdByNumber(this.table);
-            Bill b = new Bill(price, table_id, paymentMethod, takeaway, DateTime.Now);
+            string billDT;
+            Bill b = new Bill(price, table_id, paymentMethod, takeaway, billDT = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             b.AddToDB();
+            MessageBox.Show("Bill Id: "+b.Id+","+ billDT);
 
             // get all items in the order of table number x
             List<Item> items = new Table().GetOrderDetail(this.table);

@@ -22,11 +22,10 @@ namespace Omega.Data_Tier
             throw new NotImplementedException();
         }
 
-        public int GetBillId(Bill ele)
+        public int GetBillId(string dateissue)
         {
-            SqlCommand cmd = new SqlCommand("select Bill.id as 'ID' from Bill where table_id =  @table and date_issue = @date_issue", DatabaseSingleton.GetInstance());
-            cmd.Parameters.AddWithValue("@table", ele.Table_id);
-            cmd.Parameters.AddWithValue("@date_issue", ele.DateIssue);
+            SqlCommand cmd = new SqlCommand("select Bill.id as 'ID' from Bill where date_issue = @date_issue", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@date_issue", dateissue);
             int id = 0;
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
@@ -42,11 +41,12 @@ namespace Omega.Data_Tier
 
         public void Insert(Bill ele)
         {
-            SqlCommand cmd = new SqlCommand("insert into Bill(total_price, table_id, paymentMethod, takeaway) values(@total_price, @table_id, @paymentMethod, @takeaway);", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("insert into Bill(total_price, table_id, paymentMethod, takeaway, date_issue) values(@total_price, @table_id, @paymentMethod, @takeaway, @date_issue);", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@total_price", ele.TotalPrice);
             cmd.Parameters.AddWithValue("@table_id", ele.Table_id);
             cmd.Parameters.AddWithValue("@paymentMethod", ele.PaymentMethod);
             cmd.Parameters.AddWithValue("@takeaway", ele.Takeaway? 1: 0);
+            cmd.Parameters.AddWithValue("@date_issue", ele.DateIssue);
             try
             {
                 cmd.ExecuteNonQuery();
