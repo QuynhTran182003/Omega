@@ -56,6 +56,15 @@ bill_id int foreign key references Bill(id),
 quantity int default 1 check(quantity>0)
 )
 
+CREATE TABLE Users(
+id int primary key identity(1,1),
+username varchar(32) not null check(len(username) > 3),
+pwd varchar(20) not null check(len(pwd) > 4),
+[name] varchar(32) not null,
+surname varchar(32) not null,
+[role] varchar(10) not null check([role] in ('admin',  'pokladnik', 'kuchar'))
+)
+
 commit;
 
 --drop table Tabl
@@ -129,7 +138,6 @@ select * from Product join Category on Product.category_id = Category.id
 select Item.id, Product.code, Item.order_id, Item.quantity from Item
 inner join Product on Item.product_id = Product.id 
 where order_id IN (select id from Orders where Orders.table_id = (select id from Tabl where number_table = 11))
-insert into Item (product_id, order_id, quantity) values(4, 11, 2)
 
 select sum(total_price) as sum from Bill where CONVERT(date, date_issue) = '2024-04-05' and Bill.paymentMethod = 'Hotově' 
 
@@ -162,3 +170,5 @@ BEGIN
     WHERE id = @tabl_id;
 END;
 go
+
+select date_issue, id, total_price from Bill where CONVERT(date, date_issue) between '2024-04-01' and '2024-04-08'
