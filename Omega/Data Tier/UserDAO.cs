@@ -1,10 +1,12 @@
 ﻿using Omega.Business_Tier;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Omega.Data_Tier
 {
@@ -51,6 +53,26 @@ namespace Omega.Data_Tier
             }
             DatabaseSingleton.CloseConnection();
             return user;
+        }
+
+        public void GetAll(DataGridView dataView)
+        {
+            SqlCommand cmd = new SqlCommand("select id, username, name, surname, role from Users", DatabaseSingleton.GetInstance());
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            dataView.DataSource = dt;
+
+            DatabaseSingleton.CloseConnection();
         }
     }
 }

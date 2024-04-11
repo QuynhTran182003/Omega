@@ -24,17 +24,27 @@ namespace Omega
 
             string username = this.username.Text;
             string password = this.password.Text;
-            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+            try 
             {
-                User u = new User().GetUser(username, password);
-                MessageBox.Show(u.Role);
-                if (u != null)
+                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
                 {
-                    this.Hide();
-                    MainForm mainForm = new MainForm(this, u);
-                    mainForm.ShowDialog();
+                    User u = new User().GetUser(username, password);
+                    MessageBox.Show(u.Role);
+                    if (u != null)
+                    {
+                        this.Hide();
+                        MainForm mainForm = new MainForm(this, u);
+                        mainForm.ShowDialog();
+                    }
                 }
-
+                else
+                {
+                    MessageBox.Show("Fields cant be empty");
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Fields cant be empty");
             }
             
         }

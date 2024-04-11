@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Omega.Data_Tier;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,8 +16,19 @@ namespace Omega.Presentation_Tier.Panels
         public ZamestnanecPanel()
         {
             InitializeComponent();
+            
         }
 
+        private void ZamestnanecPanel_Load(object sender, EventArgs e)
+        {
+            UserDAO empDAO = new UserDAO();
+            empDAO.GetAll(this.dataGridView1);
+        }
 
+        private void newBtn_Click(object sender, EventArgs e)
+        {
+            NewUserForm nuf = new NewUserForm();
+            nuf.Show();
+        }
     }
 }

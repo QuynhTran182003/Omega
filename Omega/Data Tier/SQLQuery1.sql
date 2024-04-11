@@ -175,3 +175,9 @@ END;
 go
 
 select date_issue, id, total_price from Bill where CONVERT(date, date_issue) between '2024-04-01' and '2024-04-08'
+
+select Product.name as 'Nazev', Product.price as 'Cena', Category.dph as 'DPH', ItemBill.quantity as 'Mnozstvi', (Product.price * ItemBill.quantity) as 'Celkem' 
+from ItemBill
+inner join Product on Product.id = ItemBill.product_id
+inner join Category on Category.id = Product.category_id
+where bill_id = 44

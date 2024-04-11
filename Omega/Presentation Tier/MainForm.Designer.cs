@@ -89,7 +89,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.categoryForm1 = new Omega.Forms.Panels.CategoryPanel();
             this.reportPanel1 = new Omega.Presentation_Tier.Panels.ReportPanel();
-            this.zamestnanecPanel2 = new Omega.Presentation_Tier.Panels.ZamestnanecPanel();
+            this.zamestnanecPanel1 = new Omega.Presentation_Tier.Panels.ZamestnanecPanel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -120,81 +120,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(1484, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip2";
-            /*// 
-            // pokladnaToolStripMenuItem
-            // 
-            this.pokladnaToolStripMenuItem.Name = "pokladnaToolStripMenuItem";
-            this.pokladnaToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
-            // 
-            // zamestnanciToolStripMenuItem
-            // 
-            this.zamestnanciToolStripMenuItem.Name = "zamestnanciToolStripMenuItem";
-            this.zamestnanciToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
-            // 
-            // productToolStripMenuItem
-            // 
-            this.productToolStripMenuItem.Name = "productToolStripMenuItem";
-            this.productToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
-            // 
-            // spravaToolStripMenuItem
-            // 
-            this.spravaToolStripMenuItem.Name = "spravaToolStripMenuItem";
-            this.spravaToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
-            // 
-            // nastaveniToolStripMenuItem
-            // 
-            this.nastaveniToolStripMenuItem.Name = "nastaveniToolStripMenuItem";
-            this.nastaveniToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
-            // 
-            // seznamZaměstnancůToolStripMenuItem
-            // 
-            this.seznamZaměstnancůToolStripMenuItem.Name = "seznamZaměstnancůToolStripMenuItem";
-            this.seznamZaměstnancůToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // rozvrhZaměstnancůToolStripMenuItem
-            // 
-            this.rozvrhZaměstnancůToolStripMenuItem.Name = "rozvrhZaměstnancůToolStripMenuItem";
-            this.rozvrhZaměstnancůToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // kategorieToolStripMenuItem
-            // 
-            this.kategorieToolStripMenuItem.Name = "kategorieToolStripMenuItem";
-            this.kategorieToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // produktyToolStripMenuItem
-            // 
-            this.produktyToolStripMenuItem.Name = "produktyToolStripMenuItem";
-            this.produktyToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // seznamFakturToolStripMenuItem
-            // 
-            this.seznamFakturToolStripMenuItem.Name = "seznamFakturToolStripMenuItem";
-            this.seznamFakturToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // denniReportToolStripMenuItem
-            // 
-            this.denniReportToolStripMenuItem.Name = "denniReportToolStripMenuItem";
-            this.denniReportToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
-            // 
-            // contextMenuStrip3
-            // 
-            this.contextMenuStrip3.ImageScalingSize = new System.Drawing.Size(40, 40);
-            this.contextMenuStrip3.Name = "contextMenuStrip3";
-            this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
-            // 
-            // panelStul
-            // 
-            this.panelStul.Location = new System.Drawing.Point(0, 0);
-            this.panelStul.Name = "panelStul";
-            this.panelStul.Size = new System.Drawing.Size(200, 100);
-            this.panelStul.TabIndex = 0;
-            // 
-            // flowLayoutTable
-            // 
-            this.flowLayoutTable.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutTable.Name = "flowLayoutTable";
-            this.flowLayoutTable.Size = new System.Drawing.Size(200, 100);
-            this.flowLayoutTable.TabIndex = 0;*/
+            
             // 
             // Exit
             // 
@@ -219,20 +145,7 @@
             this.label1.Size = new System.Drawing.Size(37, 34);
             this.label1.TabIndex = 5;
             this.label1.Text = "Stul";
-            /*// 
-            // panelMain
-            // 
-            this.panelMain.Location = new System.Drawing.Point(0, 0);
-            this.panelMain.Name = "panelMain";
-            this.panelMain.Size = new System.Drawing.Size(200, 100);
-            this.panelMain.TabIndex = 3;
-            // 
-            // listBillPanel1
-            // 
-            this.listBillPanel1.Location = new System.Drawing.Point(0, 0);
-            this.listBillPanel1.Name = "listBillPanel1";
-            this.listBillPanel1.Size = new System.Drawing.Size(1482, 749);
-            this.listBillPanel1.TabIndex = 8;*/
+            
             // 
             // totalPrice
             // 
@@ -315,7 +228,97 @@
             this.ID.Size = new System.Drawing.Size(26, 20);
             this.ID.TabIndex = 18;
             this.ID.Text = "ID";
-            /*// panelItems
+            /*// 
+            // pokladnaToolStripMenuItem
+            // 
+            this.pokladnaToolStripMenuItem.Name = "pokladnaToolStripMenuItem";
+            this.pokladnaToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
+            // 
+            // zamestnanciToolStripMenuItem
+            // 
+            this.zamestnanciToolStripMenuItem.Name = "zamestnanciToolStripMenuItem";
+            this.zamestnanciToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
+            // 
+            // productToolStripMenuItem
+            // 
+            this.productToolStripMenuItem.Name = "productToolStripMenuItem";
+            this.productToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
+            // 
+            // spravaToolStripMenuItem
+            // 
+            this.spravaToolStripMenuItem.Name = "spravaToolStripMenuItem";
+            this.spravaToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
+            // 
+            // nastaveniToolStripMenuItem
+            // 
+            this.nastaveniToolStripMenuItem.Name = "nastaveniToolStripMenuItem";
+            this.nastaveniToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
+            // 
+            // seznamZaměstnancůToolStripMenuItem
+            // 
+            this.seznamZaměstnancůToolStripMenuItem.Name = "seznamZaměstnancůToolStripMenuItem";
+            this.seznamZaměstnancůToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // rozvrhZaměstnancůToolStripMenuItem
+            // 
+            this.rozvrhZaměstnancůToolStripMenuItem.Name = "rozvrhZaměstnancůToolStripMenuItem";
+            this.rozvrhZaměstnancůToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // kategorieToolStripMenuItem
+            // 
+            this.kategorieToolStripMenuItem.Name = "kategorieToolStripMenuItem";
+            this.kategorieToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // produktyToolStripMenuItem
+            // 
+            this.produktyToolStripMenuItem.Name = "produktyToolStripMenuItem";
+            this.produktyToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // seznamFakturToolStripMenuItem
+            // 
+            this.seznamFakturToolStripMenuItem.Name = "seznamFakturToolStripMenuItem";
+            this.seznamFakturToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // denniReportToolStripMenuItem
+            // 
+            this.denniReportToolStripMenuItem.Name = "denniReportToolStripMenuItem";
+            this.denniReportToolStripMenuItem.Size = new System.Drawing.Size(32, 19);
+            // 
+            // contextMenuStrip3
+            // 
+            this.contextMenuStrip3.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.contextMenuStrip3.Name = "contextMenuStrip3";
+            this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
+            // 
+            // panelStul
+            // 
+            this.panelStul.Location = new System.Drawing.Point(0, 0);
+            this.panelStul.Name = "panelStul";
+            this.panelStul.Size = new System.Drawing.Size(200, 100);
+            this.panelStul.TabIndex = 0;
+            // 
+            // flowLayoutTable
+            // 
+            this.flowLayoutTable.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutTable.Name = "flowLayoutTable";
+            this.flowLayoutTable.Size = new System.Drawing.Size(200, 100);
+            this.flowLayoutTable.TabIndex = 0;
+            // 
+            // panelMain
+            // 
+            this.panelMain.Location = new System.Drawing.Point(0, 0);
+            this.panelMain.Name = "panelMain";
+            this.panelMain.Size = new System.Drawing.Size(200, 100);
+            this.panelMain.TabIndex = 3;
+            // 
+            // listBillPanel1
+            // 
+            this.listBillPanel1.Location = new System.Drawing.Point(0, 0);
+            this.listBillPanel1.Name = "listBillPanel1";
+            this.listBillPanel1.Size = new System.Drawing.Size(1482, 749);
+            this.listBillPanel1.TabIndex = 7;
+            // 
+            // panelItems
             // 
             this.panelItems.Location = new System.Drawing.Point(0, 0);
             this.panelItems.Name = "panelItems";
@@ -503,7 +506,7 @@
             this.productForm1.Location = new System.Drawing.Point(0, 0);
             this.productForm1.Name = "productForm1";
             this.productForm1.Size = new System.Drawing.Size(1482, 749);
-            this.productForm1.TabIndex = 6;
+            this.productForm1.TabIndex = 5;
             // 
             // button1
             // 
@@ -519,35 +522,34 @@
             this.categoryForm1.Location = new System.Drawing.Point(0, 0);
             this.categoryForm1.Name = "categoryForm1";
             this.categoryForm1.Size = new System.Drawing.Size(1482, 749);
-            this.categoryForm1.TabIndex = 5;
+            this.categoryForm1.TabIndex = 4;
             // 
             // reportPanel1
             // 
             this.reportPanel1.Location = new System.Drawing.Point(0, 0);
             this.reportPanel1.Name = "reportPanel1";
             this.reportPanel1.Size = new System.Drawing.Size(1482, 749);
-            this.reportPanel1.TabIndex = 7;
+            this.reportPanel1.TabIndex = 6;
             // 
-            // zamestnanecPanel2
+            // zamestnanecPanel1
             // 
-            this.zamestnanecPanel2.Location = new System.Drawing.Point(0, 0);
-            this.zamestnanecPanel2.Name = "zamestnanecPanel2";
-            this.zamestnanecPanel2.Size = new System.Drawing.Size(1484, 751);
-            this.zamestnanecPanel2.TabIndex = 4;*/
-
-            InitializePanels();
-            InitializeToolStripMenuItem();
+            this.zamestnanecPanel1.Location = new System.Drawing.Point(0, 27);
+            this.zamestnanecPanel1.Name = "zamestnanecPanel1";
+            this.zamestnanecPanel1.Size = new System.Drawing.Size(1484, 751);
+            this.zamestnanecPanel1.TabIndex = 8;*/
             InitializeButtonsNumber();
             InitializeExecutionButtons();
+            InitializePanels();
+            InitializeToolStripMenuItem();
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 777);
+            this.Controls.Add(this.zamestnanecPanel1);
             this.Controls.Add(this.panelMain);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.zamestnanecPanel2);
             this.Controls.Add(this.categoryForm1);
             this.Controls.Add(this.productForm1);
             this.Controls.Add(this.reportPanel1);
@@ -626,6 +628,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutItems;
         private Presentation_Tier.Panels.ListBillPanel listBillPanel1;
         private Presentation_Tier.Panels.ReportPanel reportPanel1;
-        private Presentation_Tier.Panels.ZamestnanecPanel zamestnanecPanel2;
+        private Presentation_Tier.Panels.ZamestnanecPanel zamestnanecPanel1;
     }
 }

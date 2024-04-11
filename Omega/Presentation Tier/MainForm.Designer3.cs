@@ -265,13 +265,13 @@ namespace Omega
             this.flowLayoutItems.WrapContents = false;
 
             // 
-            // zamestnanecPanel2
+            // zamestnanecPanel1
             // 
-            this.zamestnanecPanel2.Location = new System.Drawing.Point(0, 27);
-            this.zamestnanecPanel2.Name = "zamestnanecPanel2";
-            this.zamestnanecPanel2.Size = new System.Drawing.Size(752, 653);
-            this.zamestnanecPanel2.TabIndex = 10;
-            this.zamestnanecPanel2.Visible = false;
+            this.zamestnanecPanel1.Location = new System.Drawing.Point(0, 27);
+            this.zamestnanecPanel1.Name = "zamestnanecPanel1";
+            this.zamestnanecPanel1.Size = new System.Drawing.Size(752, 653);
+            this.zamestnanecPanel1.TabIndex = 10;
+            this.zamestnanecPanel1.Visible = false;
         }
     }
 }

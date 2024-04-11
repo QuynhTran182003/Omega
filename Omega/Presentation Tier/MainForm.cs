@@ -33,7 +33,7 @@ namespace Omega
             productForm1.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = false;
-            zamestnanecPanel2.Visible = false;
+            zamestnanecPanel1.Visible = false;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -53,7 +53,7 @@ namespace Omega
             productForm1.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = false;
-            //zamestnanecPanel2.Visible = false;
+            zamestnanecPanel1.Visible = false;
         }
         private void zamestnanciToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -62,7 +62,7 @@ namespace Omega
             panelMain.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = false;
-            //zamestnanecPanel2.Visible = true;
+            zamestnanecPanel1.Visible = true;
         }
         private void produktyToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -71,7 +71,7 @@ namespace Omega
             panelMain.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = false;
-            //zamestnanecPanel2.Visible = false;
+            zamestnanecPanel1.Visible = false;
 
         }
         private void kategorieToolStripMenuItem_Click(object sender, EventArgs e)
@@ -81,7 +81,7 @@ namespace Omega
             productForm1.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = false;
-            //zamestnanecPanel2.Visible = false;
+            zamestnanecPanel1.Visible = false;
 
         }
         private void seznamFakturToolStripMenuItem_Click(object sender, EventArgs e)
@@ -91,7 +91,7 @@ namespace Omega
             productForm1.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = true;
-            //zamestnanecPanel2.Visible = false;
+            zamestnanecPanel1.Visible = false;
 
         }
         private void denniReportToolStripMenuItem_Click(object sender, EventArgs e)
@@ -101,7 +101,7 @@ namespace Omega
             productForm1.Visible = false;
             reportPanel1.Visible = true;
             listBillPanel1.Visible = false;
-            //zamestnanecPanel2.Visible = false;
+            zamestnanecPanel1.Visible = false;
 
         }
         private void Button_Stul_Click(object sender, EventArgs e)
