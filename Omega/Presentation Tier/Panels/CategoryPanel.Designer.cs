@@ -1,6 +1,6 @@
 ﻿namespace Omega.Forms.Panels
 {
-    partial class CategoryForm
+    partial class CategoryPanel
     {
         /// <summary> 
         /// Required designer variable.

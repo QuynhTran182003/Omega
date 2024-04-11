@@ -1,4 +1,5 @@
 ﻿using Omega.Business_Tier;
+using Omega.Presentation_Tier.UserControls;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -148,6 +149,32 @@ namespace Omega.Data_Tier
             dataView.DataSource = dt;
 
             DatabaseSingleton.CloseConnection();
+        }
+
+        public List<BillItem> GetBillItems(int bill_id)
+        {
+            SqlCommand cmd = new SqlCommand("select Product.name as 'Nazev', Product.price as 'Cena', Category.dph as 'DPH', ItemBill.quantity as 'Mnozstvi', (Product.price * ItemBill.quantity) as 'Celkem' \r\nfrom ItemBill\r\ninner join Product on Product.id = ItemBill.product_id\r\ninner join Category on Category.id = Product.category_id\r\n where bill_id = @bill_id;", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@bill_id", bill_id);
+            List<BillItem> list = new List<BillItem>();
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    BillItem bi = new BillItem(
+                        reader["Nazev"].ToString(),
+                        Convert.ToInt32(reader["Cena"]),
+                        Convert.ToInt32(reader["DPH"]),
+                        Convert.ToInt32(reader["Mnozstvi"]),
+                        Convert.ToInt32(reader["Celkem"])
+                        );
+                    
+
+                    list.Add(bi);
+                }
+            }
+            DatabaseSingleton.CloseConnection();
+
+            return list;
         }
 
         public int GetTotalAllBills()

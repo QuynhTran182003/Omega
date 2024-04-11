@@ -263,6 +263,15 @@ namespace Omega
             this.flowLayoutItems.Size = new System.Drawing.Size(479, 375);
             this.flowLayoutItems.TabIndex = 0;
             this.flowLayoutItems.WrapContents = false;
+
+            // 
+            // zamestnanecPanel2
+            // 
+            this.zamestnanecPanel2.Location = new System.Drawing.Point(0, 27);
+            this.zamestnanecPanel2.Name = "zamestnanecPanel2";
+            this.zamestnanecPanel2.Size = new System.Drawing.Size(752, 653);
+            this.zamestnanecPanel2.TabIndex = 10;
+            this.zamestnanecPanel2.Visible = false;
         }
     }
 }

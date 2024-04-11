@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace Omega.Forms.Panels
 {
-    public partial class CategoryForm : UserControl
+    public partial class CategoryPanel : UserControl
     {
 
-        public CategoryForm()
+        public CategoryPanel()
         {
             InitializeComponent();
         }

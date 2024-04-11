@@ -14,9 +14,9 @@ using System.Windows.Forms;
 
 namespace Omega.Presentation_Tier.Panels
 {
-    public partial class ProductForm : UserControl
+    public partial class ProductPanel : UserControl
     {
-        public ProductForm()
+        public ProductPanel()
         {
             InitializeComponent();
         }

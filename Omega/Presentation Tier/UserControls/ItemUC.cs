@@ -39,6 +39,7 @@ namespace Omega.Presentation_Tier
 /*Upravit cenu v pripade potreby, upravit mnozstvi na rychle*/
             ItemUC clicked = (ItemUC)sender;
             MessageBox.Show("Edit price edit Quantity for " + clicked.NameLabel.Text);
+            EditItemForm edf = new EditItemForm(clicked);
         }
 
         

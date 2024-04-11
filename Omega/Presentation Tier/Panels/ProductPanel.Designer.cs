@@ -1,6 +1,6 @@
 ﻿namespace Omega.Presentation_Tier.Panels
 {
-    partial class ProductForm
+    partial class ProductPanel
     {
         /// <summary> 
         /// Required designer variable.

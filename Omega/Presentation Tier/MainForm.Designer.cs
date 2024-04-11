@@ -84,27 +84,31 @@
             this.ulozitObj = new System.Windows.Forms.Button();
             this.enter = new System.Windows.Forms.Button();
             this.idItemInput = new System.Windows.Forms.TextBox();
-            this.productForm1 = new Omega.Presentation_Tier.Panels.ProductForm();
+            this.productForm1 = new Omega.Presentation_Tier.Panels.ProductPanel();
             this.button1 = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.categoryForm1 = new Omega.Forms.Panels.CategoryForm();
+            this.categoryForm1 = new Omega.Forms.Panels.CategoryPanel();
             this.reportPanel1 = new Omega.Presentation_Tier.Panels.ReportPanel();
+            this.zamestnanecPanel2 = new Omega.Presentation_Tier.Panels.ZamestnanecPanel();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
             // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
             // contextMenuStrip2
             // 
+            this.contextMenuStrip2.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.contextMenuStrip2.Name = "contextMenuStrip2";
             this.contextMenuStrip2.Size = new System.Drawing.Size(61, 4);
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.pokladnaToolStripMenuItem,
             this.zamestnanciToolStripMenuItem,
@@ -174,6 +178,7 @@
             // 
             // contextMenuStrip3
             // 
+            this.contextMenuStrip3.ImageScalingSize = new System.Drawing.Size(40, 40);
             this.contextMenuStrip3.Name = "contextMenuStrip3";
             this.contextMenuStrip3.Size = new System.Drawing.Size(61, 4);
             // 
@@ -189,8 +194,7 @@
             this.flowLayoutTable.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutTable.Name = "flowLayoutTable";
             this.flowLayoutTable.Size = new System.Drawing.Size(200, 100);
-            this.flowLayoutTable.TabIndex = 0;
-            */
+            this.flowLayoutTable.TabIndex = 0;*/
             // 
             // Exit
             // 
@@ -221,14 +225,14 @@
             this.panelMain.Location = new System.Drawing.Point(0, 0);
             this.panelMain.Name = "panelMain";
             this.panelMain.Size = new System.Drawing.Size(200, 100);
-            this.panelMain.TabIndex = 4;
+            this.panelMain.TabIndex = 3;
             // 
             // listBillPanel1
             // 
-            this.listBillPanel1.Location = new System.Drawing.Point(0, 27);
+            this.listBillPanel1.Location = new System.Drawing.Point(0, 0);
             this.listBillPanel1.Name = "listBillPanel1";
             this.listBillPanel1.Size = new System.Drawing.Size(1482, 749);
-            this.listBillPanel1.TabIndex = 7;*/
+            this.listBillPanel1.TabIndex = 8;*/
             // 
             // totalPrice
             // 
@@ -311,8 +315,7 @@
             this.ID.Size = new System.Drawing.Size(26, 20);
             this.ID.TabIndex = 18;
             this.ID.Text = "ID";
-            /*// 
-            // panelItems
+            /*// panelItems
             // 
             this.panelItems.Location = new System.Drawing.Point(0, 0);
             this.panelItems.Name = "panelItems";
@@ -517,31 +520,38 @@
             this.categoryForm1.Name = "categoryForm1";
             this.categoryForm1.Size = new System.Drawing.Size(1482, 749);
             this.categoryForm1.TabIndex = 5;
-            this.categoryForm1.Visible = false;
             // 
             // reportPanel1
             // 
-            this.reportPanel1.Location = new System.Drawing.Point(0, 27);
+            this.reportPanel1.Location = new System.Drawing.Point(0, 0);
             this.reportPanel1.Name = "reportPanel1";
             this.reportPanel1.Size = new System.Drawing.Size(1482, 749);
-            this.reportPanel1.TabIndex = 7;*/
+            this.reportPanel1.TabIndex = 7;
+            // 
+            // zamestnanecPanel2
+            // 
+            this.zamestnanecPanel2.Location = new System.Drawing.Point(0, 0);
+            this.zamestnanecPanel2.Name = "zamestnanecPanel2";
+            this.zamestnanecPanel2.Size = new System.Drawing.Size(1484, 751);
+            this.zamestnanecPanel2.TabIndex = 4;*/
 
-            /*InitializeToolStripMenuItem();
+            InitializePanels();
+            InitializeToolStripMenuItem();
             InitializeButtonsNumber();
             InitializeExecutionButtons();
-            InitializePanels();*/
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 777);
-            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.panelMain);
-            this.Controls.Add(this.listBillPanel1);
+            this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.zamestnanecPanel2);
             this.Controls.Add(this.categoryForm1);
             this.Controls.Add(this.productForm1);
             this.Controls.Add(this.reportPanel1);
+            this.Controls.Add(this.listBillPanel1);
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Restauce";
@@ -599,9 +609,9 @@
         private System.Windows.Forms.ToolStripMenuItem rozvrhZaměstnancůToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem kategorieToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem produktyToolStripMenuItem;
-        private Forms.Panels.CategoryForm categoryForm1;
+        private Forms.Panels.CategoryPanel categoryForm1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutCategory;
-        private Presentation_Tier.Panels.ProductForm productForm1;
+        private Presentation_Tier.Panels.ProductPanel productForm1;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutProduct;
         private System.Windows.Forms.Button btnDel;
         private System.Windows.Forms.Label kod;
@@ -616,5 +626,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutItems;
         private Presentation_Tier.Panels.ListBillPanel listBillPanel1;
         private Presentation_Tier.Panels.ReportPanel reportPanel1;
+        private Presentation_Tier.Panels.ZamestnanecPanel zamestnanecPanel2;
     }
 }

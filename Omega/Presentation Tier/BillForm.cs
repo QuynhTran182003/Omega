@@ -1,4 +1,6 @@
 ﻿using Omega.Business_Tier;
+using Omega.Data_Tier;
+using Omega.Presentation_Tier.UserControls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,11 +27,19 @@ namespace Omega.Presentation_Tier
             this.doklad.Text = this.b.Id.ToString();
             this.vystaveni.Text = this.b.DateIssue.ToString();
             this.zpusob.Text = this.b.PaymentMethod.ToString();
+            RenderItems(this.b);
         }
         // todo
-        private void GetBillItem(Bill b)
+        private void RenderItems(Bill b)
         {
+            BillDAO billDAO = new BillDAO();
+            List<BillItem> list = billDAO.GetBillItems(b.Id);
 
+            foreach(BillItem item in list)
+            {
+                BillItemUC biUC = new BillItemUC(item.Name, item.Dph, item.Price,  item.Quantity, item.Celkem);
+                this.flowLayoutPanel1.Controls.Add(biUC);
+            }
         }
     }
 }

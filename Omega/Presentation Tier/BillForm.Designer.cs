@@ -44,12 +44,12 @@
             this.vystaveni = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.label14 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // label1
@@ -212,14 +212,6 @@
             this.label13.TabIndex = 15;
             this.label13.Text = "Dekujeme a tesime se na dalsi navstevu";
             // 
-            // panel1
-            // 
-            this.panel1.AutoSize = true;
-            this.panel1.Location = new System.Drawing.Point(67, 298);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(437, 129);
-            this.panel1.TabIndex = 16;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -270,18 +262,25 @@
             this.label18.TabIndex = 21;
             this.label18.Text = "Celkem";
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(67, 297);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(437, 131);
+            this.flowLayoutPanel1.TabIndex = 22;
+            // 
             // BillForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(568, 986);
+            this.ClientSize = new System.Drawing.Size(568, 845);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Controls.Add(this.label18);
             this.Controls.Add(this.label17);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.label14);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.vystaveni);
@@ -324,11 +323,11 @@
         private System.Windows.Forms.Label vystaveni;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }

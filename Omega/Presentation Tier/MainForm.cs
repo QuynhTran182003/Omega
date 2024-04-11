@@ -25,6 +25,7 @@ namespace Omega
         public int SelectedTable { get { return selectedTable; } set { selectedTable = value; } }
         public MainForm(LoginForm loginForm, User u)
         {
+            this.user = u;
             InitializeComponent();
             this.loginForm = loginForm;
             panelMain.Visible = true;
@@ -32,16 +33,13 @@ namespace Omega
             productForm1.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = false;
-            this.user = u;
+            zamestnanecPanel2.Visible = false;
         }
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitializeCategoryButton(this.flowLayoutCategory);
             InitializeTableButton(this.flowLayoutTable);
-            InitializeToolStripMenuItem();
-            InitializeButtonsNumber();
-            InitializeExecutionButtons();
-            InitializePanels();
+            
         }
         private void MainForm_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -52,18 +50,29 @@ namespace Omega
             this.MainForm_Load(sender, e);
             panelMain.Visible = true;
             categoryForm1.Visible = false;
+            productForm1.Visible = false;
+            reportPanel1.Visible = false;
+            listBillPanel1.Visible = false;
+            //zamestnanecPanel2.Visible = false;
         }
         private void zamestnanciToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            productForm1.Visible = false;
+            categoryForm1.Visible = false;
+            panelMain.Visible = false;
+            reportPanel1.Visible = false;
+            listBillPanel1.Visible = false;
+            //zamestnanecPanel2.Visible = true;
         }
         private void produktyToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
-            this.productForm1.Visible = true;
-            this.categoryForm1.Visible = false;
-            this.panelMain.Visible = false;
-            this.reportPanel1.Visible = false;
-            this.listBillPanel1.Visible = false;
+            productForm1.Visible = true;
+            categoryForm1.Visible = false;
+            panelMain.Visible = false;
+            reportPanel1.Visible = false;
+            listBillPanel1.Visible = false;
+            //zamestnanecPanel2.Visible = false;
+
         }
         private void kategorieToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -72,9 +81,9 @@ namespace Omega
             productForm1.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = false;
+            //zamestnanecPanel2.Visible = false;
 
         }
-
         private void seznamFakturToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panelMain.Visible = false;
@@ -82,8 +91,9 @@ namespace Omega
             productForm1.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = true;
-        }
+            //zamestnanecPanel2.Visible = false;
 
+        }
         private void denniReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
             panelMain.Visible = false;
@@ -91,6 +101,8 @@ namespace Omega
             productForm1.Visible = false;
             reportPanel1.Visible = true;
             listBillPanel1.Visible = false;
+            //zamestnanecPanel2.Visible = false;
+
         }
         private void Button_Stul_Click(object sender, EventArgs e)
         {
@@ -108,7 +120,8 @@ namespace Omega
 
             // Change the clicked button's backcolor to red
             clickedButton.BackColor = Color.Red;
-            Exit.BackColor = Color.MediumTurquoise;
+            //Exit.BackColor = Color.MediumTurquoise;
+            Exit.Visible = true;
 
             // Enable buttons execution
             foreach (Button button in panelExecution.Controls.OfType<Button>().Where(b => b.Tag != null && b.Tag.ToString() == "execution"))
@@ -131,6 +144,7 @@ namespace Omega
             {
                 totalPrice.Text = "0.0,- Kc";
                 flowLayoutItems.Controls.Clear();
+                this.ulozitObj.Visible= false;
             }
         }
         private void ShowOrders(int selectedTable, FlowLayoutPanel flowLayoutPanel)
@@ -186,8 +200,16 @@ namespace Omega
                 MessageBox.Show("Zbozi nenalezeno");
                 return;
             }
+
+            if (!ulozitObj.Visible)
+            {
+                flowLayoutItems.Controls.Clear();
+            }
+
             AddOrUpdateItem(p, 1);
             UpdateTotalPrice();
+            this.idItemInput.Text = "";
+            this.ulozitObj.Visible = true;
         }
         public void btnDel_Click(object sender, EventArgs e)
         {
@@ -214,7 +236,11 @@ namespace Omega
         }
         private void UlozitObj_Click(object sender, EventArgs e)
         {
-            
+            if (SelectedTable == 0)
+            {
+                MessageBox.Show("Prosím vyberte stůl");
+                return;
+            }
             Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
             // pokud table je volny, tak se vytvori novy order
             if (selectedTable.Tag.Equals("volno"))
@@ -296,6 +322,7 @@ namespace Omega
             SelectedTable = 0;
             totalPrice.Text = "0.0,- Kc";
             flowLayoutItems.Controls.Clear();
+            this.Exit.Visible = false;
         }
         private void CategoryButton_Click(object sender, EventArgs e)
         {
@@ -349,5 +376,6 @@ namespace Omega
                 pm.Show();
             }
         }
+
     }
 }
