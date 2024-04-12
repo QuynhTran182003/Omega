@@ -91,6 +91,7 @@
             this.pwdTb.Location = new System.Drawing.Point(573, 316);
             this.pwdTb.Margin = new System.Windows.Forms.Padding(8, 7, 8, 7);
             this.pwdTb.Name = "pwdTb";
+            this.pwdTb.PasswordChar = '*';
             this.pwdTb.Size = new System.Drawing.Size(543, 53);
             this.pwdTb.TabIndex = 4;
             // 

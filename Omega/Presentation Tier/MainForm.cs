@@ -20,12 +20,12 @@ namespace Omega
     {
         private LoginForm loginForm;
         private int selectedTable = 0;
-        private User user;
+        private User loggedInUser;
 
         public int SelectedTable { get { return selectedTable; } set { selectedTable = value; } }
         public MainForm(LoginForm loginForm, User u)
         {
-            this.user = u;
+            this.loggedInUser = u;
             InitializeComponent();
             this.loginForm = loginForm;
             panelMain.Visible = true;
@@ -63,10 +63,12 @@ namespace Omega
             reportPanel1.Visible = false;
             listBillPanel1.Visible = false;
             zamestnanecPanel1.Visible = true;
+            zamestnanecPanel1.ZamestnanecPanel_Load(sender, e);
         }
         private void produktyToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
             productForm1.Visible = true;
+            productForm1.ProductForm_Load(sender, e);
             categoryForm1.Visible = false;
             panelMain.Visible = false;
             reportPanel1.Visible = false;
@@ -78,6 +80,7 @@ namespace Omega
         {
             panelMain.Visible = false;
             categoryForm1.Visible = true;
+            categoryForm1.CategoryForm_Load(sender, e);
             productForm1.Visible = false;
             reportPanel1.Visible = false;
             listBillPanel1.Visible = false;
@@ -90,9 +93,9 @@ namespace Omega
             categoryForm1.Visible = false;
             productForm1.Visible = false;
             reportPanel1.Visible = false;
-            listBillPanel1.Visible = true;
             zamestnanecPanel1.Visible = false;
-
+            listBillPanel1.Visible = true;
+            listBillPanel1.ListBillPanel_Load(sender, e);
         }
         private void denniReportToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -215,7 +218,6 @@ namespace Omega
         {
             Button selectedTable = flowLayoutTable.Controls.OfType<Button>().FirstOrDefault(b => b.Text == ("Stůl " + SelectedTable.ToString()));
             if (selectedTable.Tag.Equals("rezervovan")){
-             // verticalPosition = 0;
                 totalPrice.Text = "0.0,- Kc";
                 flowLayoutItems.Controls.Clear();
                 selectedTable.BackColor = Color.White;

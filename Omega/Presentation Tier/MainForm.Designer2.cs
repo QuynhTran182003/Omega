@@ -161,7 +161,7 @@ namespace Omega
             // 
             // zamestnanciToolStripMenuItem
             // 
-            if(this.user.Role.Equals("admin"))
+            if(this.loggedInUser.Role.Equals("admin"))
             {
                 this.zamestnanciToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
                 this.seznamZaměstnancůToolStripMenuItem,

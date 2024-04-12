@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Omega.Business_Tier
 {
@@ -37,18 +38,24 @@ namespace Omega.Business_Tier
             Role = role;
         }
 
+        public User(string userName, string pwd, string surname, string name, string role)
+        {
+            UserName = userName;
+            Pwd = pwd;
+            Surname = surname;
+            Name = name;
+            Role = role;
+        }
+
         public User() { }
 
 
         public User GetUser(string username, string pwd)
         {
-            User user;
+            User user1 = new User();
             UserDAO userDAO = new UserDAO();
-            //encode pwd
-            // string encodedPwd = 
-            user = userDAO.GetUserBy(username, pwd);
-
-            return user;
+            user1 = userDAO.GetUserBy(username, pwd);
+            return user1;
         }
     }
 }

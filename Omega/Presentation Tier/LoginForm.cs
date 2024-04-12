@@ -1,4 +1,5 @@
 ﻿using Omega.Business_Tier;
+using Omega.vendor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,33 +22,37 @@ namespace Omega
         private void prihlasitSe_Click(object sender, EventArgs e)
         {
             /*Implement method for authentication*/
-
             string username = this.username.Text;
             string password = this.password.Text;
-            try 
+            if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
             {
-                if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
+                try
                 {
-                    User u = new User().GetUser(username, password);
-                    MessageBox.Show(u.Role);
+                    string hashed = Hashing.ComputeSHA256(password);
+                    User u = new User().GetUser(username, hashed);
+                    MessageBox.Show(hashed);
                     if (u != null)
                     {
                         this.Hide();
+                        MessageBox.Show($"{u.Name} {u.Role}");
                         MainForm mainForm = new MainForm(this, u);
                         mainForm.ShowDialog();
                     }
+                    else
+                    {
+                        MessageBox.Show("Please try again");
+                        return;
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Fields cant be empty");
+                    MessageBox.Show(ex.Message);
                 }
             }
-            catch
+            else
             {
                 MessageBox.Show("Fields cant be empty");
             }
-            
         }
-
     }
 }

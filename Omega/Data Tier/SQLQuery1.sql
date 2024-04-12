@@ -143,8 +143,8 @@ where order_id IN (select id from Orders where Orders.table_id = (select id from
 
 select sum(total_price) as sum from Bill where CONVERT(date, date_issue) = '2024-04-05' and Bill.paymentMethod = 'Hotově' 
 
-select * from Orders;
-select Bill.id as 'ID' from Bill where table_id = @table and date_issue = @date_issue
+select * from Users where Users.username = 'zam1' and Users.pwd = '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92';
+
 
 go
 CREATE TRIGGER insertOrder 
@@ -173,11 +173,3 @@ BEGIN
     WHERE id = @tabl_id;
 END;
 go
-
-select date_issue, id, total_price from Bill where CONVERT(date, date_issue) between '2024-04-01' and '2024-04-08'
-
-select Product.name as 'Nazev', Product.price as 'Cena', Category.dph as 'DPH', ItemBill.quantity as 'Mnozstvi', (Product.price * ItemBill.quantity) as 'Celkem' 
-from ItemBill
-inner join Product on Product.id = ItemBill.product_id
-inner join Category on Category.id = Product.category_id
-where bill_id = 44

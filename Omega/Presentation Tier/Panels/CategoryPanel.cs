@@ -50,7 +50,7 @@ namespace Omega.Forms.Panels
             }
         }
 
-        private void CategoryForm_Load(object sender, EventArgs e)
+        public void CategoryForm_Load(object sender, EventArgs e)
         {
             CategoryDAO categoryDAO = new CategoryDAO();
             categoryDAO.GetAll(this.dataGridView1);

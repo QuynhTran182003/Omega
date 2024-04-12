@@ -21,8 +21,6 @@ namespace Omega.Data_Tier
         public void GetById(int id)
         {
             throw new NotImplementedException();
-
-            
         }
 
         public int GetDPH(string code)

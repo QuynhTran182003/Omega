@@ -11,7 +11,7 @@ namespace Omega.Presentation_Tier.Panels
             InitializeComponent();
         }
 
-        private void ListBillPanel_Load(object sender, EventArgs e)
+        public void ListBillPanel_Load(object sender, EventArgs e)
         {
             BillDAO billDAO = new BillDAO();
             billDAO.GetAll(this.dataGridView1);

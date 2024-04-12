@@ -19,7 +19,7 @@ namespace Omega.Presentation_Tier.Panels
             
         }
 
-        private void ZamestnanecPanel_Load(object sender, EventArgs e)
+        public void ZamestnanecPanel_Load(object sender, EventArgs e)
         {
             UserDAO empDAO = new UserDAO();
             empDAO.GetAll(this.dataGridView1);
@@ -27,7 +27,7 @@ namespace Omega.Presentation_Tier.Panels
 
         private void newBtn_Click(object sender, EventArgs e)
         {
-            NewUserForm nuf = new NewUserForm();
+            NewUserForm nuf = new NewUserForm(this);
             nuf.Show();
         }
     }
