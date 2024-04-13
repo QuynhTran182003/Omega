@@ -28,14 +28,32 @@ namespace Omega.Presentation_Tier
 
         private void ssebouBtn_Click(object sender, EventArgs e)
         {
-            this.ssebouBtn.BackColor = Color.Red;
-            this.ssebouBtn.Tag = "Selected";
+            if (!this.ssebouBtn.Tag.Equals("Selected"))
+            {
+                this.ssebouBtn.BackColor = Color.Red;
+                this.ssebouBtn.Tag = "Selected";
+            }
+            else
+            {
+                this.ssebouBtn.BackColor = Color.PaleTurquoise;
+                this.ssebouBtn.Tag = "Unselected";
+            }
+            
         }
 
         private void btnKartou_Click(object sender, EventArgs e)
         {
-            this.btnKartou.BackColor = Color.Red;
-            this.btnKartou.Tag = "Selected";
+            if (!this.btnKartou.Tag.Equals("Selected"))
+            {
+                this.btnKartou.BackColor = Color.Red;
+                this.btnKartou.Tag = "Selected";
+            }
+
+            else
+            {
+                this.btnKartou.BackColor = Color.PaleTurquoise;
+                this.btnKartou.Tag = "Unselected";
+            }
         }
 
         private void PayBtn_Click(object sender, EventArgs e)
