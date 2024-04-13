@@ -2,9 +2,11 @@
 using Omega.Objects;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Omega.Business_Tier
 {
@@ -37,9 +39,15 @@ namespace Omega.Business_Tier
 
         public void AddToDB()
         {
-            ItemDAO itemDAO = new ItemDAO();
-            itemDAO.Insert(this);
-
+            try
+            {
+                ItemDAO itemDAO = new ItemDAO();
+                itemDAO.Insert(this);
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

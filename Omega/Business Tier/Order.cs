@@ -2,6 +2,7 @@
 using Omega.Objects;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,22 +50,37 @@ namespace Omega.Business_Tier
                 OrderDAO c = new OrderDAO();
                 c.Insert(this);
             }
-            catch
+            catch(SqlException ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
         public List<Item> GetItems(int orderId)
         {
-            ItemDAO itemDAO = new ItemDAO();
-            return itemDAO.GetListItems(orderId);
+            try
+            {
+                ItemDAO itemDAO = new ItemDAO();
+                return itemDAO.GetListItems(orderId);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
         }
 
         public void DeleteOrder(int numberTable)
         {
-            OrderDAO orderDAO = new OrderDAO();
-            orderDAO.Delete(numberTable);
+            try
+            {
+                OrderDAO orderDAO = new OrderDAO();
+                orderDAO.Delete(numberTable);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

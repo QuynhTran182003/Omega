@@ -19,7 +19,14 @@ namespace Omega.Data_Tier
             SqlCommand cmd = new SqlCommand("delete from Item where order_id IN (select id from Orders where Orders.table_id = (select id from Tabl where number_table = @numberTable))" +
                                              ";delete from Orders where table_id = @numberTable", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@numberTable", numberTable);
-            cmd.ExecuteNonQuery();
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
             DatabaseSingleton.CloseConnection();
         }
 
@@ -58,13 +65,11 @@ namespace Omega.Data_Tier
             try
             {
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Successfully saved order.");
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
-
             DatabaseSingleton.CloseConnection();
         }
 

@@ -30,11 +30,10 @@ namespace Omega.Data_Tier
             try
             {
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Successfully saved item.");
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
 
             DatabaseSingleton.CloseConnection();
@@ -55,25 +54,37 @@ namespace Omega.Data_Tier
             cmd.Parameters.AddWithValue("@order_id", order_id);
             List<Item> items = new List<Item>();
 
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    int id = int.Parse(reader["id"].ToString());
-                    string code = reader["code"].ToString();
-                    int orderId = int.Parse(reader["OrderId"].ToString());
-                    int quantity = int.Parse(reader["quantity"].ToString());
-                    Item p = new Item
-                    (
-                        id, code, orderId, quantity
-                    );
+                    while (reader.Read())
+                    {
+                        int id = int.Parse(reader["id"].ToString());
+                        string code = reader["code"].ToString();
+                        int orderId = int.Parse(reader["OrderId"].ToString());
+                        int quantity = int.Parse(reader["quantity"].ToString());
+                        Item p = new Item
+                        (
+                            id, code, orderId, quantity
+                        );
 
-                    items.Add(p);
+                        items.Add(p);
+                    }
                 }
-            }
-            DatabaseSingleton.CloseConnection();
+                return items;
 
-            return items;
+            }
+            catch (SqlException ex)
+            {
+                return null;
+                throw ex;
+            }
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
+
         }
     }
 }

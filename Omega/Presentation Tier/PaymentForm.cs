@@ -74,14 +74,13 @@ namespace Omega.Presentation_Tier
             string billDT;
             Bill b = new Bill(price, table_id, paymentMethod, takeaway, billDT = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             b.AddToDB();
-            MessageBox.Show("Bill Id: "+b.Id+","+ billDT);
+            //MessageBox.Show("Bill Id: "+b.Id+","+ billDT);
 
             // get all items in the order of table number x
             List<Item> items = new Table().GetOrderDetail(this.table);
 
             foreach (Item item in items)
             {
-                MessageBox.Show(item.Product_code + b.Id);
                 b.AddBillItem(item);
             }
             new Order().DeleteOrder(this.table);
