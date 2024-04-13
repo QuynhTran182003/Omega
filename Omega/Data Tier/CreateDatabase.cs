@@ -31,7 +31,7 @@ namespace Omega.Data_Tier
                     return true;
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 DatabaseSingleton.CloseConnection();
                 return false;

@@ -50,7 +50,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "Přihlásit se";
             this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.prihlasitSe_Click);
+            this.button1.Click += new System.EventHandler(this.Login_Click);
             // 
             // label1
             // 

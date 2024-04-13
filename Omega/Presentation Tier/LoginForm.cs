@@ -19,28 +19,36 @@ namespace Omega
             InitializeComponent();
         }
 
-        private void prihlasitSe_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Method for authentication 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Login_Click(object sender, EventArgs e)
         {
-            /*Implement method for authentication*/
             string username = this.username.Text;
             string password = this.password.Text;
+            // Check that every textbox should not contain NULL or EMPTY value
             if (!string.IsNullOrEmpty(username) && !string.IsNullOrEmpty(password))
             {
                 try
                 {
                     string hashed = Hashing.ComputeSHA256(password);
                     User u = new User().GetUser(username, hashed);
-                    MessageBox.Show(hashed);
+
+                    // if the user exists in database
                     if (u != null)
                     {
                         this.Hide();
-                        MessageBox.Show($"{u.Name} {u.Role}");
                         MainForm mainForm = new MainForm(this, u);
                         mainForm.ShowDialog();
                     }
+                    // if the user doesnt exist in database, the user is requested to fill the credential in again
                     else
                     {
-                        MessageBox.Show("Please try again");
+                        MessageBox.Show("Uživatel neexistuje. Prosím zkuste znovu!");
+                        this.username.Text = "";
+                        this.password.Text = "";
                         return;
                     }
                 }
@@ -51,7 +59,7 @@ namespace Omega
             }
             else
             {
-                MessageBox.Show("Fields cant be empty");
+                MessageBox.Show("Pole nesmí být prázdné. Zadejte vhodnou hodnotu.");
             }
         }
     }

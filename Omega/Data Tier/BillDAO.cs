@@ -28,16 +28,27 @@ namespace Omega.Data_Tier
             SqlCommand cmd = new SqlCommand("select Bill.id as 'ID' from Bill where date_issue = @date_issue", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@date_issue", dateissue);
             int id = 0;
-            using (SqlDataReader reader = cmd.ExecuteReader())
+
+            try
             {
-                if (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    id = (int)reader["ID"];
+                    if (reader.Read())
+                    {
+                        id = (int)reader["ID"];
+                    }
+                    return id;
                 }
             }
-            DatabaseSingleton.CloseConnection();
+            catch(SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
 
-            return id;
         }
 
         public void Insert(Bill ele)
@@ -51,14 +62,15 @@ namespace Omega.Data_Tier
             try
             {
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Successfully saved bill.");
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
-
-            DatabaseSingleton.CloseConnection();
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
         }
 
         public void InsertItem(Item i, int b)
@@ -70,14 +82,15 @@ namespace Omega.Data_Tier
             try
             {
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Successfully inserted bill item.");
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
-
-            DatabaseSingleton.CloseConnection();
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
         }
         public void Update(int id, Bill newEle)
         {
@@ -92,18 +105,19 @@ namespace Omega.Data_Tier
             try
             {
                 cmd.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataView.DataSource = dt;
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataView.DataSource = dt;
-
-            DatabaseSingleton.CloseConnection();
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
         }
 
         public void GetBills(string from, string to, DataGridView dataView)
@@ -115,18 +129,20 @@ namespace Omega.Data_Tier
             try
             {
                 cmd.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataView.DataSource = dt;
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
+
             }
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataView.DataSource = dt;
-
-            DatabaseSingleton.CloseConnection();
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
         }
 
         public void GetBillItems(int bill_id, DataGridView dataView)
@@ -137,18 +153,19 @@ namespace Omega.Data_Tier
             try
             {
                 cmd.ExecuteNonQuery();
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                dataView.DataSource = dt;
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
-
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            dataView.DataSource = dt;
-
-            DatabaseSingleton.CloseConnection();
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
         }
 
         public List<BillItem> GetBillItems(int bill_id)
@@ -156,25 +173,33 @@ namespace Omega.Data_Tier
             SqlCommand cmd = new SqlCommand("select Product.name as 'Nazev', Product.price as 'Cena', Category.dph as 'DPH', ItemBill.quantity as 'Mnozstvi', (Product.price * ItemBill.quantity) as 'Celkem' \r\nfrom ItemBill\r\ninner join Product on Product.id = ItemBill.product_id\r\ninner join Category on Category.id = Product.category_id\r\n where bill_id = @bill_id;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@bill_id", bill_id);
             List<BillItem> list = new List<BillItem>();
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    BillItem bi = new BillItem(
-                        reader["Nazev"].ToString(),
-                        Convert.ToInt32(reader["Cena"]),
-                        Convert.ToInt32(reader["DPH"]),
-                        Convert.ToInt32(reader["Mnozstvi"]),
-                        Convert.ToInt32(reader["Celkem"])
-                        );
-                    
-
-                    list.Add(bi);
+                    while (reader.Read())
+                    {
+                        BillItem bi = new BillItem(
+                            reader["Nazev"].ToString(),
+                            Convert.ToInt32(reader["Cena"]),
+                            Convert.ToInt32(reader["DPH"]),
+                            Convert.ToInt32(reader["Mnozstvi"]),
+                            Convert.ToInt32(reader["Celkem"])
+                            );
+                        list.Add(bi);
+                    }
                 }
+                return list;
             }
-            DatabaseSingleton.CloseConnection();
-
-            return list;
+            catch (SqlException ex)
+            {
+                return null;
+                throw ex;
+            }
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
         }
 
         public int GetTotalAllBills()
@@ -182,19 +207,28 @@ namespace Omega.Data_Tier
             int total = 0;
             SqlCommand cmd = new SqlCommand("select sum(total_price) as 'SUM' from Bill WHERE CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@date", DateTime.Today.ToString("yyyy-MM-dd"));
-
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            try
             {
-                if (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    if (!reader.IsDBNull(reader.GetOrdinal("SUM")))
+                    if (reader.Read())
                     {
-                        total = Convert.ToInt32(reader["SUM"]);
+                        if (!reader.IsDBNull(reader.GetOrdinal("SUM")))
+                        {
+                            total = Convert.ToInt32(reader["SUM"]);
+                        }
                     }
                 }
             }
-            DatabaseSingleton.CloseConnection();
-
+            catch (SqlException ex)
+            {
+                return 0;
+                throw ex;
+            }
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
             return total;
         }
         public int GetCashAllBills()
@@ -202,40 +236,61 @@ namespace Omega.Data_Tier
             int total = 0;
             SqlCommand cmd = new SqlCommand("select sum(total_price) as 'SUM' from Bill where Bill.paymentMethod = 'Hotově' and CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@date", DateTime.Today.ToString("yyyy-MM-dd"));
-
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            try
             {
-                if (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    if (!reader.IsDBNull(reader.GetOrdinal("SUM")))
+                    if (reader.Read())
                     {
-                        total = Convert.ToInt32(reader["SUM"]);
+                        if (!reader.IsDBNull(reader.GetOrdinal("SUM")))
+                        {
+                            total = Convert.ToInt32(reader["SUM"]);
+                        }
                     }
                 }
+                return total;
             }
-            DatabaseSingleton.CloseConnection();
+            catch (SqlException ex)
+            {
+                return 0;
+                throw ex;
+            }
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
 
-            return total;
         }
         public int GetCardsAllBills()
         {
             int total = 0;
             SqlCommand cmd = new SqlCommand("select sum(total_price) as 'SUM' from Bill where Bill.paymentMethod = 'Kartou' and CONVERT(date, date_issue) = @date;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@date", DateTime.Today.ToString("yyyy-MM-dd"));
-
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            try
             {
-                if (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    if (!reader.IsDBNull(reader.GetOrdinal("SUM")))
+                    if (reader.Read())
                     {
-                        total = Convert.ToInt32(reader["SUM"]);
+                        if (!reader.IsDBNull(reader.GetOrdinal("SUM")))
+                        {
+                            total = Convert.ToInt32(reader["SUM"]);
+                        }
                     }
                 }
-            }
-            DatabaseSingleton.CloseConnection();
+                return total;
 
-            return total;
+            }
+            catch (SqlException ex)
+            {
+                return 0;
+                throw ex;
+            }
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
+
         }
     }
 }

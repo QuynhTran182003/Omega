@@ -37,7 +37,7 @@ namespace Omega.Presentation_Tier
 
             foreach(BillItem item in list)
             {
-                BillItemUC biUC = new BillItemUC(item.Name, item.Dph, item.Price,  item.Quantity, item.Celkem);
+                BillItemUC biUC = new BillItemUC(item.Name, item.Price, item.Dph, item.Quantity, item.Celkem);
                 this.flowLayoutPanel1.Controls.Add(biUC);
             }
         }

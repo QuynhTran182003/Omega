@@ -15,7 +15,19 @@ namespace Omega.Data_Tier
     {
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand("delete from Product where id = @Id", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@Id", id);
+            try
+            {
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Product deleted successfully");
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+
+            DatabaseSingleton.CloseConnection();
         }
 
         public void GetById(int id)
@@ -28,12 +40,19 @@ namespace Omega.Data_Tier
             SqlCommand cmd = new SqlCommand("select Category.dph as 'DPH' from Product inner join Category on Product.category_id = Category.id where Product.code = @code;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@code", code);
             int dph = 0;
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            try
             {
-                if (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    dph = (int)reader["DPH"];
+                    if (reader.Read())
+                    {
+                        dph = (int)reader["DPH"];
+                    }
                 }
+            }
+            catch(SqlException ex)
+            {
+                throw ex;
             }
             DatabaseSingleton.CloseConnection();
             return dph;
@@ -43,15 +62,22 @@ namespace Omega.Data_Tier
             SqlCommand cmd = new SqlCommand("select Product.id, Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id where Product.code = @code;", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@code", code);
             Product product = new Product();
-            using(SqlDataReader reader = cmd.ExecuteReader())
+            try
             {
-                if (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    product.Id = (int) reader["id"];
-                    product.Name = (string) reader["name"];
-                    product.Code = (string) reader["code"];
-                    product.Price = (int)reader["price"];
+                    if (reader.Read())
+                    {
+                        product.Id = (int)reader["id"];
+                        product.Name = (string)reader["name"];
+                        product.Code = (string)reader["code"];
+                        product.Price = (int)reader["price"];
+                    }
                 }
+            }
+            catch(SqlException ex)
+            {
+                throw ex;
             }
             DatabaseSingleton.CloseConnection();
             return product;
@@ -66,30 +92,43 @@ namespace Omega.Data_Tier
             try
             {
                 cmd.ExecuteNonQuery();
-                //MessageBox.Show("client added");
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
             DatabaseSingleton.CloseConnection();
         }
 
         public void Update(int id, Product newEle)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand("update Product set code = @code, name = @name, price = @price, category_id = (select Category.id from Category where Category.name = @CategoryName) where id = @id", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@code", newEle.Code);
+            cmd.Parameters.AddWithValue("@name", newEle.Name);
+            cmd.Parameters.AddWithValue("@price", newEle.Price);
+            cmd.Parameters.AddWithValue("@CategoryName", newEle.Category);
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            DatabaseSingleton.CloseConnection();
         }
 
         public void GetAll(DataGridView dataView)
         {
-            SqlCommand cmd = new SqlCommand("select * from Product", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("select Product.id, Product.code, Product.name, Product.price, Category.name as 'category' from Product inner join Category on Product.category_id = Category.id\r\n", DatabaseSingleton.GetInstance());
             try
             {
                 cmd.ExecuteNonQuery();
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
 
             SqlDataAdapter da = new SqlDataAdapter(cmd);
@@ -105,22 +144,30 @@ namespace Omega.Data_Tier
             SqlCommand cmd = new SqlCommand(@"select Product.id, Product.code, Product.name, Product.price, Category.name as 'category' from Product inner join Category on Product.category_id = Category.id where Category.name = @category ", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@category", category);
             List<Product> list = new List<Product>();
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    Product p = new Product
+                    while (reader.Read())
                     {
-                        Id = (int)reader["id"],
-                        Code = reader["code"].ToString(),
-                        Name = reader["name"].ToString(),
-                        Price = (int)reader["price"],
-                        Category = reader["category"].ToString(),
-                    };
+                        Product p = new Product
+                        {
+                            Id = (int)reader["id"],
+                            Code = reader["code"].ToString(),
+                            Name = reader["name"].ToString(),
+                            Price = (int)reader["price"],
+                            Category = reader["category"].ToString(),
+                        };
 
-                    list.Add(p);
+                        list.Add(p);
+                    }
                 }
+            } 
+            catch(SqlException ex)
+            {
+                throw ex;
             }
+            
             DatabaseSingleton.CloseConnection();
 
             return list;

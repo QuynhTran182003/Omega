@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Omega.Business_Tier
 {
@@ -55,17 +56,23 @@ namespace Omega.Business_Tier
                 BillDAO c = new BillDAO();
                 c.Insert(this);
             }
-            catch
+            catch(Exception ex)
             {
-
+                MessageBox.Show(ex.Message);
             }
         }
 
         public void AddBillItem(Item i)
         {
-            BillDAO billDAO = new BillDAO();
-            billDAO.InsertItem(i, Id);
-
+            try
+            {
+                BillDAO billDAO = new BillDAO();
+                billDAO.InsertItem(i, Id);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

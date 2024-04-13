@@ -1,6 +1,7 @@
 ﻿using Omega.Business_Tier;
 using Omega.Data_Tier;
 using Omega.Objects;
+using Omega.Presentation_Tier.EditForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -61,7 +62,7 @@ namespace Omega.Presentation_Tier.Panels
             }
         }
 
-        private void LoadComboCategory(System.Windows.Forms.ComboBox comboCategory)
+        public void LoadComboCategory(System.Windows.Forms.ComboBox comboCategory)
         {
             SqlCommand cmd = new SqlCommand("select Category.Name as 'Category' from Category;", DatabaseSingleton.GetInstance());
             cmd.ExecuteNonQuery();
@@ -73,6 +74,35 @@ namespace Omega.Presentation_Tier.Panels
             {
                 comboCategory.Items.Add(dr["Category"].ToString());
             }
+        }
+
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                string name = dataGridView1.Rows[e.RowIndex].Cells["name"].FormattedValue.ToString();
+                string code = dataGridView1.Rows[e.RowIndex].Cells["code"].FormattedValue.ToString();
+                if (MessageBox.Show($"Are u sure to delete product {code} {name}?", "Delete Product", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    {
+                        int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id"].FormattedValue.ToString());
+                        new Product().DeleteProduct(id);
+                        this.ProductForm_Load(sender, e);
+                    }
+                }
+            }
+        }
+
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id"].FormattedValue.ToString());
+            string code = dataGridView1.Rows[e.RowIndex].Cells["code"].FormattedValue.ToString();
+            string name = dataGridView1.Rows[e.RowIndex].Cells["name"].FormattedValue.ToString();
+            int price = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["price"].FormattedValue.ToString());
+            string category = dataGridView1.Rows[e.RowIndex].Cells["category"].FormattedValue.ToString();
+
+            EditProductForm edf = new EditProductForm(id, code, name, price, category, this);
+            edf.ShowDialog();
         }
     }
 }

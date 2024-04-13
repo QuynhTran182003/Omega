@@ -20,6 +20,8 @@ code varchar(10) not null,
 price int not null check (price > 0),
 category_id int foreign key references Category(id)
 )
+ALTER TABLE Product
+ADD CONSTRAINT UniqueConstraintName UNIQUE (code);
 
 CREATE TABLE Tabl(
 id int primary key identity(1,1),
@@ -108,44 +110,7 @@ insert into Product(code, [name], price, category_id) values('NS1', 'Coca-Cola 0
 --insert into Orders(table_id, dtime_order) values ('1', GETDATE());
 commit;
 
-select * from Users where username = 'admin1' and pwd = 'admin1';
-select * from Tabl order by CAST(number_table as int)
-select Category.id from Category where Category.name = 'Predkrmy'
-select Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id
-where Product.code = '11';
-
-select Product.id, Product.code, Product.name,Category.dph as 'DPH', Product.price from Product inner join Category on Product.category_id = Category.id where Product.code = '10a';
-
-select * from Orders where Orders.table_id = 9
-select Orders.id, tabl.number_table, Orders.dtime_order from Orders inner join Tabl on Tabl.id = Orders.table_id
-select * from Item
-select Item.id, Product.code, Orders.id as OrderId, Item.quantity from Item 
-                                                inner join Orders on Orders.id = Item.order_id 
-                                                inner join Product on Product.id = Item.product_id 
-                                                where Orders.id = 6
-
---delete from Orders
---delete from Item
-select * from Product;
-select * from Item;
-select * from Orders;
-select date_issue, id, total_price from Bill where date_issue = '2024-04-10 12:02:27.450';
-select sum(total_price) from Bill ;
-select sum(total_price) from Bill where Bill.paymentMethod = 'Kartou';
-select sum(total_price) from Bill where Bill.paymentMethod = 'Hotově';
-select * from ItemBill;
-select * from Product join Category on Product.category_id = Category.id
-
---old script OrderDAO GetListItems
-select Item.id, Product.code, Item.order_id, Item.quantity from Item
-inner join Product on Item.product_id = Product.id 
-where order_id IN (select id from Orders where Orders.table_id = (select id from Tabl where number_table = 11))
-
-select sum(total_price) as sum from Bill where CONVERT(date, date_issue) = '2024-04-05' and Bill.paymentMethod = 'Hotově' 
-
-select * from Users where Users.username = 'zam1' and Users.pwd = '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92';
-
-
+begin transaction;
 go
 CREATE TRIGGER insertOrder 
 ON Orders
@@ -173,3 +138,7 @@ BEGIN
     WHERE id = @tabl_id;
 END;
 go
+commit;
+
+--delete from Orders
+--delete from Item

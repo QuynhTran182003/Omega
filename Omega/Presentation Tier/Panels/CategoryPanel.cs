@@ -1,5 +1,7 @@
-﻿using Omega.Data_Tier;
+﻿using Omega.Business_Tier;
+using Omega.Data_Tier;
 using Omega.Objects;
+using Omega.Presentation_Tier.EditForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -40,13 +42,11 @@ namespace Omega.Forms.Panels
                 this.inputDPHtady.Text = "";
                 this.inputDPHsebou.Text = "";
             }
-            catch (FormatException ex)
+            catch (FormatException)
             {
-                MessageBox.Show("DPH musí být číslo");
-            }
-            catch(Exception ex2)
-            {
-                MessageBox.Show(ex2.Message);
+                MessageBox.Show("DPH musí být číslo větší než 0");
+                return;
+
             }
         }
 
@@ -56,24 +56,30 @@ namespace Omega.Forms.Panels
             categoryDAO.GetAll(this.dataGridView1);
         }
 
-        private void infoKateg_Enter(object sender, EventArgs e)
+        private void dataGridView1_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-
+            if (e.Button == MouseButtons.Right)
+            {
+                string name = dataGridView1.Rows[e.RowIndex].Cells["name"].FormattedValue.ToString();
+                if (MessageBox.Show($"Are u sure to delete category {name}?", "Delete category", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    {
+                        int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id"].FormattedValue.ToString());
+                        new Category().DeleteCategory(id);
+                        this.CategoryForm_Load(sender, e);
+                    }
+                }
+            }
         }
 
-        private void groupBox1_Enter(object sender, EventArgs e)
+        private void dataGridView1_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
+            int id = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["id"].FormattedValue.ToString());
+            string name = dataGridView1.Rows[e.RowIndex].Cells["name"].FormattedValue.ToString();
+            int dph = Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells["dph"].FormattedValue.ToString());
 
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
+            EditCategoryForm edf = new EditCategoryForm(id, name, dph, this);
+            edf.ShowDialog();
         }
     }
 }

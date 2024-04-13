@@ -155,7 +155,6 @@ namespace Omega
             // 
             // panelItems
             // 
-            this.panelItems.AutoScroll = true;
             this.panelItems.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelItems.Controls.Add(this.flowLayoutItems);
             this.panelItems.Location = new System.Drawing.Point(0, 365);
@@ -260,9 +259,11 @@ namespace Omega
             this.flowLayoutItems.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutItems.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutItems.Name = "flowLayoutItems";
-            this.flowLayoutItems.Size = new System.Drawing.Size(479, 375);
+            this.flowLayoutItems.Size = new System.Drawing.Size(495, 375);
             this.flowLayoutItems.TabIndex = 0;
             this.flowLayoutItems.WrapContents = false;
+            this.flowLayoutItems.AutoScroll = true;
+
 
             // 
             // zamestnanecPanel1

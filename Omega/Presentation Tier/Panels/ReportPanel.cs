@@ -18,7 +18,7 @@ namespace Omega.Presentation_Tier.Panels
             InitializeComponent();
         }
 
-        private void ReportPanel_Load(object sender, EventArgs e)
+        public void ReportPanel_Load(object sender, EventArgs e)
         {
             this.datum.Text = DateTime.Today.ToShortDateString();
             BillDAO billDAO = new BillDAO();

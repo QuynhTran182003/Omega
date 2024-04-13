@@ -18,12 +18,14 @@ namespace Omega
         [STAThread]
         static void Main()
         {
-            //CreateDatabase.CreateDatabaseQuery("../../Data Tier/SQLQuery1.sql");
+            /// <summary>
+            /// Before running program, make sure that you:
+            /// 1. have the right connection string with the local device (in configuration file App.config)
+            /// 2. had run successfully the script for database.
+            /// </summary>
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
         }
-
-        
     }
 }

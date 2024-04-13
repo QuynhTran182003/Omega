@@ -1,9 +1,11 @@
 ﻿using Omega.Data_Tier;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Omega.Objects
 {
@@ -33,11 +35,36 @@ namespace Omega.Objects
                 CategoryDAO c = new CategoryDAO();
                 c.Insert(this);
             }
-            catch
+            catch (Exception ex2)
             {
-
+                MessageBox.Show(ex2.Message);
             }
         }
 
+        public void DeleteCategory(int id)
+        {
+            try
+            {
+                CategoryDAO categoryDAO = new CategoryDAO();
+                categoryDAO.Delete(id);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateCategory(int id, Category category)
+        {
+            try
+            {
+                CategoryDAO categoryDAO = new CategoryDAO();
+                categoryDAO.Update(id, category);
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

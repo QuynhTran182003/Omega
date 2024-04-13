@@ -3,6 +3,7 @@ using Omega.Objects;
 using System;
 using System.CodeDom;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,23 +55,67 @@ namespace Omega.Business_Tier
 
         public Product GetByCode(string code)
         {
-            ProductDAO productDAO = new ProductDAO();
-            Product product = productDAO.GetProductByCode(code);
-            // if this product exists in database
-            if(product.Name == null || product.Code == null)
+            try
             {
+                ProductDAO productDAO = new ProductDAO();
+                Product product = productDAO.GetProductByCode(code);
+                // if this product exists in database
+                if (product.Name == null || product.Code == null)
+                {
+                    return null;
+                }
+                return product;
+            }
+            catch(SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
                 return null;
             }
-            return product;
         }
 
         public int DPH()
         {
-            int dph = 0;
-            ProductDAO productDAO = new ProductDAO();
-            dph = productDAO.GetDPH(this.Code);
-            return dph;
+            try
+            {
+                int dph = 0;
+                ProductDAO productDAO = new ProductDAO();
+                dph = productDAO.GetDPH(this.Code);
+                return dph;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return 0;
+            }
         }
 
+        public void DeleteProduct(int id)
+        {
+            try
+            {
+                ProductDAO productDAO = new ProductDAO();
+                productDAO.Delete(id);
+                MessageBox.Show("Product deleted successfully");
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateProduct(int id, Product p)
+        {
+            try
+            {
+                ProductDAO productDAO = new ProductDAO();
+                productDAO.Update(id, p);
+                MessageBox.Show("Product updated successfully");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+
+            }
+        }
     }
 }

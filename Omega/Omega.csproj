@@ -73,11 +73,23 @@
     <Compile Include="Presentation Tier\BillForm.Designer.cs">
       <DependentUpon>BillForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Presentation Tier\EditItemForm.cs">
+    <Compile Include="Presentation Tier\EditForms\EditCategoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Presentation Tier\EditItemForm.Designer.cs">
+    <Compile Include="Presentation Tier\EditForms\EditCategoryForm.Designer.cs">
+      <DependentUpon>EditCategoryForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Tier\EditForms\EditItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Tier\EditForms\EditItemForm.Designer.cs">
       <DependentUpon>EditItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Presentation Tier\EditForms\EditProductForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Presentation Tier\EditForms\EditProductForm.Designer.cs">
+      <DependentUpon>EditProductForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presentation Tier\NewUserForm.cs">
       <SubType>Form</SubType>
@@ -165,8 +177,14 @@
     <EmbeddedResource Include="Presentation Tier\BillForm.resx">
       <DependentUpon>BillForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Presentation Tier\EditItemForm.resx">
+    <EmbeddedResource Include="Presentation Tier\EditForms\EditCategoryForm.resx">
+      <DependentUpon>EditCategoryForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Tier\EditForms\EditItemForm.resx">
       <DependentUpon>EditItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Presentation Tier\EditForms\EditProductForm.resx">
+      <DependentUpon>EditProductForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Presentation Tier\NewUserForm.resx">
       <DependentUpon>NewUserForm.cs</DependentUpon>

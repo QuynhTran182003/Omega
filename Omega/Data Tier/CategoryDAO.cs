@@ -14,7 +14,18 @@ namespace Omega.Data_Tier
     {
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand("delete from Category where id = @Id", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@Id", id);
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+
+            DatabaseSingleton.CloseConnection();
         }
 
         public void GetById(int id)
@@ -30,18 +41,29 @@ namespace Omega.Data_Tier
             try
             {
                 cmd.ExecuteNonQuery();
-                //MessageBox.Show("client added");
             }
             catch (SqlException ex)
             {
-                MessageBox.Show(ex.Message);
+                throw ex;
             }
             DatabaseSingleton.CloseConnection();
         }
 
         public void Update(int id, Category newEle)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand("update Category set name = @name, dph = @dph where id = @id", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@id", id);
+            cmd.Parameters.AddWithValue("@name", newEle.Nazev);
+            cmd.Parameters.AddWithValue("@dph", newEle.DPH);
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            DatabaseSingleton.CloseConnection();
         }
 
         public void GetAll(DataGridView dataView)
