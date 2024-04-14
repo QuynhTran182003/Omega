@@ -91,8 +91,9 @@ VALUES
     ('12'),
     ('13'),
     ('14');
-insert into Users(username, pwd, [name], surname, [role]) values ('admin1', 'admin1', 'ad', 'min', 'admin')
-insert into Users(username, pwd, [name], surname, [role]) values ('abcd', 'abcde', 'ad', 'min', 'kuchar')
+
+insert into Users(username, pwd, [name], surname, [role]) values ('admin1', '8FAFC83EA8211FABFA5632563AD835D5C73905225A7C5B01A1B003B7CB7D6C39', 'ad', 'min', 'admin')
+
 insert into Category([name], dph) values('Polévky', 12);
 insert into Category([name], dph) values('Saláty', 12);
 insert into Category([name], dph) values('Předkrmy', 12);
@@ -107,7 +108,7 @@ insert into Product(code, [name], price, category_id) values('201', 'Okurkové M
 insert into Product(code, [name], price, category_id) values('213', 'Lososové Maki', 139, (select Category.id from Category where Category.name = 'Maki'));
 insert into Product(code, [name], price, category_id) values('NB1', 'Neperlivá Voda 0.3l', 139, (select Category.id from Category where Category.name = 'Nápoje bez příchutí'));
 insert into Product(code, [name], price, category_id) values('NS1', 'Coca-Cola 0.4l', 139, (select Category.id from Category where Category.name = 'Nápoje s příchutí'));
---insert into Orders(table_id, dtime_order) values ('1', GETDATE());
+
 commit;
 
 begin transaction;
