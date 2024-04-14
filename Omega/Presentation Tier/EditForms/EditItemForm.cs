@@ -29,7 +29,16 @@ namespace Omega.Presentation_Tier
         private void save_Click(object sender, EventArgs e)
         {
             //MessageBox.Show("save itemd");
-            int id_to_update = int.Parse(selected.IdLabel.Text);
+            int id_to_update;
+            try
+            {
+                id_to_update = int.Parse(selected.IdLabel.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Zmente mnozstvi az ulozite objednavku");
+                return;
+            }
             ItemDAO itemDAO = new ItemDAO();
 
             Item newItem = new Item();

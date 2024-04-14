@@ -70,6 +70,14 @@ namespace Omega.Presentation_Tier
                 takeaway = true;
             }
             int price = int.Parse(this.totalPrice);
+            int discount = 0;
+            try
+            {
+                discount = int.Parse(this.textBox1.Text);
+            } catch {
+                return;
+            }
+
             int table_id = new Table().GetIdByNumber(this.table);
             string billDT;
             Bill b = new Bill(price, table_id, paymentMethod, takeaway, billDT = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
@@ -87,8 +95,25 @@ namespace Omega.Presentation_Tier
             this.Dispose();
             this.mainForm1.btnDel_Click(sender, e);
             this.mainForm1.Exit_Click(sender, e);
-            BillForm bf = new BillForm(b, price, this.mainForm1);
+            BillForm bf = new BillForm(b, price-(price*discount/100), discount, this.mainForm1);
             bf.Show();
+        }
+
+        private void ok_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int original_price = int.Parse(this.priceLabel.Text);
+                int sleva = int.Parse(this.textBox1.Text);
+
+                int newprice = original_price - (original_price * sleva/100);
+                this.priceLabel.Text = newprice.ToString();
+            }
+            catch(FormatException ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
         }
     }
 }

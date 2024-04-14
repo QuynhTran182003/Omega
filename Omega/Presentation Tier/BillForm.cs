@@ -17,10 +17,11 @@ namespace Omega.Presentation_Tier
     {
         private Bill b;
         private MainForm mainForm;
-        public BillForm(Bill b, int price, MainForm mainForm)
+        public BillForm(Bill b, int price, int discount, MainForm mainForm)
         {
             InitializeComponent();
             this.b = b;
+            this.sleva.Text = discount > 0? $"Sleva: {discount}% z celkové ceny" : "";
             this.mainForm = mainForm;
             this.celkem.Text = price + ",- Kč";
 
