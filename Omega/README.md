@@ -51,26 +51,25 @@ cd Omega/Omega/bin/Debug/
 ## Configuration
 
 User has access to configure following variables at `Omega/App.config`
-- **remoteConnection** - remote connection to database, do not change it.
+- **localConnection** - local connection to database.
+- **connectionKantnerova** - remote connection to database, do not change it.
 - **skolniConnection** connectionString="Data Source=**PCXXX**;Initial Catalog=Alpha_Three;Persist Security Info=True;User ID=**sa**;Password=**student**"  
 Connection string to the database. Uses sa user, **You have to change PCXXX to your PC**.
-- **logFilePath** value="../../../errorLogs/log.txt"  
-Path where erros are logged, you can change it if you want.
-Default is `PremiumAttendance/errorLogs/log.txt`.  
-You can use relative path or absolute `C:/somewhere`
---
+
 
 ## Use Case
-Default user is created in database: **Login**=admin, **Password**=123, role of the user is Administrator
+Default user is created in database: **Login**=admin1, **Password**=admin1, role of the user is Administrator
 - As administrator you can:
-    - Edit your account
-    - CRUD all employees
-    - See attendance records for everyone
-    - See and send notifications into system
-- As employee you can:
-    - Edit your account
-    - Receive new notifications
-    - See your attendance
+    - See all employees
+    - Create employee
+    - All allowed actions to cashier (as below)
+
+- As cashier you can:
+    - CRUD operator for Category (name, DPH) 
+    - CRUD operator for Product (name, code, price, category)
+    - Create order and add order details
+    - Print bill (when customer pays)
+    - See overview all bills, daily reports
 
 
 ## Architecture
@@ -82,12 +81,10 @@ Design patterns:
 
 ### User tier
 - Provided by WinForms. Main forms are LoginForm and MainForm.
-- Admin specific forms: HomepageForm, EmployeesForm
-- Employee specific forms: MyDashboardForm
 
 ### Business tier
 - IBaseClass - interface that makes sure every object has an UNIQUE id.
-- BusinessLogicLayer - access the DataAccessLayer
+- access the Data Access Object
 
 ### Data tier
 - IDAO: interface with 4 essential operators CRUD (CREATE, READ, UPDATE, DELETE)
@@ -98,52 +95,51 @@ Design patterns:
 
 ## File structure
 <pre>
+```
 📦 Omega
 ├─ Omega
 │  ├─ Business Tier
 │  │  ├─ Bill.cs
 │  │  ├─ BillItem.cs
 │  │  ├─ Category.cs
-│  │  ├─ IBaseClass.cs
 │  │  ├─ Item.cs
 │  │  ├─ Order.cs
 │  │  ├─ Product.cs
 │  │  ├─ Table.cs
 │  │  └─ User.cs
+│  ├─ Database Singleton
+│  │  └─ DatabaseSingleton.cs
 │  ├─ Data Tier
 │  │  ├─ BillDAO.cs
 │  │  ├─ CategoryDAO.cs
 │  │  ├─ CreateDatabase.cs
-│  │  ├─ DatabaseSingleton.cs
-│  │  ├─ IDAO.cs
 │  │  ├─ ItemDAO.cs
 │  │  ├─ OrderDAO.cs
 │  │  ├─ ProductDAO.cs
-│  │  ├─ SQLQuery1.sql
 │  │  ├─ TableDAO.cs
 │  │  └─ UserDAO.cs
 │  ├─ Presentation Tier
 │  │  ├─ Panels
 │  │  │  ├─ CategoryPanel.Designer.cs
-│  │  │  ├─ CategoryPanel.cs
-│  │  │  ├─ CategoryPanel.resx
-│  │  │  ├─ ListBillPanel.Designer.cs
-│  │  │  ├─ ListBillPanel.cs
-│  │  │  ├─ ListBillPanel.resx 
-│  │  │  ├─ ProductPanel.Designer.cs
-│  │  │  ├─ ProductPanel.cs
-│  │  │  ├─ ProductPanel.resx 
-│  │  │  ├─ ReportPanel.Designer.cs
-│  │  │  ├─ ReportPanel.cs 
-│  │  │  ├─ ReportPanel.resx 
-│  │  │  ├─ ZamestnanecPanel.Designer.cs
+│  │  │  ├─ CategoryPanel.cs
+│  │  │  ├─ CategoryPanel.resx
+│  │  │  ├─ ListBillPanel.Designer.cs
+│  │  │  ├─ ListBillPanel.cs
+│  │  │  ├─ ListBillPanel.resx 
+│  │  │  ├─ ProductPanel.Designer.cs
+│  │  │  ├─ ProductPanel.cs
+│  │  │  ├─ ProductPanel.resx 
+│  │  │  ├─ ReportPanel.Designer.cs
+│  │  │  ├─ ReportPanel.cs 
+│  │  │  ├─ ReportPanel.resx 
+│  │  │  ├─ ZamestnanecPanel.Designer.cs
 │  │  │  ├─ ZamestnanecPanel.cs 
-│  │  │  └─ ZamestnanecPanel.resx
+│  │  │  ├─ ZamestnanecPanel.resx
 │  │  ├─ UserControls
 │  │  │  ├─ BillItemUC.Designer.cs
-│  │  │  ├─ BillItemUC.cs 
-│  │  │  ├─ BillItemUC.resx 
-│  │  │  ├─ ItemUC.Designer.cs
+│  │  │  ├─ BillItemUC.cs 
+│  │  │  ├─ BillItemUC.resx 
+│  │  │  ├─ ItemUC.Designer.cs
 │  │  │  ├─ ItemUC.cs
 │  │  │  └─ ItemUC.resx
 │  │  ├─ BillForm.Designer.cs
@@ -168,19 +164,27 @@ Design patterns:
 │  │  ├─ PaymentForm.Designer.cs
 │  │  ├─ PaymentForm.cs 
 │  │  └─ PaymentForm.resx
+│  ├─ Interfaces
+│  │  ├─ IBaseClass.cs
+│  │  └─ IDAO.cs
 │  ├─ Properties
 │  │  ├─ AssemblyInfo.cs 
-│  │  ├─ Resources.Designer.cs 
-│  │  ├─ Resources.resx 
+│  │  ├─ Resources.Designer.cs 
+│  │  ├─ Resources.resx 
 │  │  ├─ Settings.Designer.cs
 │  │  └─ Settings.settings
+│  ├─ Resources
+│  │  ├─ logo.png
+│  │  └─ shiba.png
+│  ├─ sql script
+│  │  └─ SQLQuery1.sql
 │  ├─ vendor
-│  ├─ img
-│  |  └─ ER Diagram.png
-│  ├─ App.config
+│  │  └─ Hashing.cs
+│  ├─ App.con
 │  ├─ Omega.csproj
 │  ├─ Program.cs
-│  └─ packages.config
+│  ├─ packages.config
+│  └─ README.md
 ├─ .gitattributes
 ├─ .gitignore
 └─ Omega.sln
