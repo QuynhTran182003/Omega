@@ -68,7 +68,20 @@ namespace Omega.Data_Tier
 
         public void Update(int id, Item newEle)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand("update Item set quantity = @quantity, price_at_order = @custom_price where id = @id", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@quantity", newEle.Quantity);
+            cmd.Parameters.AddWithValue("@custom_price", newEle.PriceCustom);
+            cmd.Parameters.AddWithValue("@id", id);
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+
+            DatabaseSingleton.CloseConnection();
         }
         public void UpdateQuant(int itemid, int newQuant)
         {

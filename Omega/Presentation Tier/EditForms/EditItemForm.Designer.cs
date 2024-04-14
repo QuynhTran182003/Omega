@@ -30,7 +30,7 @@
         {
             this.mnozstvi = new System.Windows.Forms.Label();
             this.upraveCeny = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.quantity = new System.Windows.Forms.TextBox();
             this.price = new System.Windows.Forms.TextBox();
             this.save = new System.Windows.Forms.Button();
             this.nameProduct = new System.Windows.Forms.Label();
@@ -54,12 +54,12 @@
             this.upraveCeny.TabIndex = 1;
             this.upraveCeny.Text = "Uprava ceny";
             // 
-            // textBox1
+            // quantity
             // 
-            this.textBox1.Location = new System.Drawing.Point(136, 96);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(116, 20);
-            this.textBox1.TabIndex = 2;
+            this.quantity.Location = new System.Drawing.Point(136, 96);
+            this.quantity.Name = "quantity";
+            this.quantity.Size = new System.Drawing.Size(116, 20);
+            this.quantity.TabIndex = 2;
             // 
             // price
             // 
@@ -95,7 +95,7 @@
             this.Controls.Add(this.nameProduct);
             this.Controls.Add(this.save);
             this.Controls.Add(this.price);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.quantity);
             this.Controls.Add(this.upraveCeny);
             this.Controls.Add(this.mnozstvi);
             this.Name = "EditItemForm";
@@ -109,7 +109,7 @@
 
         private System.Windows.Forms.Label mnozstvi;
         private System.Windows.Forms.Label upraveCeny;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox quantity;
         private System.Windows.Forms.TextBox price;
         private System.Windows.Forms.Button save;
         private System.Windows.Forms.Label nameProduct;

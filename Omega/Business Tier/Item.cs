@@ -16,6 +16,7 @@ namespace Omega.Business_Tier
         private string product_code;
         private int order_id;
         private int quantity;
+        private int price_custom;
 
         public int Id { 
             get {
@@ -26,6 +27,7 @@ namespace Omega.Business_Tier
         public string Product_code { get => product_code; set => product_code = value; }
         public int Order_id { get => order_id; set => order_id = value; }
         public int Quantity { get => quantity; set => quantity = value; }
+        public int PriceCustom { get => price_custom; set => price_custom = value; }
 
         public Item(string productCode, int orderId, int quantity)
         {
@@ -33,6 +35,7 @@ namespace Omega.Business_Tier
             Order_id = orderId;
             Quantity = quantity;
         }
+        
 
         public Item(int id, string productCode, int orderId, int quantity)
         {

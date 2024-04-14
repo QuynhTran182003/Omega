@@ -89,9 +89,11 @@ namespace Omega
             }
         }
 
-        private void ShowOrders(int selectedTable, FlowLayoutPanel flowLayoutPanel)
+        public void ShowOrders(int selectedTable, FlowLayoutPanel flowLayoutPanel)
         {
             int total = 0;
+            flowLayoutPanel.Controls.Clear();
+
             // get order details from selected table 
             List<Item> items = new Table().GetOrderDetail(selectedTable);
 
@@ -101,7 +103,7 @@ namespace Omega
                 Product p = new Product().GetByCode(item.Product_code);
                 total += item.Quantity * p.Price;
 
-                ItemUC uc = new ItemUC(item.Id, p.Name, p.Code, p.Price, p.DPH(), item.Quantity);
+                ItemUC uc = new ItemUC(item.Id, p.Name, p.Code, p.Price, p.DPH(), item.Quantity, this);
                 flowLayoutPanel.Controls.Add(uc);
             }
             totalPrice.Text = total.ToString();

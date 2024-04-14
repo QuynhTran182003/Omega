@@ -12,6 +12,7 @@ namespace Omega.Presentation_Tier
 {
     public partial class ItemUC : UserControl
     {
+        private MainForm main;
         public ItemUC()
         {
             InitializeComponent();
@@ -32,9 +33,10 @@ namespace Omega.Presentation_Tier
             this.PriceLabel.Text = cena.ToString();
             this.DPHLabel.Text = dph.ToString();
             this.QuantityLabel.Text = mnozstvi.ToString();
+
         }
 
-        public ItemUC(int id, string jmeno, string kod, int cena, int dph, int mnozstvi)
+        public ItemUC(int id, string jmeno, string kod, int cena, int dph, int mnozstvi, MainForm main)
         {
             InitializeComponent();
             this.IdLabel.Text = id.ToString();
@@ -43,6 +45,8 @@ namespace Omega.Presentation_Tier
             this.PriceLabel.Text = cena.ToString();
             this.DPHLabel.Text = dph.ToString();
             this.QuantityLabel.Text = mnozstvi.ToString();
+            this.main = main;
+
         }
 
         private void ItemUC_Click(object sender, EventArgs e)
@@ -50,7 +54,7 @@ namespace Omega.Presentation_Tier
 /*Upravit cenu v pripade potreby, upravit mnozstvi na rychle*/
             ItemUC clicked = (ItemUC)sender;
             MessageBox.Show("Edit price edit Quantity for " + clicked.NameLabel.Text);
-            EditItemForm edf = new EditItemForm(clicked);
+            EditItemForm edf = new EditItemForm(clicked, this.main);
             edf.Show();
         }
 

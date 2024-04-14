@@ -329,7 +329,7 @@
         private System.Windows.Forms.Label totalPrice;
         private System.Windows.Forms.Label celkem;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutTable;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutItems;
+        public System.Windows.Forms.FlowLayoutPanel flowLayoutItems;
         private Presentation_Tier.Panels.ListBillPanel listBillPanel1;
         private Presentation_Tier.Panels.ReportPanel reportPanel1;
         private Presentation_Tier.Panels.ZamestnanecPanel zamestnanecPanel1;
