@@ -35,13 +35,8 @@ git clone https://github.com/QuynhTran182003/Omega.git
 ```
 
 ## Run 
-Windows CMD
-```bash
-cd Omega/Omega/bin/Debug/
+Windows CMD and Git Bash
 
-Omega.exe # execute exe file, or you can just click on it.
-```
-Git Bash
 ```bash
 cd Omega/Omega/bin/Debug/
 
