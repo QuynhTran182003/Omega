@@ -87,7 +87,7 @@ namespace Omega.Presentation_Tier
             this.Dispose();
             this.mainForm1.btnDel_Click(sender, e);
             this.mainForm1.Exit_Click(sender, e);
-            BillForm bf = new BillForm(b);
+            BillForm bf = new BillForm(b, price, this.mainForm1);
             bf.Show();
         }
     }

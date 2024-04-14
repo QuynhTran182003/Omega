@@ -16,17 +16,23 @@ namespace Omega.Presentation_Tier
     public partial class BillForm : Form
     {
         private Bill b;
-        public BillForm(Bill b)
+        private MainForm mainForm;
+        public BillForm(Bill b, int price, MainForm mainForm)
         {
             InitializeComponent();
             this.b = b;
+            this.mainForm = mainForm;
+            this.celkem.Text = price + ",- Kč";
+
         }
 
         private void BillForm_Load(object sender, EventArgs e)
         {
             this.doklad.Text = this.b.Id.ToString();
             this.vystaveni.Text = this.b.DateIssue.ToString();
+            this.vystavil.Text = this.mainForm.LoggedInUser.Surname;
             this.zpusob.Text = this.b.PaymentMethod.ToString();
+            this.ssebou.Text = this.b.Takeaway == true ? "Ano" : "Ne";
             RenderItems(this.b);
         }
         // todo

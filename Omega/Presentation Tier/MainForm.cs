@@ -23,6 +23,12 @@ namespace Omega
         private int selectedTable = 0;
         private User loggedInUser;
         public int SelectedTable { get { return selectedTable; } set { selectedTable = value; } }
+        public User LoggedInUser { get { return loggedInUser; } set { loggedInUser = value; } }
+        public string TotalPrice
+        {
+            get { return totalPrice.Text; }
+            set { totalPrice.Text = value; }
+        }
         public MainForm(LoginForm loginForm, User u)
         {
             this.loggedInUser = u;
