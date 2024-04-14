@@ -34,12 +34,24 @@ namespace Omega.Presentation_Tier
             this.QuantityLabel.Text = mnozstvi.ToString();
         }
 
+        public ItemUC(int id, string jmeno, string kod, int cena, int dph, int mnozstvi)
+        {
+            InitializeComponent();
+            this.IdLabel.Text = id.ToString();
+            this.NameLabel.Text = jmeno;
+            this.CodeLabel.Text = kod;
+            this.PriceLabel.Text = cena.ToString();
+            this.DPHLabel.Text = dph.ToString();
+            this.QuantityLabel.Text = mnozstvi.ToString();
+        }
+
         private void ItemUC_Click(object sender, EventArgs e)
         {
 /*Upravit cenu v pripade potreby, upravit mnozstvi na rychle*/
             ItemUC clicked = (ItemUC)sender;
             MessageBox.Show("Edit price edit Quantity for " + clicked.NameLabel.Text);
             EditItemForm edf = new EditItemForm(clicked);
+            edf.Show();
         }
 
         

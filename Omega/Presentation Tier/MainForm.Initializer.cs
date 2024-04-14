@@ -76,6 +76,7 @@ namespace Omega
                 if (itemUc.CodeLabel.Text.Equals(n_itemUC.CodeLabel.Text))
                 {
                     existed = true;
+                    // update and set quantity label text
                     int actual_quant = int.Parse(itemUc.QuantityLabel.Text);
                     itemUc.QuantityLabel.Text = (actual_quant + quantity).ToString();
                     break;
@@ -100,7 +101,7 @@ namespace Omega
                 Product p = new Product().GetByCode(item.Product_code);
                 total += item.Quantity * p.Price;
 
-                ItemUC uc = new ItemUC(p.Name, p.Code, p.Price, p.DPH(), item.Quantity);
+                ItemUC uc = new ItemUC(item.Id, p.Name, p.Code, p.Price, p.DPH(), item.Quantity);
                 flowLayoutPanel.Controls.Add(uc);
             }
             totalPrice.Text = total.ToString();

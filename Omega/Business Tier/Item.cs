@@ -17,7 +17,12 @@ namespace Omega.Business_Tier
         private int order_id;
         private int quantity;
 
-        public int Id { get => id; set => id = value; }
+        public int Id { 
+            get {
+                ItemDAO c = new ItemDAO();
+                return c.GetItemId(Order_id, Product_code);
+            }
+            set => id = value; }
         public string Product_code { get => product_code; set => product_code = value; }
         public int Order_id { get => order_id; set => order_id = value; }
         public int Quantity { get => quantity; set => quantity = value; }
@@ -37,6 +42,10 @@ namespace Omega.Business_Tier
             Quantity = quantity;
         }
 
+        public Item()
+        {
+        }
+
         public void AddToDB()
         {
             try
@@ -46,6 +55,20 @@ namespace Omega.Business_Tier
             }
             catch(SqlException ex)
             {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void UpdateQuantity(int id, int quantity)
+        {
+            try
+            {
+                ItemDAO itemDAO = new ItemDAO();
+                itemDAO.UpdateQuant(id, quantity);
+                MessageBox.Show("Update successfully");
+
+            }
+            catch (SqlException ex){
                 MessageBox.Show(ex.Message);
             }
         }
