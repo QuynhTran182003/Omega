@@ -11,7 +11,7 @@
 ## Technology used
 - C# .NET
 - MSSQL
-- Krypton Toolkit (https://github.com/ComponentFactory/Krypton)
+- System.Security.Cryptography (hashing password)
 
 ## Table of Contents
 - [Installation](#installation)
@@ -79,12 +79,12 @@ Main functionality is provided by Presentation Tier (Interactive Forms), Busines
 Design patterns: 
 - DatabaseConnection is Singleton
 
-### User tier
-- Provided by WinForms. Main forms are LoginForm and MainForm.
+### Presentation tier
+- Provided by .NET WinForms. Main forms are LoginForm and MainForm.
 
 ### Business tier
 - IBaseClass - interface that makes sure every object has an UNIQUE id.
-- access the Data Access Object
+- access the Data Access Object.
 
 ### Data tier
 - IDAO: interface with 4 essential operators CRUD (CREATE, READ, UPDATE, DELETE)
@@ -192,7 +192,7 @@ Design patterns:
 </pre>
 
 ## Errors
-- Application handles SqlExceptions => notify user and log error, application can continue execution
+- Application handles SqlExceptions which notifies user error, meanwhile application can continue execution.
 
 ## Licence
 MIT License
