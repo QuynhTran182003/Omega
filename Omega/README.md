@@ -173,6 +173,14 @@ Design patterns:
 │  │  └─ shiba.png
 │  ├─ sql script
 │  │  └─ SQLQuery1.sql
+│  ├─ test cases
+│  │  ├─ TestCase1.pdf
+│  │  ├─ TestCase2-Login.pdf
+│  │  ├─ TestCase3_CRUD Product.pdf
+│  │  ├─ TestCase4-Create_Order.pdf
+│  │  ├─ TestCase5-Alter_Order.pdf
+│  │  ├─ TestCase6-Bill_Issue.pdf
+│  │  └─ TestCase7-Report.pdf
 │  ├─ vendor
 │  │  └─ Hashing.cs
 │  ├─ App.con
