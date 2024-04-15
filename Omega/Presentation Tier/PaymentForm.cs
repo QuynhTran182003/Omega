@@ -59,30 +59,26 @@ namespace Omega.Presentation_Tier
         private void PayBtn_Click(object sender, EventArgs e)
         {
             // create a bill(id, numberBill, zpusobPlatby, datum_vystaveni, vystavitel)
-            string paymentMethod = "Hotově";
-            bool takeaway = false;
-            if (btnKartou.Tag.Equals("Selected"))
+            int table_id = new Table().GetIdByNumber(this.table);
+
+            string paymentMethod = btnKartou.Tag.Equals("Selected")? "Kartou" : "Hotově";
+            bool takeaway = ssebouBtn.Tag.Equals("Selected")? true : false;
+            /*if (btnKartou.Tag.Equals("Selected"))
             {
                 paymentMethod = "Kartou";
-            }
-            if (ssebouBtn.Tag.Equals("Selected"))
-            {
-                takeaway = true;
-            }
+            }*/
+            /* if (ssebouBtn.Tag.Equals("Selected"))
+             {
+                 takeaway = true;
+             }*/
             int price = int.Parse(this.totalPrice);
-            int discount = 0;
-            try
-            {
-                discount = int.Parse(this.textBox1.Text);
-            } catch {
-                return;
-            }
+            int discount = (int)this.discount.Value;
 
-            int table_id = new Table().GetIdByNumber(this.table);
-            string billDT;
-            Bill b = new Bill(price, table_id, paymentMethod, takeaway, billDT = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            //create a bill
+            int final_price = discount == 0 ? price : price - (price * discount / 100);
+            string billDT = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            Bill b = new Bill(final_price, table_id, paymentMethod, takeaway, billDT);
             b.AddToDB();
-            //MessageBox.Show("Bill Id: "+b.Id+","+ billDT);
 
             // get all items in the order of table number x
             List<Item> items = new Table().GetOrderDetail(this.table);
@@ -95,7 +91,7 @@ namespace Omega.Presentation_Tier
             this.Dispose();
             this.mainForm1.btnDel_Click(sender, e);
             this.mainForm1.Exit_Click(sender, e);
-            BillForm bf = new BillForm(b, price-(price*discount/100), discount, this.mainForm1);
+            BillForm bf = new BillForm(b, price, discount, final_price, this.mainForm1);
             bf.Show();
         }
 
@@ -104,7 +100,7 @@ namespace Omega.Presentation_Tier
             try
             {
                 int original_price = int.Parse(this.priceLabel.Text);
-                int sleva = int.Parse(this.textBox1.Text);
+                int sleva = int.Parse(this.discount.Text);
 
                 int newprice = original_price - (original_price * sleva/100);
                 this.priceLabel.Text = newprice.ToString();

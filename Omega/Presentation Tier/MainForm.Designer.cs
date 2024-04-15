@@ -170,13 +170,13 @@
             this.totalPrice.TabIndex = 26;
             this.totalPrice.Text = "0.- Kč";
             // 
-            // celkem
+            // sum
             // 
             this.celkem.AutoSize = true;
             this.celkem.Font = new System.Drawing.Font("hooge 05_55", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.celkem.ForeColor = System.Drawing.Color.Blue;
             this.celkem.Location = new System.Drawing.Point(3, 276);
-            this.celkem.Name = "celkem";
+            this.celkem.Name = "sum";
             this.celkem.Size = new System.Drawing.Size(156, 37);
             this.celkem.TabIndex = 24;
             this.celkem.Text = "Celkem: ";

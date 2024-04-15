@@ -142,12 +142,12 @@
             this.label5.TabIndex = 9;
             this.label5.Text = ",- Kč";
             // 
-            // label8
+            // labelTotal
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(334, 58);
-            this.label8.Name = "label8";
+            this.label8.Name = "labelTotal";
             this.label8.Size = new System.Drawing.Size(54, 24);
             this.label8.TabIndex = 10;
             this.label8.Text = "Dne:";

@@ -1,4 +1,6 @@
-﻿namespace Omega.Presentation_Tier
+﻿using System.Windows.Forms;
+
+namespace Omega.Presentation_Tier
 {
     partial class BillForm
     {
@@ -48,11 +50,13 @@
             this.label21 = new System.Windows.Forms.Label();
             this.labelVystavil = new System.Windows.Forms.Label();
             this.vystavil = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.celkem = new System.Windows.Forms.Label();
+            this.sum = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.ssebou = new System.Windows.Forms.Label();
             this.sleva = new System.Windows.Forms.Label();
+            this.labelTotal = new System.Windows.Forms.Label();
+            this.stul = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -61,9 +65,8 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(184, 36);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(190, 20);
+            this.label1.Size = new System.Drawing.Size(0, 20);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Shiba Sushi Fusion Asian";
             // 
             // label2
             // 
@@ -71,9 +74,8 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(114, 66);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(350, 20);
+            this.label2.Size = new System.Drawing.Size(0, 20);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Budějovická 371 Jesenice Praha - Západ 252 42";
             // 
             // label3
             // 
@@ -81,9 +83,8 @@
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(63, 169);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 17);
+            this.label3.Size = new System.Drawing.Size(0, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "ICO: 11774932";
             // 
             // label4
             // 
@@ -91,9 +92,8 @@
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.Location = new System.Drawing.Point(341, 169);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(120, 17);
+            this.label4.Size = new System.Drawing.Size(0, 17);
             this.label4.TabIndex = 3;
-            this.label4.Text = "DIC: CZ11774932";
             // 
             // label5
             // 
@@ -101,29 +101,26 @@
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(63, 237);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(86, 17);
+            this.label5.Size = new System.Drawing.Size(0, 17);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Doklad Cislo";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(63, 263);
+            this.label6.Location = new System.Drawing.Point(63, 297);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(98, 17);
+            this.label6.Size = new System.Drawing.Size(0, 17);
             this.label6.TabIndex = 5;
-            this.label6.Text = "Zpusob platby";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(63, 291);
+            this.label7.Location = new System.Drawing.Point(63, 325);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(112, 17);
+            this.label7.Size = new System.Drawing.Size(0, 17);
             this.label7.TabIndex = 6;
-            this.label7.Text = "Datum vystaveni";
             // 
             // doklad
             // 
@@ -131,35 +128,32 @@
             this.doklad.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.doklad.Location = new System.Drawing.Point(200, 237);
             this.doklad.Name = "doklad";
-            this.doklad.Size = new System.Drawing.Size(16, 17);
+            this.doklad.Size = new System.Drawing.Size(0, 17);
             this.doklad.TabIndex = 11;
-            this.doklad.Text = "?";
             // 
             // zpusob
             // 
             this.zpusob.AutoSize = true;
             this.zpusob.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.zpusob.Location = new System.Drawing.Point(200, 263);
+            this.zpusob.Location = new System.Drawing.Point(200, 297);
             this.zpusob.Name = "zpusob";
-            this.zpusob.Size = new System.Drawing.Size(16, 17);
+            this.zpusob.Size = new System.Drawing.Size(0, 17);
             this.zpusob.TabIndex = 12;
-            this.zpusob.Text = "?";
             // 
             // vystaveni
             // 
             this.vystaveni.AutoSize = true;
             this.vystaveni.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vystaveni.Location = new System.Drawing.Point(200, 291);
+            this.vystaveni.Location = new System.Drawing.Point(200, 325);
             this.vystaveni.Name = "vystaveni";
-            this.vystaveni.Size = new System.Drawing.Size(16, 17);
+            this.vystaveni.Size = new System.Drawing.Size(0, 17);
             this.vystaveni.TabIndex = 13;
-            this.vystaveni.Text = "?";
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(63, 360);
+            this.label12.Location = new System.Drawing.Point(63, 394);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(440, 17);
             this.label12.TabIndex = 14;
@@ -169,67 +163,63 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(148, 880);
+            this.label13.Location = new System.Drawing.Point(145, 658);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(261, 17);
+            this.label13.Size = new System.Drawing.Size(0, 17);
             this.label13.TabIndex = 15;
-            this.label13.Text = "Dekujeme a tesime se na dalsi navstevu";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(63, 436);
+            this.label14.Location = new System.Drawing.Point(62, 433);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(48, 17);
+            this.label14.Size = new System.Drawing.Size(0, 17);
             this.label14.TabIndex = 17;
-            this.label14.Text = "Nazev";
             // 
             // label15
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(222, 436);
+            this.label15.Location = new System.Drawing.Point(229, 433);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(41, 17);
+            this.label15.Size = new System.Drawing.Size(0, 17);
             this.label15.TabIndex = 18;
-            this.label15.Text = "Cena";
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(297, 436);
+            this.label16.Location = new System.Drawing.Point(296, 433);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(37, 17);
+            this.label16.Size = new System.Drawing.Size(0, 17);
             this.label16.TabIndex = 19;
-            this.label16.Text = "DPH";
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(357, 436);
+            this.label17.Location = new System.Drawing.Point(361, 433);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(63, 17);
+            this.label17.Size = new System.Drawing.Size(0, 17);
             this.label17.TabIndex = 20;
-            this.label17.Text = "Mnozstvi";
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(448, 436);
+            this.label18.Location = new System.Drawing.Point(447, 433);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(52, 17);
+            this.label18.Size = new System.Drawing.Size(0, 17);
             this.label18.TabIndex = 21;
-            this.label18.Text = "Součet";
             // 
             // flowLayoutPanel1
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(66, 468);
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(65, 465);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(437, 131);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(437, 43);
             this.flowLayoutPanel1.TabIndex = 22;
             // 
             // label19
@@ -238,9 +228,8 @@
             this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.Location = new System.Drawing.Point(63, 108);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(102, 17);
+            this.label19.Size = new System.Drawing.Size(0, 17);
             this.label19.TabIndex = 23;
-            this.label19.Text = "HAISHIBA s.r.o";
             // 
             // label20
             // 
@@ -248,9 +237,8 @@
             this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(63, 139);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(317, 17);
+            this.label20.Size = new System.Drawing.Size(0, 17);
             this.label20.TabIndex = 24;
-            this.label20.Text = "Květnového vítězství 1339/5 - Chodov - Praha 11";
             // 
             // label21
             // 
@@ -266,82 +254,96 @@
             // 
             this.labelVystavil.AutoSize = true;
             this.labelVystavil.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelVystavil.Location = new System.Drawing.Point(63, 323);
+            this.labelVystavil.Location = new System.Drawing.Point(63, 357);
             this.labelVystavil.Name = "labelVystavil";
-            this.labelVystavil.Size = new System.Drawing.Size(56, 17);
+            this.labelVystavil.Size = new System.Drawing.Size(0, 17);
             this.labelVystavil.TabIndex = 26;
-            this.labelVystavil.Text = "Vystavil";
             // 
             // vystavil
             // 
             this.vystavil.AutoSize = true;
             this.vystavil.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vystavil.Location = new System.Drawing.Point(200, 323);
+            this.vystavil.Location = new System.Drawing.Point(200, 357);
             this.vystavil.Name = "vystavil";
-            this.vystavil.Size = new System.Drawing.Size(16, 17);
+            this.vystavil.Size = new System.Drawing.Size(0, 17);
             this.vystavil.TabIndex = 28;
-            this.vystavil.Text = "?";
             // 
-            // label22
+            // sum
             // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(63, 391);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(68, 20);
-            this.label22.TabIndex = 29;
-            this.label22.Text = "Celkem";
-            // 
-            // celkem
-            // 
-            this.celkem.AutoSize = true;
-            this.celkem.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.celkem.Location = new System.Drawing.Point(200, 394);
-            this.celkem.Name = "celkem";
-            this.celkem.Size = new System.Drawing.Size(17, 17);
-            this.celkem.TabIndex = 31;
-            this.celkem.Text = "?";
+            this.sum.AutoSize = true;
+            this.sum.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sum.Location = new System.Drawing.Point(361, 542);
+            this.sum.Name = "sum";
+            this.sum.Size = new System.Drawing.Size(0, 17);
+            this.sum.TabIndex = 31;
             // 
             // label25
             // 
             this.label25.AutoSize = true;
             this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(292, 263);
+            this.label25.Location = new System.Drawing.Point(292, 297);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(60, 17);
+            this.label25.Size = new System.Drawing.Size(0, 17);
             this.label25.TabIndex = 32;
-            this.label25.Text = "S sebou";
             // 
             // ssebou
             // 
             this.ssebou.AutoSize = true;
             this.ssebou.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ssebou.Location = new System.Drawing.Point(375, 263);
+            this.ssebou.Location = new System.Drawing.Point(375, 297);
             this.ssebou.Name = "ssebou";
-            this.ssebou.Size = new System.Drawing.Size(16, 17);
+            this.ssebou.Size = new System.Drawing.Size(0, 17);
             this.ssebou.TabIndex = 34;
-            this.ssebou.Text = "?";
             // 
             // sleva
             // 
             this.sleva.AutoSize = true;
-            this.sleva.Location = new System.Drawing.Point(292, 396);
+            this.sleva.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sleva.Location = new System.Drawing.Point(361, 573);
             this.sleva.Name = "sleva";
-            this.sleva.Size = new System.Drawing.Size(54, 13);
+            this.sleva.Size = new System.Drawing.Size(0, 17);
             this.sleva.TabIndex = 35;
-            this.sleva.Text = "Sleva: 0%";
+            // 
+            // labelTotal
+            // 
+            this.labelTotal.AutoSize = true;
+            this.labelTotal.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelTotal.Location = new System.Drawing.Point(360, 601);
+            this.labelTotal.Name = "labelTotal";
+            this.labelTotal.Size = new System.Drawing.Size(0, 17);
+            this.labelTotal.TabIndex = 36;
+            // 
+            // stul
+            // 
+            this.stul.AutoSize = true;
+            this.stul.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stul.Location = new System.Drawing.Point(200, 265);
+            this.stul.Name = "stul";
+            this.stul.Size = new System.Drawing.Size(0, 17);
+            this.stul.TabIndex = 38;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(63, 265);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(0, 17);
+            this.label9.TabIndex = 37;
             // 
             // BillForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(544, 656);
+            this.ClientSize = new System.Drawing.Size(544, 695);
+            this.Controls.Add(this.stul);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.labelTotal);
             this.Controls.Add(this.sleva);
             this.Controls.Add(this.ssebou);
             this.Controls.Add(this.label25);
-            this.Controls.Add(this.celkem);
-            this.Controls.Add(this.label22);
+            this.Controls.Add(this.sum);
             this.Controls.Add(this.vystavil);
             this.Controls.Add(this.labelVystavil);
             this.Controls.Add(this.label21);
@@ -398,10 +400,12 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.Label labelVystavil;
         private System.Windows.Forms.Label vystavil;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label celkem;
+        private System.Windows.Forms.Label sum;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label ssebou;
         private System.Windows.Forms.Label sleva;
+        private System.Windows.Forms.Label labelTotal;
+        private System.Windows.Forms.Label stul;
+        private System.Windows.Forms.Label label9;
     }
 }

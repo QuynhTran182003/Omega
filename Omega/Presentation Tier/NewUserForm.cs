@@ -21,6 +21,7 @@ namespace Omega.Presentation_Tier
         {
             InitializeComponent();
             this.panel = zamestnanecPanel;
+
         }
 
         private void add_Click(object sender, EventArgs e)
