@@ -43,16 +43,26 @@ namespace Omega.Data_Tier
             cmd.Parameters.AddWithValue("@table", table);
             /*cmd.Parameters.AddWithValue("@dtime_order", ele.DateOrder);*/
             int id = 0;
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            try
             {
-                if (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    id = (int)reader["ID"];
+                    if (reader.Read())
+                    {
+                        id = (int)reader["ID"];
+                    }
                 }
+                return id;
             }
-            DatabaseSingleton.CloseConnection();
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
 
-            return id;
         }
 
 
@@ -93,22 +103,31 @@ where order_id IN (
 group by Product.code, Item.order_id", DatabaseSingleton.GetInstance());
             cmd.Parameters.AddWithValue("@table", table);
             List<Item> list = new List<Item>();
-            using (SqlDataReader reader = cmd.ExecuteReader())
+            try
             {
-                while (reader.Read())
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    //int id = int.Parse(reader["id"].ToString());
-                    string prod_code = reader["code"].ToString();
-                    int order_id = int.Parse(reader["order_id"].ToString());
-                    int quantity = int.Parse(reader["quantity"].ToString());
-                    Item i = new Item(prod_code, order_id, quantity);
+                    while (reader.Read())
+                    {
+                        //int id = int.Parse(reader["id"].ToString());
+                        string prod_code = reader["code"].ToString();
+                        int order_id = int.Parse(reader["order_id"].ToString());
+                        int quantity = int.Parse(reader["quantity"].ToString());
+                        Item i = new Item(prod_code, order_id, quantity);
 
-                    list.Add(i);
+                        list.Add(i);
+                    }
                 }
+                return list;
             }
-            DatabaseSingleton.CloseConnection();
-
-            return list;
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                DatabaseSingleton.CloseConnection();
+            }
         }
 
     }

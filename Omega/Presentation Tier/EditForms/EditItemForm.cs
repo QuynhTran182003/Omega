@@ -42,8 +42,16 @@ namespace Omega.Presentation_Tier
             ItemDAO itemDAO = new ItemDAO();
 
             Item newItem = new Item();
-            newItem.Quantity = int.Parse(this.quantity.Text);
-            newItem.PriceCustom = int.Parse(this.price.Text);
+            try
+            {
+                newItem.Quantity = int.Parse(this.quantity.Text);
+                newItem.PriceCustom = int.Parse(this.price.Text);
+            }
+            catch
+            {
+                MessageBox.Show("Input musí být číslo");
+                return ;    
+            }
 
             itemDAO.Update(id_to_update, newItem);
             MessageBox.Show("update successfulllllllllll");

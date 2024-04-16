@@ -443,12 +443,22 @@ namespace Omega
             // Check if a table is selected and there are items in the order
             if (SelectedTable == 0) return;
 
-            // Open payment form
-            if (flowLayoutItems.Controls.Count > 0)
+            // Check if the user has saved the order (ulozit button invisible)
+            if (!this.ulozitObj.Visible)
             {
-                PaymentForm pm = new PaymentForm(this.totalPrice.Text, SelectedTable, this);
-                pm.Show();
+                // Open payment form
+                if (flowLayoutItems.Controls.Count > 0)
+                {
+                    PaymentForm pm = new PaymentForm(this.totalPrice.Text, SelectedTable, this);
+                    pm.Show();
+                }
             }
+            else
+            {
+                MessageBox.Show("Musíte uložit objednávku!");
+                return;
+            }
+            
         }
     }
 }

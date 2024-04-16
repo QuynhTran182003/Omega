@@ -59,6 +59,7 @@ namespace Omega.Business_Tier
             catch(SqlException ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
         }
 
@@ -73,6 +74,7 @@ namespace Omega.Business_Tier
             }
             catch (SqlException ex){
                 MessageBox.Show(ex.Message);
+                return;
             }
         }
     }

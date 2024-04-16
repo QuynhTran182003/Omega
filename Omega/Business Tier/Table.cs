@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Omega.Business_Tier
 {
@@ -36,24 +37,51 @@ namespace Omega.Business_Tier
 
         public List<Item> GetOrderDetail(int table)
         {
-            List<Item> items = new List<Item>();
-            OrderDAO orderDAO = new OrderDAO();
-            items = orderDAO.GetListItems(table);
-            return items;
+            try
+            {
+                List<Item> items = new List<Item>();
+                OrderDAO orderDAO = new OrderDAO();
+                items = orderDAO.GetListItems(table);
+                return items;
+            }
+            catch
+            {
+                MessageBox.Show("Error při získání položky objednávky");
+                return null;
+            }
+            
         }
 
         public int GetOrderIdFrTable(int table)
         {
-            int order_id;
-            OrderDAO orderDAO = new OrderDAO();
-            order_id= orderDAO.GetOrderId(table);
-            return order_id;
+            try
+            {
+                int order_id;
+                OrderDAO orderDAO = new OrderDAO();
+                order_id = orderDAO.GetOrderId(table);
+                return order_id;
+            }
+            catch
+            {
+                MessageBox.Show("Error při získání order_id na základě stolu");
+                return 0;
+            }
+            
         }
 
         public int GetIdByNumber(int numberTable)
         {
-            TableDAO tableDAO = new TableDAO();
-            return tableDAO.GetId(numberTable);
+            try
+            {
+                TableDAO tableDAO = new TableDAO();
+                return tableDAO.GetId(numberTable);
+            }
+            catch
+            {
+                MessageBox.Show("Error při získání tableId na základě stolu");
+                return 0;
+            }
+            
         }
 
     }
