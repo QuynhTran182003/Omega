@@ -24,11 +24,7 @@ namespace Omega
         private User loggedInUser;
         public int SelectedTable { get { return selectedTable; } set { selectedTable = value; } }
         public User LoggedInUser { get { return loggedInUser; } set { loggedInUser = value; } }
-        public string TotalPrice
-        {
-            get { return totalPrice.Text; }
-            set { totalPrice.Text = value; }
-        }
+        public string TotalPrice { get { return totalPrice.Text; } set { totalPrice.Text = value; } }
         public MainForm(LoginForm loginForm, User u)
         {
             this.loggedInUser = u;
@@ -158,8 +154,7 @@ namespace Omega
             // Check if any table is being selected
             if (SelectedTable != 0 && int.Parse(clickedButton.Text.Split(' ')[1]) != SelectedTable)
             {
-                MessageBox.Show("Musíte odcházet od vybraného stolu");
-                return;
+                MessageBox.Show("Musíte odcházet od vybraného stolu");return;
             }
 
             // Set the number of selected table, where we will add item to the order
@@ -178,8 +173,7 @@ namespace Omega
             // Enable buttons execution
             foreach (Button button in panelExecution.Controls.OfType<Button>().Where(b => b.Tag != null && b.Tag.ToString() == "execution"))
             {
-                button.Enabled = true;
-                button.Visible = true;
+                button.Enabled = true;button.Visible = true;
             }
 
             // Set visible flowLayoutItemss
@@ -233,22 +227,19 @@ namespace Omega
             // Check if a table is selected
             if (SelectedTable == 0)
             {
-                MessageBox.Show("Prosím vyberte stůl");
-                return;
+                MessageBox.Show("Prosím vyberte stůl");return;
             }
 
             // Check for empty input         
             if (itemCode.Equals("")) {
-                MessageBox.Show("Prázdná hodnota");
-                return;
+                MessageBox.Show("Prázdná hodnota");return;
             }
 
             // Get product by code
             Product p = new Product().GetByCode(itemCode);
             if (p == null)
             {
-                MessageBox.Show("Zboží nenalezeno");
-                return;
+                MessageBox.Show("Zboží nenalezeno");return;
             }
 
             // Clear items if "ulozitObj" is not visible
@@ -302,8 +293,7 @@ namespace Omega
             // Check if a table is selected
             if (SelectedTable == 0)
             {
-                MessageBox.Show("Prosím vyberte stůl");
-                return;
+                MessageBox.Show("Prosím vyberte stůl");return;
             }
 
             // Get the button representing the selected table
@@ -336,7 +326,6 @@ namespace Omega
             {
                 // Get the order ID from the selected table
                 int order_id = new Table().GetOrderIdFrTable(SelectedTable);
-
                 // Update existing order with new items
                 List<ItemUC> listUC = flowLayoutItems.Controls.OfType<ItemUC>().ToList();
                 foreach (ItemUC itemUc in listUC)
@@ -344,10 +333,8 @@ namespace Omega
                     Item item = new Item((itemUc.CodeLabel.Text), order_id, int.Parse(itemUc.QuantityLabel.Text));
                     item.AddToDB();
                 }
-
                 // Close the order panel and reset selected table
-                this.Exit_Click(sender, e);
-                SelectedTable = 0;
+                this.Exit_Click(sender, e);SelectedTable = 0;
             }
         }
 
@@ -356,11 +343,9 @@ namespace Omega
             /*Vystiskne nahled uctenky pro zakaznika (př. PDF)*/
             if (flowLayoutItems.Controls.Count > 0)
             {
-                BillOverview bo = new BillOverview(this);
-                bo.Show();
+                BillOverview bo = new BillOverview(this);bo.Show();
             }
             Exit_Click(sender, e);
-            
         }
 
         /// <summary>
@@ -461,12 +446,7 @@ namespace Omega
                     pm.Show();
                 }
             }
-            else
-            {
-                MessageBox.Show("Musíte uložit objednávku!");
-                return;
-            }
-            
+            else{ MessageBox.Show("Musíte uložit objednávku!"); return; }
         }
     }
 }

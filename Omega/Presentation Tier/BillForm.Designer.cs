@@ -335,8 +335,7 @@ namespace Omega.Presentation_Tier
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.AutoSize = true;
+            this.AutoScroll = true;this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(544, 695);
             this.Controls.Add(this.stul);
             this.Controls.Add(this.label9);
@@ -368,12 +367,10 @@ namespace Omega.Presentation_Tier
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "BillForm";
-            this.Text = "BillForm";
+            this.Name = "BillForm";this.Text = "BillForm";
             this.Load += new System.EventHandler(this.BillForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
