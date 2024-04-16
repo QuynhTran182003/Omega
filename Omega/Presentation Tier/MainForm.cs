@@ -456,7 +456,8 @@ namespace Omega
                 // Open payment form
                 if (flowLayoutItems.Controls.Count > 0)
                 {
-                    PaymentForm pm = new PaymentForm(this.totalPrice.Text, SelectedTable, this);
+                    string price = this.totalPrice.Text.Substring(0, this.totalPrice.Text.IndexOf(','));
+                    PaymentForm pm = new PaymentForm(price, SelectedTable, this);
                     pm.Show();
                 }
             }

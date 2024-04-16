@@ -71,6 +71,7 @@ namespace Omega.Presentation_Tier
              {
                  takeaway = true;
              }*/
+            //int commaIndex = this.totalPrice.IndexOf(',');
             int price = int.Parse(this.totalPrice);
             int discount = (int)this.discount.Value;
 
@@ -99,6 +100,7 @@ namespace Omega.Presentation_Tier
         {
             try
             {
+                //int commaIndex = this.priceLabel.Text.IndexOf(',');
                 int original_price = int.Parse(this.priceLabel.Text);
                 int sleva = int.Parse(this.discount.Text);
 
