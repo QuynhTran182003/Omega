@@ -183,7 +183,7 @@ Design patterns:
 │  │  └─ TestCase7-Report.pdf
 │  ├─ vendor
 │  │  └─ Hashing.cs
-│  ├─ App.con
+│  ├─ App.config
 │  ├─ Omega.csproj
 │  ├─ Program.cs
 │  ├─ packages.config

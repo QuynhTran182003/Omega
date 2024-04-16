@@ -354,6 +354,13 @@ namespace Omega
         private void NahledUctenky_Click(object sender, EventArgs e)
         {
             /*Vystiskne nahled uctenky pro zakaznika (př. PDF)*/
+            if (flowLayoutItems.Controls.Count > 0)
+            {
+                BillOverview bo = new BillOverview(this);
+                bo.Show();
+            }
+            Exit_Click(sender, e);
+            
         }
 
         /// <summary>

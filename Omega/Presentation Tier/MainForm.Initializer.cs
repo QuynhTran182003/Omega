@@ -57,7 +57,7 @@ namespace Omega
             {
                 total += (int.Parse(itemUc.QuantityLabel.Text) * int.Parse(itemUc.PriceLabel.Text));
             }
-            this.totalPrice.Text = $"{total} ,- Kc";
+            this.totalPrice.Text = $"{total} ,- Kč";
         }
 
         private void AddOrUpdateItem(Product product, int quantity)
@@ -106,7 +106,7 @@ namespace Omega
                 ItemUC uc = new ItemUC(item.Id, p.Name, p.Code, p.Price, p.DPH(), item.Quantity, this);
                 flowLayoutPanel.Controls.Add(uc);
             }
-            totalPrice.Text = total.ToString();
+            totalPrice.Text = total.ToString() + ",-Kč";
         }
     }
 }
