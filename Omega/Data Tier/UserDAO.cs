@@ -14,7 +14,18 @@ namespace Omega.Data_Tier
     {
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            SqlCommand cmd = new SqlCommand("delete from Users where id = @Id", DatabaseSingleton.GetInstance());
+            cmd.Parameters.AddWithValue("@Id", id);
+            try
+            {
+                cmd.ExecuteNonQuery();
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+
+            DatabaseSingleton.CloseConnection();
         }
 
         public void GetById(int id)

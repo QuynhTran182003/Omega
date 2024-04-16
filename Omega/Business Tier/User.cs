@@ -52,10 +52,35 @@ namespace Omega.Business_Tier
 
         public User GetUser(string username, string pwd)
         {
-            User user1 = new User();
-            UserDAO userDAO = new UserDAO();
-            user1 = userDAO.GetUserBy(username, pwd);
-            return user1;
+            try
+            {
+                User user1 = new User();
+                UserDAO userDAO = new UserDAO();
+                user1 = userDAO.GetUserBy(username, pwd);
+                return user1;
+            }
+            catch
+            {
+                MessageBox.Show("Error pri ziskani uzivatele");
+                return null;
+            }
+            
+        }
+
+        public void DeleteUser(int id)
+        {
+            try
+            {
+                UserDAO userDAO = new UserDAO();
+                userDAO.Delete(id);
+                MessageBox.Show("Deleted successfully");
+            }
+            catch{
+                
+                MessageBox.Show("Error pri smazani uzivatele");
+                return;
+            }
+            
         }
     }
 }
