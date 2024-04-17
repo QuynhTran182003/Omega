@@ -44,8 +44,6 @@ quantity int default 1 check(quantity>0)
 ALTER TABLE Item
 ADD price_at_order int
 
-select * from Users
-delete from User where id =2
 CREATE TABLE Bill(
 id int primary key identity(1,1),
 total_price int not null,
