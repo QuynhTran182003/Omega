@@ -78,6 +78,7 @@ namespace Omega.Data_Tier
             }
             catch (SqlException ex)
             {
+                return;
                 throw ex;
             }
 
