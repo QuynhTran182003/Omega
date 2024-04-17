@@ -121,7 +121,7 @@ namespace Omega.Data_Tier
 
         public void GetAll(DataGridView dataView)
         {
-            SqlCommand cmd = new SqlCommand("select Product.id, Product.code, Product.name, Product.price, Category.name as 'category' from Product inner join Category on Product.category_id = Category.id\r\n", DatabaseSingleton.GetInstance());
+            SqlCommand cmd = new SqlCommand("select Product.id, Product.code, Product.name, Product.price, Category.name as 'category' from Product left join Category on Product.category_id = Category.id\r\n", DatabaseSingleton.GetInstance());
             try
             {
                 cmd.ExecuteNonQuery();
